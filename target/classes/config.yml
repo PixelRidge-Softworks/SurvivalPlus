@@ -1,0 +1,427 @@
+# Settings
+
+# Notes in this config are lost on updates if the config file changes
+# If you would like to see the notes, delete this file and it will regenerate with notes
+# (Make sure to backup your config file)
+
+# Preset language file includes in-game messages, item names, lore, etc.
+# Language options are EN (English) or CN (Chinese)
+Language: EN
+
+MultiWorld:
+  # Enable the SurvivalPlus resource pack for players
+  EnableResourcePack: true
+  # The link to the pack, you can put a custom link here if need be
+  ResourcePackURL: https://www.dropbox.com/s/fq6or9vvcup7wvd/SP-1.14v6.zip?dl=1
+  # Notify players when they log in if they deny the resource pack
+  NotifyMessage: true
+
+# The distance from the player at which other players will see their chat messages
+# -1 = disabled
+LocalChatDist: -1
+
+# Disable player's coords in the Minecraft debug screen
+NoPos: true
+
+# When a player joins, they will get a link to a simple starter guide
+WelcomeGuide:
+  Enabled: true
+  # Only send to players the first time they log in
+  NewPlayersOnly: false
+  # Delay in seconds until this message appears
+  Delay: 5
+
+Survival:
+  # When enabled, the basic custom SurvivalPlus items will be included in the game
+  Enabled: true
+
+  # With this enabled, players will only be able to craft items which they have unlocked recipes for
+  LimitedCrafting: false
+
+  # If true, all custom recipes will be unlocked when a player joins
+  # If false, recipes will be unlocked as a player advances thru the game
+  Unlock-all-recipes-on-join: false
+
+  # When enabled, all vanilla wooden tool recipes will be removed
+  # This makes gameplay a little more difficult
+  Remove-Wooden-Tools: true
+
+  # With these enabled, players will only be able to break most blocks with the correct tools
+  BreakOnlyWith:
+    Axe: true
+    Pickaxe: true
+    Shovel: true
+    Shears: true
+    Sickle: true
+
+  # Enable each sickle individually
+  # (note: if BreakOnlyWith.Sickle = false or Survival.Enabled = false, these will be ignored)
+  # (note: diamond and iron sickles rely on stone sickles in their recipe, so its best to leave stone enabled if diamond or iron are enabled)
+  Sickles:
+    Flint: true
+    Stone: true
+    Iron: true
+    Diamond: false
+
+  # With this enabled, players will need a hammer in their off hand to place most buildable blocks
+  PlaceOnlyWith:
+    Hammer: true
+
+  # The rates at which items will drop (Value between 0.01 -> 1.0)
+  DropRate:
+    # Dropped when breaking gravel
+    Flint: 0.5
+    # Dropped when breaking leaves
+    Stick: 0.25
+
+  # Enables custom torch recipes
+  Torch: true
+
+  # Enables updating trade options for merchants (ie: Villagers) with custom items equivalent to the trade option
+  # Ex: An armorer offers diamond chestplate -> diamond chestplate with the slowness attribute
+  # Ex: A toolsmith offers diamond hoe -> diamond sickle
+  UpdateMerchantTrades: true
+
+Mechanics:
+  # This is an experimental feature, I recommend not using it
+  SharedWorkbench: false
+
+  # When enabled the night will not skip to day when players sleep
+  Prevent-Night-Skip: false
+
+  # When enabled, players will slow down when wearing heavy armor such as diamond or gold armor
+  SlowArmor: true
+  # Enables recipes for reinforced leather armor
+  ReinforcedLeatherArmor: true
+
+  # When enabled, players will only be able to shoot a bow/crossbow from their main hand
+  # They will also need to have arrows in their offhand to shoot a bow/load a crossbow
+  Bow: true
+  # Enables the recurved bow and crossbow
+  RecurveBow: true
+  # Enables grappling hooks
+  GrapplingHook: true
+  # Enables the medical kit
+  MedicalKit: true
+  # Reduced recipes for iron/gold nuggets
+  ReducedIronNugget: true
+  ReducedGoldNugget: true
+
+  # Shows the players different status levels in a scoreboard
+  StatusScoreboard: true
+  # Interval for alert messages [in seconds] (Currently used to warn players when thirst/nutrients are low)
+  AlertInterval: 20
+
+  # Applies hunger to players when eating raw meat
+  RawMeatHunger: true
+
+  # Players can empty potions in a workbench
+  EmptyPotions: true
+
+  # When consuming poisonous potatoes, apply a few extra effects to the player
+  PoisonousPotato: true
+
+  # Eating cookies will boost a player's health
+  CookieHealthBoost: true
+
+  # Eating beetroots will boost a player's strength
+  BeetrootStrength: true
+
+  # Players will need to eat a different variety of foods to stay nourished
+  FoodDiversity:
+    enabled: true
+    # Max level for each nutritional value
+    max-level:
+      carbs: 50000
+      salts: 50000
+      proteins: 50000
+    # The level the player will start with
+    start-level:
+      proteins: 240
+      carbs: 960
+      salts: 360
+    # The level the player will get after dying
+    respawn-level:
+      proteins: 120
+      carbs: 480
+      salts: 180
+    # Each nutrition section has different effects when player's levels are too low
+    effects:
+      carbs:
+        # Exhaustion amplifier will differ based on server difficulty level
+        exhaustion-amplifier:
+          easy: 2
+          normal: 4
+          hard: 8
+      salts:
+        exhaustion-amplifier: 1
+        # Status effects/amplifiers can differ based on server difficulty level
+        status-effects:
+          normal:
+            # The effect (uses Bukkit PotionEffectTypes)
+            # You can find these effects here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
+            effect: WEAKNESS
+            # The amplifying level (0 = tier 1, 1 = tier 2)
+            amplifier: 0
+            # The time in seconds this effect will last for
+            duration: 20
+          hard:
+            effect: WEAKNESS
+            amplifier: 1
+            duration: 20
+      proteins:
+        exhaustion-amplifier: 1
+        # Status effects/amplifiers can differ based on server difficulty level
+        status-effects:
+          normal:
+            effect: WEAKNESS
+            amplifier: 0
+            duration: 20
+          hard:
+            effect: WEAKNESS
+            amplifier: 1
+            duration: 20
+
+  # When enabled, players will need to drink water to replenish their thirst levels
+  Thirst:
+    Enabled: true
+    # The level of thirst a player starts out with (max = 40)
+    Starting-Amount: 30
+    # The level of thirst a player gets after respawning after death (max = 40)
+    Respawn-Amount: 30
+    # Enables 3 different levels of water (dirty, clean, purified)
+    PurifyWater: true
+    MeltSnow: true
+    # The rate at which a player's thirst level will drop (value from 0.01 -> 1.0)
+    DrainRate: 1.0
+    # If player is in a HOT biome, drain 1 extra thirst point every X seconds
+    # This helps speed up thirst draining when a player is in a hot biome like the desert or savannah
+    # (ex: at a rate of 30, thirst drops 2 points a minute, which means the player would lose all thirst in 20 minutes)
+    # If set to 0, this will be disabled
+    HeatDrain: 30
+    # If player is in the nether, drain 1 extra thirst point every X seconds
+    # This helps speed up thirst draining when a player is in the nether
+    # (ex: at a rate of 30, thirst drops 2 points a minute, which means the player would lose all thirst in 20 minutes)
+    # If set to 0, this will be disabled
+    NetherDrain: 30
+    # The amount of damage a player takes when their thirst level is empty
+    DamageRate: 1.0
+    # The level of thirst that will be replenished when a player consumes this item
+    Replenish-Level:
+      beetroot-soup: 6
+      melon-slice: 6
+      mushroom-stew: 12
+      water-bowl: 10
+      coffee: 23
+      cold-milk: 15
+      hot-milk: 10
+      milk-bucket: 30
+      honey-bottle: 16
+      # Only used if PurifyWater is enabled
+      dirty-water: 13
+      clean-water: 18
+      purified-water: 23
+      # This can be used for any other water bottle (such as custom ones or just vanilla water bottles)
+      # If you do not want players to get thirst from other water bottles leave this at 0
+      other-water: 0
+      # Only used if PurifyWater is disabled
+      water: 18
+
+  # Players will have an energy level out of 20, as it drops, players will get weak and suffer some bad effects
+  Energy:
+    # With this enabled, players will need to sleep often or risk losing energy
+    enabled: true
+    # The amount of energy a player will start with (out of 20.0)
+    start-level: 20.0
+    # The amount of energy a player will get after they respawn (out of 20.0)
+    respawn-level: 20.0
+    # Warn the player via message when energy starts dropping below 10
+    warning: true
+    # The amount of energy a player loses every 5 seconds of gameplay
+    # Default (0.015) equivalent to 3.6 levels in 1 MC day (20 minutes)
+    drain-rate: 0.015
+    # If the player is in a cold biome, exposed to the sky, drain energy quicker
+    # Default (0.015) equivalent to 3.6 levels in 1 MC day (20 minutes)
+    # Setting to 0 will disable this
+    cold-drain-rate: 0.015
+    # Every 5 seconds a player spends in bed, the level of energy to increase
+    sleeping-refresh-rate: 0.83 # Default (0.83) equivalent to 10 levels in 1 minute
+    # Every 5 seconds a player spends sitting in a chair, the level of energy to increase
+    # (Will only work if chairs are enabled)
+    chair-refresh-rate: 0.25 # Default (0.41) equivalent to 3 levels in 1 minute
+    # Players doing exhaustive tasks (such as mining, running, jumping) will lose energy quicker
+    # Amount to drop per exhaustion reset (when the player's hunger bar drops) (set to 0 to disable)
+    exhaustion: 0.15
+    # Enables coffee recipes and effects (Drink coffee to regain energy)
+    coffee: true
+    # Player will get a few minutes of absorption when their energy is high
+    absorption: true
+    # Player will get a few minutes of haste when their energy is high
+    haste: true
+
+  Hunger:
+    # The level of hunger a player starts out with (max = 40)(this is a mixture of hunger and saturation)
+    Starting-Amount: 30
+    # The level of hunger a player will receive after respawning after death (max = 40)
+    Respawn-Amount: 30
+
+  # Players can set a waypoint to a location using a compass
+  CompassWaypoint:
+    enabled: true
+    # Whether a player is able to set a point for each world
+    per-world: true
+  # Players can eat a tropical fish to teleport to their waypoint
+  # (Clownfish was the old type that's why this is still here)
+  Clownfish: true
+
+  # Enables fermented skin recipes
+  FermentedSkin: true
+
+  # Enables living slime
+  LivingSlime: true
+
+  # When a player throws a snowball it will place a snow layer on the ground
+  SnowballRevamp: true
+
+  # Currently disabled, do not use!!!
+  SnowGenerationRevamp: false
+  
+  FarmingProducts:
+    Bread: true
+    Cookie: true
+
+  # Enables chairs and the blocks that can be used for chairs
+  Chairs:
+    Enabled: true
+    MaxChairWidth: 2
+    # These must be Bukkit material Enums
+    # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    AllowedBlocks:
+      - OAK_STAIRS
+      - SPRUCE_STAIRS
+      - JUNGLE_STAIRS
+      - BIRCH_STAIRS
+      - ACACIA_STAIRS
+      - DARK_OAK_STAIRS
+      - SANDSTONE_STAIRS
+      - COBBLESTONE_STAIRS
+      - BRICK_STAIRS
+      - STONE_BRICK_STAIRS
+      - NETHER_BRICK_STAIRS
+      - QUARTZ_STAIRS
+      - RED_SANDSTONE_STAIRS
+      - PURPUR_STAIRS
+      - PRISMARINE_STAIRS
+      - PRISMARINE_BRICK_STAIRS
+      - DARK_PRISMARINE_STAIRS
+
+  # EXPERIMENTAL FEATURE
+  # DO NOT USE
+  BurnoutTorches:
+    Enabled: false
+    # Time (in seconds) before torch will burn out
+    BurnoutTime: 60
+    # If burnout torches can be re-lit
+    Relightable: true
+    # If non persistent torches will drop a torch when broken, if disabled will drop a stick
+    DropTorch: true
+    # If persistent torches are enabled
+    PersistentTorches: true
+
+  # WEATHER MECHANICS
+  # These mechanics change how weather affects the player
+  Weather:
+    Enabled: false
+    # Speed modifiers adjust player's speed based on weather
+    speed:
+      # This is the base speed (vanilla speed = 0.10) when a player is in normal conditions
+      base: 0.10
+      # The speed when the player is in the rain
+      rain: 0.085
+      # The speed when the player is in the rain and its thundering
+      storm: 0.075
+      # The speed when the player is walking on snow
+      snow: 0.065
+      # The speed when the player is walking in a snow storm
+      snowstorm: 0.05
+
+# Mechanics that flow around items
+Item-Mechanics:
+  firestriker:
+    # The amount of ticks it takes to cook/smelt an item with the FireStriker (default 100 ticks = 5 seconds)
+    cook-time: 100
+
+# Mechanics that flow around entities
+Entity-Mechanics:
+  # When a player opens a chest in the nether, and it contains gold items, zombie pigmen will attack the player
+  pigmen-chests:
+    enabled: false
+    # Max radius to check for zombie pigmen around chests
+    distance: 24
+    # Speeds up the pigmen when they are triggered (1.0 = no increase in speed)
+    speed-modifier: 1.3
+  # When a player has a beekeeper suit on they will not take damage from bee stings
+  beekeeper-suit:
+    enabled: true
+  # When a player kills a zombie/zombie villager/drowned/husk/zombie horse they may drop suspicious meat
+  # This meat has a random chance of a good or bad effect added to it
+  suspicious-meat:
+    enabled: true
+    # Chance of drops (out of 100)
+    chance: 15
+  # When enabled, breeding chickens will not spawn baby chickens, but rather drop eggs
+  # The eggs that drop during breeding will always spawn a chicken
+  # The eggs that drop naturally by chickens are not affected by this
+  chicken-breeding:
+    enabled: true
+    # The maximum amount of eggs that will drop when breeding (random between 1 and this number)
+    max-eggs: 4
+    # Chickens spawned from eggs will always be a baby
+    always-baby: true
+    # The amount of ticks this chicken will be a baby for
+    # If 'always-baby = false' this time will only be applied to baby chickens
+    # Vanilla default = 24,000 ticks = 20 minutes
+    baby-ticks: 48000
+  piglin-barter:
+    # When enabled, if a piglin drops a water bottle they'll drop purified/clean water instead
+    # Thirst needs to be enabled for this to work
+    drop-purified-water: true
+    # When enabled, piglins have a chance of randomly dropping custom SurvivalPlus items
+    alternate-bartering: true
+
+# Enables custom recipes (Overrides vanilla recipes)
+# Disable these if you prefer to just use the vanilla recipes
+Recipes:
+  Saddle: true
+  Nametag: true
+  PackedIce: true
+  LeatherBard: true
+  IronBard: true
+  GoldBard: true
+  DiamondBard: true
+  ClayBrick: true
+  QuartzBlock: true
+  WoolString: true
+  WebString: true
+  Ice: true
+  Clay: true
+  Diorite: false
+  Granite: false
+  Andesite: false
+  Gravel: true
+  Slimeball: true
+  Cobweb: true
+  SaplingToSticks: true
+  FishingRod: true
+  Furnace: true
+  Workbench: true
+
+# Enables legendary items
+LegendaryItems:
+  ValkyrieAxe: true
+  QuartzPickaxe: true
+  ObsidianMace: true
+  GiantBlade: true
+  BlazeSword: true
+  NotchApple: true
+  GoldArmorBuff: true

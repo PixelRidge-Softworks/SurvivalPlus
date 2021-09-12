@@ -1,0 +1,30 @@
+# ITEMS.YML
+
+# This file holds certain properties for custom items
+# Only change it if you know what you're doing
+
+# --ITEMS--
+# model_data is the CustomModalData version of this item which represents the CustomModelData number in the resource pack
+# If you are using a custom resource pack, you can change this number to match
+
+# repair_cost_multiplier = the amount that will multiply when repairing in an anvil
+# -1 = does not require an anvil, can be repaired in a crafting table
+# 0 = requires an anvil, but no multiplier
+# >0 = requires an anvil, multiplier applied
+
+# repair_percent = modifier for repair amount
+# Value must be between 0.0 and 1.0 (1.0 = full vanilla healing)
+# A 0 value means the item can not be repaired
+# Minecraft formula = min( Item A uses + Item B uses + floor(Max uses / 20), Max uses)
+# We take the result of that and multiply it by this percent
+# Example, if joining 2 items that both have 50 durability left (with a max of 100):
+# (50 + 50 + floor(100/20)) * repair_percent
+# 1.0 = 100 durability on the new item
+# 0.75 = 78 durability on the new item
+# 0.0 = can not be repaired
+
+# --NUTRITION--
+
+# Nutrition values can be changed. They cannot be removed nor added to
+# Deleting a value will reset to it's default value
+# The values must be >= 0
