@@ -13,13 +13,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Cauldron;
 import veth.vetheon.survival.managers.ItemManager;
 import veth.vetheon.survival.item.Item;
 
 public class CauldronWaterBottle implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGHEST)
 	private void onItemClick(PlayerInteractEvent event) {
 		if (event.isCancelled()) return;
@@ -29,15 +27,16 @@ public class CauldronWaterBottle implements Listener {
 				ItemStack mainItem = player.getInventory().getItemInMainHand();
 				if (mainItem.getType() == Material.GLASS_BOTTLE) {
 					if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-						if (event.getClickedBlock().getType() == Material.CAULDRON) {
+						if (event.getClickedBlock().getType() == Material.WATER_CAULDRON) {
 							Levelled cauldron = (Levelled) (event.getClickedBlock().getBlockData());
 							if (cauldron.getLevel() > 0) {
 								Block fire = event.getClickedBlock().getRelative(BlockFace.DOWN);
 								event.setCancelled(true);
 
-								event.getClickedBlock().getState().setData(new Cauldron());
-								cauldron.setLevel(cauldron.getLevel() - 1);
-								event.getClickedBlock().setBlockData(cauldron);
+								if(cauldron.getLevel() > 1) {
+									cauldron.setLevel(cauldron.getLevel() - 1);
+									event.getClickedBlock().setBlockData(cauldron);
+								}else event.getClickedBlock().setType(Material.CAULDRON);
 
 								ItemStack waterBottle = ItemManager.get(Item.DIRTY_WATER);
 
