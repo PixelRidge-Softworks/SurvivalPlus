@@ -1,7 +1,7 @@
 name: SurvivalPlus
 main: veth.vetheon.survival.Survival
 authors: [FattyMieo, ShaneBee, VetheonGames]
-version: '4.0.0-BETA'
+version: '4.0.1-RELEASE'
 api-version: '1.17'
 softdepend:
    - PlaceholderAPI

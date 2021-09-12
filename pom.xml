@@ -6,7 +6,7 @@
 
     <groupId>veth.vetheon</groupId>
     <artifactId>SurvivalPlus</artifactId>
-    <version>4.0.0-BETA</version>
+    <version>4.0.1-RELEASE</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
