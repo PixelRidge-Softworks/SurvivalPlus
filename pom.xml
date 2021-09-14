@@ -6,7 +6,7 @@
 
     <groupId>veth.vetheon</groupId>
     <artifactId>SurvivalPlus</artifactId>
-    <version>4.0.1-RELEASE</version>
+    <version>4.0.2-RELEASE</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -49,6 +49,13 @@
       <version>5.0.0</version>
       <scope>compile</scope>
       </dependency>
+       <!-- bStats -->
+    <dependency>
+      <groupId>org.bstats</groupId>
+      <artifactId>bstats-bukkit</artifactId>
+      <version>2.2.1</version>
+      <scope>compile</scope>
+    </dependency>
     </dependencies>
 
     <profiles>
@@ -65,6 +72,27 @@
                             <outputDirectory>/Users/ShaneBee/Desktop/Server/1-16-SP-TEST/plugins</outputDirectory>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                           <relocations>
+                               <relocation>
+                               <pattern>org.bstats</pattern>
+                               <shadedPattern>veth.vetheon.metrics</shadedPattern>
+                               </relocation>
+                           </relocations>
+                       </configuration>
+                   <executions>
+                       <execution>
+                       <phase>package</phase>
+                   <goals>
+                       <goal>shade</goal>
+                   </goals>
+                       </execution>
+                  </executions>
+                  </plugin>
                 </plugins>
             </build>
         </profile>

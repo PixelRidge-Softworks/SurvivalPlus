@@ -65,7 +65,7 @@ public class Survival extends JavaPlugin implements Listener {
 		long time = System.currentTimeMillis();
 
 		// VERSION CHECK
-		if (!Utils.isRunningMinecraft(1, 16)) {
+		if (!Utils.isRunningMinecraft(1, 17)) {
 			String ver = Bukkit.getServer().getBukkitVersion().split("-")[0];
             Utils.log("&c-----------------------------------------------------------");
             Utils.log("&cYour version is not supported: &b" + ver);
@@ -80,7 +80,7 @@ public class Survival extends JavaPlugin implements Listener {
         if (!Utils.isRunningSpigot()) {
             Utils.log("&c-----------------------------------------------------------");
             Utils.log("&7Your server software is not supported: &c" + Bukkit.getName());
-            Utils.log("&7This plugin will only work on &aSpigot &7or &aPaper.");
+            Utils.log("&7This plugin will only work on &aSpigot &7, &aPaper &7ir, &5Purpur.");
             Utils.log("&c-----------------------------------------------------------");
             loaded = false;
             Bukkit.getPluginManager().disablePlugin(this);
@@ -164,6 +164,7 @@ public class Survival extends JavaPlugin implements Listener {
         }
 
 		// LOAD METRICS
+		int pluginId = 12789;
 		Metrics metrics = new Metrics(this);
 		Utils.log("&7Metrics " + (metrics.isEnabled() ? "&aenabled" : "&cdisabled"));
 
