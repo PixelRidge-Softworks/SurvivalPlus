@@ -210,6 +210,10 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowThirst(Player player) {
+    	if (player == null)
+    	{
+    	return null;
+    	}
         StringBuilder thirstBar = new StringBuilder();
         PlayerData data = getPlayerData(player);
         int thirst = data.getThirst();
@@ -233,6 +237,10 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowHunger(Player player) {
+    	if (player == null)
+    	{
+    	return null;
+    	}
         int hunger = player.getFoodLevel();
         int saturation = Math.round(player.getSaturation());
         StringBuilder hungerBar = new StringBuilder();
@@ -258,6 +266,10 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowNutrients(Player player) {
+    	if (player == null)
+    	{
+    	return null;
+    	}
         List<String> nutrients = new ArrayList<>();
         PlayerData data = getPlayerData(player);
 
@@ -290,6 +302,10 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> showEnergy(Player player) {
+    	if (player == null) 
+    	{
+    		return null;
+    	}
         PlayerData playerData = getPlayerData(player);
         double energy = Math.floor(playerData.getEnergy());
         StringBuilder energyBar = new StringBuilder();

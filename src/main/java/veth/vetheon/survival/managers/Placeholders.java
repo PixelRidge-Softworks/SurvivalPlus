@@ -45,6 +45,11 @@ public class Placeholders extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player p, String identifier) {
         PlayerData playerData = playerManager.getPlayerData(p);
+        
+        if (playerData == null )
+    	{
+    	return null;
+    	}
 
         // Shows player's health, kinda useless but here it is
         if (identifier.equalsIgnoreCase("player_health")) {
