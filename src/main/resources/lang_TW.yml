@@ -20,7 +20,7 @@ no-perm: "&c你沒有權限執行這個指令"
 
 # 玩家加入游戲後會看到以下插件幫助的消息
 # 你可以更改為你想要的幫助鏈接
-survival-guide-msg: "&6本服修改了大量原版生存機制,為了讓你有更加流暢且愉快的游戲體驗，請 "
+survival-guide-msg: "&6本伺服器修改了大量原版生存機制,為了讓你有更加流暢且愉快的游戲體驗，請 "
 survival-guide-click-msg: "&b點擊這裡查看游戲指南"
 survival-guide-hover-msg: "點擊查看幫助"
 survival-guide-link: "https://info.tensorfoxes.xyz/shi-jie-zi-xun/kua-chu-di-yi-bu-de-sheng-cun-gai-yao"
@@ -42,7 +42,7 @@ no-rename: "你不能修改這個物品的名字或者對物品進行修復 "
 period: "."
 
 charge: "已充能!"
-charge-ready: "准備充能!"
+charge-ready: "準備充能!"
 charge-unable: "無法充能."
 
 lack-of-energy: "裝備未完成充能,請等待充能完畢再進行使用"
@@ -70,7 +70,7 @@ compass-lore:
 
 players-only: "僅適用於玩家."
 toggle-chat-local: "&b開啟&a本地&b聊天."
-toggle-chat-global: "&b開啟&2全服&b聊天."
+toggle-chat-global: "&b開啟&2伺服器&b聊天."
 toggle-chat-disabled: "&c本伺服器關閉了聊天模式的切換."
 invalid-arg: "無效的參數,請檢查指令是否輸入錯誤."
 
@@ -107,7 +107,7 @@ energy-level-2: "&c您開始感到頭暈目眩, 趕快休息一下."
 energy-level-1: "&c由於缺乏睡眠,你快要猝死了."
 
 locked: "已鎖定"
-missing-component: "缺少組件"
+missing-component: "缺少零件"
 
 ####################
 # 物品名稱及介紹
@@ -125,7 +125,7 @@ hatchet: "燧石斧"
 mattock: "燧石鎬"
 firestriker: "簡易打火石"
 firestriker-damaged: "損壞的打火石"
-firestriker-lore: "&7右鍵可點燃物品||&bshift+右鍵進入冶煉界面||&7 -放入你想冶煉的物品||&7 -點擊冶煉"
+firestriker-lore: "&7右鍵可點燃物品||&b對任意方快shift+右鍵進入冶煉界面||&7 -放入你想冶煉的物品||&7 -點擊冶煉"
 shiv: "匕首"
 poisoned-enemy: "&2添毒: 給予敵人中毒效果"
 poisoned-retain: "&2中毒效果 &7會持續一段時間"
@@ -169,7 +169,7 @@ reinforced-pants: "強化皮革褲子"
 reinforced-hat: "強化皮革帽子"
 
 golden-sabatons: "金靴子"
-golden-guard: "金胸甲"
+golden-guard: "金護甲"
 golden-greaves: "金護腿"
 golden-crown: "金皇冠"
 
@@ -189,7 +189,7 @@ clean-water: "&b水瓶"
 clean-water-lore: "&7簡單加熱過濾的水"
 clean-water-color: 1213666
 purified-water: "&b水瓶"
-purified-water-lore: "&7純淨水"
+purified-water-lore: "&7最純淨的水"
 purified-water-color: 0x00FFFF
 
 coffee-bean-name: "咖啡豆"

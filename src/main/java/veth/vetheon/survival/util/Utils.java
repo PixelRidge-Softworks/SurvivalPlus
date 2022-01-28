@@ -317,6 +317,12 @@ public class Utils {
 				.add(Material.WHEAT)
 				.add(Material.SWEET_BERRY_BUSH)
 				.add(Material.COCOA)
+
+				//cave and cliff update
+				.add(Material.GLOW_BERRIES)
+//				.add(Material.GLOW_INK_SAC)
+//				.add(Material.GLOW_ITEM_FRAME)
+
 				.build();
 
         SHOVEL = ImmutableSet.<Material>builder()
