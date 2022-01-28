@@ -131,6 +131,19 @@ public class Utils {
                 .add(Material.NETHER_GOLD_ORE)
                 .add(Material.ANCIENT_DEBRIS)
                 .add(Material.GILDED_BLACKSTONE)
+
+				// Cave and Cliff updates
+				.add(Material.DEEPSLATE_COAL_ORE)
+				.add(Material.DEEPSLATE_COPPER_ORE)
+				.add(Material.DEEPSLATE_DIAMOND_ORE)
+				.add(Material.DEEPSLATE_EMERALD_ORE)
+				.add(Material.DEEPSLATE_GOLD_ORE)
+				.add(Material.DEEPSLATE_IRON_ORE)
+				.add(Material.DEEPSLATE_LAPIS_ORE)
+				.add(Material.DEEPSLATE_REDSTONE_ORE)
+
+				.add(Material.DEEPSLATE_COPPER_ORE)
+
                 .build();
 
         ORE_BLOCK = ImmutableSet.<Material>builder()
@@ -143,6 +156,9 @@ public class Utils {
                 .add(Material.QUARTZ_BLOCK)
                 .add(Material.REDSTONE_BLOCK)
                 .add(Material.NETHERITE_BLOCK)
+
+
+
                 .build();
 
 		COOKING_BLOCK = ImmutableSet.<Material>builder()
@@ -215,6 +231,77 @@ public class Utils {
                 .add(Material.CHISELED_NETHER_BRICKS)
                 .add(Material.CRACKED_NETHER_BRICKS)
                 .add(Material.QUARTZ_BRICKS)
+
+				// Cave and Cliff updates
+				.add(Material.MOSS_BLOCK)
+				.add(Material.MOSSY_STONE_BRICKS)
+				.add(Material.MOSSY_COBBLESTONE)
+				.add(Material.MOSSY_COBBLESTONE_SLAB)
+				.add(Material.MOSSY_COBBLESTONE_STAIRS)
+				.add(Material.MOSSY_COBBLESTONE_WALL)
+				.add(Material.MOSSY_STONE_BRICK_SLAB)
+				.add(Material.MOSSY_STONE_BRICK_STAIRS)
+				.add(Material.MOSSY_STONE_BRICK_WALL)
+				.add(Material.INFESTED_MOSSY_STONE_BRICKS)
+
+				.add(Material.DEEPSLATE)
+				.add(Material.DEEPSLATE_BRICK_SLAB)
+				.add(Material.DEEPSLATE_BRICK_STAIRS)
+				.add(Material.DEEPSLATE_BRICK_WALL)
+				.add(Material.DEEPSLATE_BRICKS)
+
+				.add(Material.DEEPSLATE_TILES)
+				.add(Material.DEEPSLATE_TILE_SLAB)
+				.add(Material.DEEPSLATE_TILE_STAIRS)
+				.add(Material.DEEPSLATE_TILE_WALL)
+				.add(Material.CHISELED_DEEPSLATE)
+				.add(Material.COBBLED_DEEPSLATE)
+				.add(Material.COBBLED_DEEPSLATE_SLAB)
+				.add(Material.COBBLED_DEEPSLATE_STAIRS)
+				.add(Material.COBBLED_DEEPSLATE_WALL)
+				.add(Material.CRACKED_DEEPSLATE_BRICKS)
+				.add(Material.CRACKED_DEEPSLATE_TILES)
+				.add(Material.INFESTED_DEEPSLATE)
+				.add(Material.POLISHED_DEEPSLATE)
+				.add(Material.POLISHED_DEEPSLATE_SLAB)
+				.add(Material.POLISHED_DEEPSLATE_STAIRS)
+				.add(Material.POLISHED_DEEPSLATE_WALL)
+
+				.add(Material.DRIPSTONE_BLOCK)
+				.add(Material.BIG_DRIPLEAF_STEM)
+				.add(Material.POINTED_DRIPSTONE)
+
+				.add(Material.COPPER_BLOCK)
+				.add(Material.COPPER_INGOT)
+				.add(Material.COPPER_ORE)
+				.add(Material.CUT_COPPER)
+				.add(Material.CUT_COPPER_SLAB)
+				.add(Material.CUT_COPPER_STAIRS)
+				.add(Material.EXPOSED_COPPER)
+				.add(Material.EXPOSED_CUT_COPPER)
+				.add(Material.EXPOSED_CUT_COPPER_SLAB)
+				.add(Material.EXPOSED_CUT_COPPER_STAIRS)
+				.add(Material.OXIDIZED_COPPER)
+				.add(Material.OXIDIZED_CUT_COPPER)
+				.add(Material.OXIDIZED_CUT_COPPER_SLAB)
+				.add(Material.OXIDIZED_CUT_COPPER_STAIRS)
+				.add(Material.RAW_COPPER)
+				.add(Material.RAW_COPPER_BLOCK)
+				.add(Material.WAXED_COPPER_BLOCK)
+				.add(Material.WAXED_CUT_COPPER)
+				.add(Material.WAXED_CUT_COPPER_SLAB)
+				.add(Material.WAXED_CUT_COPPER_STAIRS)
+				.add(Material.WAXED_EXPOSED_COPPER)
+				.add(Material.WAXED_EXPOSED_CUT_COPPER)
+				.add(Material.WAXED_EXPOSED_CUT_COPPER_SLAB)
+				.add(Material.WAXED_EXPOSED_CUT_COPPER_STAIRS)
+				.add(Material.WAXED_OXIDIZED_COPPER)
+				.add(Material.WEATHERED_COPPER)
+				.add(Material.WEATHERED_CUT_COPPER)
+				.add(Material.WEATHERED_CUT_COPPER_SLAB)
+
+
+
                 .build();
 
 		FARMABLE = ImmutableSet.<Material>builder()

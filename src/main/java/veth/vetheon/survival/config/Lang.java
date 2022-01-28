@@ -12,12 +12,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lang {
 
     private final Survival plugin;
-    private final String lang_yml;
+    private String lang_yml;
+    private String language;
 
     public String prefix;
     public String no_perm;
@@ -205,20 +207,32 @@ public class Lang {
     public String cmd_heal_by;
     public String cmd_heal_other;
 
+    final private String[] defaultLanguage = {"CN","EN","TW"};
+
     public Lang(Survival main, String language) {
         this.plugin = main;
-        this.lang_yml = language.equals("CN") ? "lang_CN.yml" : "lang_EN.yml";
+        this.language = language;
+        this.lang_yml = "lang_" + language + ".yml";
+
+//        this.lang_yml = language.equals("CN") ? "lang_CN.yml" : "lang_EN.yml";
     }
 
     public void loadLangFile(CommandSender sender) {
         String loaded;
         FileConfiguration lang;
-        File lang_file = new File(plugin.getDataFolder(), lang_yml);
+        File lang_file = new File(plugin.getDataFolder(), this.lang_yml);
         if (!lang_file.exists()) {
-            plugin.saveResource(lang_yml, true);
-            loaded = "&aNew " + lang_yml + " created";
+            //if custom lang file not find, load default lang file lang_EN.yml
+            if (!Arrays.stream(defaultLanguage).findAny().get().equals(this.language)) {
+                this.language = "EN";
+                this.lang_yml = "lang_EN.yml";
+                Utils.sendColoredMsg(sender, "&7[&3Survival&bPlus&7] &cLanguage file not found, loading default language file: "+ lang_yml);
+                lang_file = new File(plugin.getDataFolder(), this.lang_yml);
+            }
+            plugin.saveResource(this.lang_yml, true);
+            loaded = "&aNew " + this.lang_yml + " created";
         } else {
-            loaded = "&7" + lang_yml + " &aloaded";
+            loaded = "&7" + this.lang_yml + " &aloaded";
             //updateLang(YamlConfiguration.loadConfiguration(lang_file), lang_file);
             matchConfig(YamlConfiguration.loadConfiguration(lang_file), lang_file);
         }

@@ -5,7 +5,7 @@
 # (Make sure to backup your config file)
 
 # Preset language file includes in-game messages, item names, lore, etc.
-# Language options are EN (English) or CN (Chinese)
+# Language options are EN (English) , CN (Chinese) and TW (Taiwanese), but you can add more like lang_XX.yml
 Language: EN
 
 MultiWorld:

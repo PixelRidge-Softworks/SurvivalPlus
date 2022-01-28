@@ -6,7 +6,7 @@
 
     <groupId>veth.vetheon</groupId>
     <artifactId>SurvivalPlus</artifactId>
-    <version>4.0.4-RELEASE</version>
+    <version>4.0.5-ALPHA</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -21,32 +21,21 @@
         </repository>
         <repository>
             <id>placeholderapi</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.10.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>16.0.3</version>
+            <version>22.0.0</version>
         </dependency>
         <dependency>
         <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>5.0.0</version>
+      <version>5.0.1</version>
       <scope>compile</scope>
       </dependency>
        <!-- bStats -->
@@ -56,47 +45,61 @@
       <version>2.2.1</version>
       <scope>compile</scope>
     </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.1</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>server</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <configuration>
-                            <!-- Put here wherever you would like the plugin to build -->
-                            <outputDirectory>/Users/ShaneBee/Desktop/Server/1-16-SP-TEST/plugins</outputDirectory>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <configuration>
-                           <relocations>
-                               <relocation>
-                               <pattern>org.bstats</pattern>
-                               <shadedPattern>veth.vetheon.metrics</shadedPattern>
-                               </relocation>
-                           </relocations>
-                       </configuration>
-                   <executions>
-                       <execution>
-                       <phase>package</phase>
-                   <goals>
-                       <goal>shade</goal>
-                   </goals>
-                       </execution>
-                  </executions>
-                  </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+
+
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>server</id>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-jar-plugin</artifactId>-->
+<!--                        <version>3.2.0</version>-->
+<!--                        <configuration>-->
+<!--                            &lt;!&ndash; Put here wherever you would like the plugin to build &ndash;&gt;-->
+<!--                            <outputDirectory>/Users/ShaneBee/Desktop/Server/1-16-SP-TEST/plugins</outputDirectory>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-shade-plugin</artifactId>-->
+<!--                        <version>3.1.0</version>-->
+<!--                        <configuration>-->
+<!--                           <relocations>-->
+<!--                               <relocation>-->
+<!--                               <pattern>org.bstats</pattern>-->
+<!--                               <shadedPattern>veth.vetheon.metrics</shadedPattern>-->
+<!--                               </relocation>-->
+<!--                           </relocations>-->
+<!--                       </configuration>-->
+<!--                   <executions>-->
+<!--                       <execution>-->
+<!--                       <phase>package</phase>-->
+<!--                   <goals>-->
+<!--                       <goal>shade</goal>-->
+<!--                   </goals>-->
+<!--                       </execution>-->
+<!--                  </executions>-->
+<!--                  </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -138,6 +141,7 @@
                     <include>data.yml</include>
                     <include>lang_CN.yml</include>
                     <include>lang_EN.yml</include>
+                    <include>lang_TW.yml</include>
                 </includes>
             </resource>
         </resources>
