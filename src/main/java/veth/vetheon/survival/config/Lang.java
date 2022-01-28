@@ -8,10 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.util.Utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -223,15 +220,15 @@ public class Lang {
         File lang_file = new File(plugin.getDataFolder(), this.lang_yml);
         if (!lang_file.exists()) {
             //if custom lang file not find, load default lang file lang_EN.yml
-            if (!Arrays.asList(defaultLanguage).contains(language)) {
-                this.language = "EN";
+            if (!Arrays.asList(defaultLanguage).contains(language)) { //check if lang has official support
                 this.lang_yml = "lang_EN.yml";
-                Utils.sendColoredMsg(sender, "&7[&3Survival&bPlus&7] &cLanguage file not found, loading default language file: "+ lang_yml);
+                Utils.sendColoredMsg(sender, "&7[&3Survival&bPlus&7] &3" + language+ " &cLanguage file not found, loading default language file: "+ lang_yml);
+                this.language = "EN";
                 lang_file = new File(plugin.getDataFolder(), this.lang_yml);
             }
             plugin.saveResource(this.lang_yml, true);
             loaded = "&aNew " + this.lang_yml + " created";
-        } else {
+        } else { //if custom/official lang file found, load custom/official lang file
             loaded = "&7" + this.lang_yml + " &aloaded";
             //updateLang(YamlConfiguration.loadConfiguration(lang_file), lang_file);
             matchConfig(YamlConfiguration.loadConfiguration(lang_file), lang_file);
@@ -410,7 +407,15 @@ public class Lang {
     private void matchConfig(FileConfiguration config, File file) {
         try {
             boolean hasUpdated = false;
-            InputStream test = plugin.getResource(file.getName());
+            InputStream test;
+            if(Arrays.asList(defaultLanguage).contains(language)){
+                // If the language is default, use the default language file
+                test = plugin.getResource(file.getName());
+            }else{
+                //if not, use the language file located in the lang folder
+                test = new FileInputStream(new File(plugin.getDataFolder(), "/" + file.getName()));
+            }
+
             assert test != null;
             InputStreamReader is = new InputStreamReader(test);
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(is);
