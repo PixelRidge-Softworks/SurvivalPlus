@@ -223,7 +223,7 @@ public class Lang {
         File lang_file = new File(plugin.getDataFolder(), this.lang_yml);
         if (!lang_file.exists()) {
             //if custom lang file not find, load default lang file lang_EN.yml
-            if (!Arrays.stream(defaultLanguage).findAny().get().equals(this.language)) {
+            if (!Arrays.asList(defaultLanguage).contains(language)) {
                 this.language = "EN";
                 this.lang_yml = "lang_EN.yml";
                 Utils.sendColoredMsg(sender, "&7[&3Survival&bPlus&7] &cLanguage file not found, loading default language file: "+ lang_yml);

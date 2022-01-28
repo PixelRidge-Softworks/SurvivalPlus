@@ -158,7 +158,6 @@ public class Utils {
                 .add(Material.NETHERITE_BLOCK)
 
 
-
                 .build();
 
 		COOKING_BLOCK = ImmutableSet.<Material>builder()

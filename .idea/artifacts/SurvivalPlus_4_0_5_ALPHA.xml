@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="SurvivalPlus-4.0.5-ALPHA">
-    <output-path>$PROJECT_DIR$/out/artifacts/SurvivalPlus_4_0_5_ALPHA</output-path>
-    <root id="archive" name="SurvivalPlus-4.0.5-ALPHA.jar">
-      <element id="module-output" name="SurvivalPlus" />
-    </root>
-  </artifact>
-</component>
