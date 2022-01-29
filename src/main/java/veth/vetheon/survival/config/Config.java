@@ -255,7 +255,7 @@ public class Config {
 		try {
 			boolean hasUpdated = false;
 			InputStream is = plugin.getResource(file.getName());
-			assert is != null;
+			assert is != null; 
 			InputStreamReader isr = new InputStreamReader(is);
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(isr);
 			for (String key : defConfig.getConfigurationSection("").getKeys(true)) {
