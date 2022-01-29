@@ -319,8 +319,6 @@ public class Utils {
 
 				//cave and cliff update
 				.add(Material.GLOW_BERRIES)
-//				.add(Material.GLOW_INK_SAC)
-//				.add(Material.GLOW_ITEM_FRAME)
 
 				.build();
 

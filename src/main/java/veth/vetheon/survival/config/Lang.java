@@ -415,7 +415,6 @@ public class Lang {
                 //if not, use the language file located in the lang folder
                 test = new FileInputStream(new File(plugin.getDataFolder(), "/" + file.getName()));
             }
-
             assert test != null;
             InputStreamReader is = new InputStreamReader(test);
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(is);
