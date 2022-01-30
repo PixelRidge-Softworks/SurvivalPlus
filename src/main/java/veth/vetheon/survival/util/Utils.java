@@ -132,7 +132,7 @@ public class Utils {
                 .add(Material.ANCIENT_DEBRIS)
                 .add(Material.GILDED_BLACKSTONE)
 
-				// Cave and Cliff updates
+				// Cave and Cliff updates pari 1
 				.add(Material.DEEPSLATE_COAL_ORE)
 				.add(Material.DEEPSLATE_COPPER_ORE)
 				.add(Material.DEEPSLATE_DIAMOND_ORE)
@@ -231,7 +231,8 @@ public class Utils {
                 .add(Material.CRACKED_NETHER_BRICKS)
                 .add(Material.QUARTZ_BRICKS)
 
-				// Cave and Cliff updates
+				// Cave and Cliff updates part 1
+				//mossy
 				.add(Material.MOSS_BLOCK)
 				.add(Material.MOSSY_STONE_BRICKS)
 				.add(Material.MOSSY_COBBLESTONE)
@@ -242,7 +243,7 @@ public class Utils {
 				.add(Material.MOSSY_STONE_BRICK_STAIRS)
 				.add(Material.MOSSY_STONE_BRICK_WALL)
 				.add(Material.INFESTED_MOSSY_STONE_BRICKS)
-
+				//deepslate
 				.add(Material.DEEPSLATE)
 				.add(Material.DEEPSLATE_BRICK_SLAB)
 				.add(Material.DEEPSLATE_BRICK_STAIRS)
@@ -265,11 +266,10 @@ public class Utils {
 				.add(Material.POLISHED_DEEPSLATE_SLAB)
 				.add(Material.POLISHED_DEEPSLATE_STAIRS)
 				.add(Material.POLISHED_DEEPSLATE_WALL)
-
+				//dripstone
 				.add(Material.DRIPSTONE_BLOCK)
-				.add(Material.BIG_DRIPLEAF_STEM)
 				.add(Material.POINTED_DRIPSTONE)
-
+				//copper
 				.add(Material.COPPER_BLOCK)
 				.add(Material.COPPER_INGOT)
 				.add(Material.COPPER_ORE)
@@ -298,9 +298,20 @@ public class Utils {
 				.add(Material.WEATHERED_COPPER)
 				.add(Material.WEATHERED_CUT_COPPER)
 				.add(Material.WEATHERED_CUT_COPPER_SLAB)
-
-
-
+				//Amethyst
+				.add(Material.AMETHYST_BLOCK)
+				.add(Material.AMETHYST_CLUSTER)
+				.add(Material.AMETHYST_SHARD)
+				.add(Material.BUDDING_AMETHYST)
+				.add(Material.LARGE_AMETHYST_BUD)
+				.add(Material.MEDIUM_AMETHYST_BUD)
+				.add(Material.SMALL_AMETHYST_BUD)
+				//Calcite
+				.add(Material.CALCITE)
+				//Tuff
+				.add(Material.TUFF)
+				//Smooth Basalt
+				.add(Material.SMOOTH_BASALT)
                 .build();
 
 		FARMABLE = ImmutableSet.<Material>builder()
@@ -317,8 +328,9 @@ public class Utils {
 				.add(Material.SWEET_BERRY_BUSH)
 				.add(Material.COCOA)
 
-				//cave and cliff update
+				//cave and cliff part 1 update
 				.add(Material.GLOW_BERRIES)
+				.add(Material.SCULK_SENSOR)
 
 				.build();
 
@@ -345,6 +357,9 @@ public class Utils {
                 .add(Material.SNOW)
                 .add(Material.SNOW_BLOCK)
                 .add(Material.SOUL_SOIL)
+				// Cave and Cliff updates part 1
+				.add(Material.ROOTED_DIRT)
+
                 .build();
 
         PICKAXE = ImmutableSet.<Material>builder()
