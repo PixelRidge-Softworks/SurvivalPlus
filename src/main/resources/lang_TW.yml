@@ -19,11 +19,11 @@ prefix: "&7[&3生&b存&7] &r"
 no-perm: "&c你沒有權限執行這個指令"
 
 # 玩家加入游戲後會看到以下插件幫助的消息
-# 你可以更改為你想要的幫助鏈接
+# 你可以更改為你想要的幫助連結
 survival-guide-msg: "&6本伺服器修改了大量原版生存機制,為了讓你有更加流暢且愉快的游戲體驗，請 "
 survival-guide-click-msg: "&b點擊這裡查看游戲指南"
 survival-guide-hover-msg: "點擊查看幫助"
-survival-guide-link: "https://info.tensorfoxes.xyz/shi-jie-zi-xun/kua-chu-di-yi-bu-de-sheng-cun-gai-yao"
+survival-guide-link: "https://bitbucket.org/ShaneBeeStudios/SurvivalPlus/wiki/Getting-Started" # EN version
 
 resource-pack-accepted: "成功載入伺服器資源包."
 resource-pack-declined: "**資源包被拒絕**"

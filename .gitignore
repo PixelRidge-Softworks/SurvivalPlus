@@ -1,5 +1,4 @@
-out/
-target/
-.idea/
-.settings/
-out/artifacts/.DS_Store
+/out/
+/target/
+/.idea/
+/.settings/

@@ -219,7 +219,7 @@ public class Lang {
         FileConfiguration lang;
         File lang_file = new File(plugin.getDataFolder(), this.lang_yml);
         if (!lang_file.exists()) {
-            //if custom lang file not find, load default lang file lang_EN.yml
+            //if custom lang file not found, load default lang file lang_EN.yml
             if (!Arrays.asList(defaultLanguage).contains(language)) { //check if lang has official support
                 this.lang_yml = "lang_EN.yml";
                 Utils.sendColoredMsg(sender, "&7[&3Survival&bPlus&7] &3" + language+ " &cLanguage file not found, loading default language file: "+ lang_yml);
@@ -228,7 +228,8 @@ public class Lang {
             }
             plugin.saveResource(this.lang_yml, true);
             loaded = "&aNew " + this.lang_yml + " created";
-        } else { //if custom/official lang file found, load custom/official lang file
+        } else {
+            //if custom/official lang file found, load custom/official lang file
             loaded = "&7" + this.lang_yml + " &aloaded";
             //updateLang(YamlConfiguration.loadConfiguration(lang_file), lang_file);
             matchConfig(YamlConfiguration.loadConfiguration(lang_file), lang_file);
