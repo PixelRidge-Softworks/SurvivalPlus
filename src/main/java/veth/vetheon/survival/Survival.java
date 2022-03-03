@@ -1,5 +1,5 @@
 package veth.vetheon.survival;
-
+// lol
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;

@@ -4,3 +4,4 @@
 *.prefs
 target/
 test/
+*.bak
