@@ -2,7 +2,7 @@
 
 ####################
 # Language: English (EN)
-# Authors: FattyMieo, ShaneBee, VetheonGames
+# Authors: FattyMieo, ShaneBee, VetheonGames, Pixelated Studios
 # Date: 28/4/2016 (Refreshed 13/3/2019)
 ####################
 #
@@ -22,7 +22,7 @@ no-perm: "&cYou do not have permission to perform this command"
 survival-guide-msg: "&6Our server changes a bunch of vanilla Minecraft mechanics, &6To see our survival guide "
 survival-guide-click-msg: "&bClick Here"
 survival-guide-hover-msg: "Click for Guide"
-survival-guide-link: "https://bitbucket.org/ShaneBeeStudios/SurvivalPlus/wiki/Getting-Started"
+survival-guide-link: "https://github.com/Pixelated-Studios/SurvivalPlus/wiki#getting-started"
 
 resource-pack-accepted: "Successfully loaded resource pack."
 resource-pack-declined: "**Resource pack declined**"

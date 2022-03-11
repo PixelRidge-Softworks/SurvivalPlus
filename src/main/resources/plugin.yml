@@ -1,8 +1,8 @@
 name: SurvivalPlus
 main: veth.vetheon.survival.Survival
-authors: [FattyMieo, ShaneBee, VetheonGames]
+authors: [FattyMieo, ShaneBee, VetheonGames, Pixelated Studios]
 version: '${project.version}'
-api-version: '1.17'
+api-version: '1.18'
 softdepend:
    - PlaceholderAPI
    - Multiverse-Core

@@ -1,7 +1,6 @@
 package veth.vetheon.survival.config;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -419,14 +418,14 @@ public class Lang {
         }
     }
 
-    private void saveLang(YamlConfiguration lang, File file) {
-        try {
-            lang.save(file);
-            String prefix = lang.getString("prefix");
-            Utils.sendColoredMsg(Bukkit.getConsoleSender(), prefix + "&7" + lang_yml + " &aUpdated");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    //private void saveLang(YamlConfiguration lang, File file) {
+     //   try {
+     //       lang.save(file);
+       //     String prefix = lang.getString("prefix");
+       //     Utils.sendColoredMsg(Bukkit.getConsoleSender(), prefix + "&7" + lang_yml + " &aUpdated");
+       // } catch (IOException e) {
+      //      e.printStackTrace();
+     //   }
+    //}
 
 }

@@ -6,6 +6,10 @@
 
 # Preset language file includes in-game messages, item names, lore, etc.
 # Language options are EN (English) or CN (Chinese)
+
+# IMPORTANT NOTE: This release is in **BETA** meaning there may be bugs in it.
+# If you find bugs, please report them to us via opening a Issue on GitHub here: https://github.com/Pixelated-Studios/SurvivalPlus/issues
+# If you require support, please join our Discord Server here: https://discord.gg/k8wvnZDDTV
 Language: EN
 
 MultiWorld:

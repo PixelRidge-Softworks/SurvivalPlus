@@ -53,6 +53,7 @@ class NutrientsEffect extends BukkitRunnable {
 					player.setExhaustion(player.getExhaustion() + Math.max(config.MECHANICS_FOOD_EFFECTS_SALTS_EX_AMP, 0));
 					switch (player.getWorld().getDifficulty()) {
 						case NORMAL:
+							//update from deprecated
 							if (SALTS_NORMAL != null) {
 								player.addPotionEffect(SALTS_NORMAL, true);
 							}

@@ -87,7 +87,7 @@ public class WeatherTask extends BukkitRunnable {
         World world = player.getWorld();
         double temp = player.getLocation().getBlock().getTemperature();
 
-        // is raining (0.15 – 0.95 for rain)
+        // is raining (0.15 0.95 for rain)
         if (world.hasStorm() && temp >= 0.15 && temp <= 0.95) {
             // sky is above
             return isAtHighest(player);
