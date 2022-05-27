@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/QoigTvL.png)
 ![GitHub issues](https://img.shields.io/github/issues/Pixelated-Studios/SurvivalPlus.svg)
-[![Discord](https://img.shields.io/discord/425192525091831808.svg)](https://discord.gg/qGdfTFQzW8)
+[![Discord](https://img.shields.io/discord/865652593932632134?label=Discord&logo=Discord&style=plastic)](https://discord.gg/k8wvnZDDTV)
 
 ## Welcome to SurvivalPlus
 SurvivalPlus is a Spigot Plugin that adds new contents and experience to Minecraft Survival gameplay
@@ -24,4 +24,6 @@ Survival Plus To-Do
 9) add support for Terra custom structures to use S+ custom items
 10) add support for McMMO and MythicMobs to use S+ loot tables
 11) add support for village/dungeons chests to contain S+ loot items
+12) add individual toggles for custom items
+13) finish PurPur support
 ```
