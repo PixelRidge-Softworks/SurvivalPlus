@@ -10,20 +10,19 @@ All info can be found on the [**WIKI**](https://github.com/Pixelated-Studios/Sur
 Plugin downloads can be found on [**SpigotMC**](https://www.spigotmc.org/resources/survival-plus-recoded-making-survival-fun-again.67351/)
 
 
-Survival Plus To-Do
+Survival Plus To-Do (Prioritized)
 
 ```
-1) Remove all code for Oh-The-Dungeons-You'll-Go as it's been abandoned by it's developer
-2) Finish the burn-out torch system
-3) Finish the shared crafting table system
-4) fix the local chat system
-5) fix the no-pos system
-6) pull out deprecations
-7) finish purpur support
-8) add support for Realistic Seasons
-9) add support for Terra custom structures to use S+ custom items
-10) add support for McMMO and MythicMobs to use S+ loot tables
-11) add support for village/dungeons chests to contain S+ loot items
-12) add individual toggles for custom items
-13) finish PurPur support
+1) 1.19 Compatibilty
+2) Purpur Support
+3) Complete shift to the Paper API
+4) Recode Furnace system to be more efficient (current code sometimes causes all fuel to disappear)
+5) Fix issue where campfires placed under cauldrons causes all water to disappear
+6) Remove deprecations
+7) Rework/Fix/Finish the Burn-Out torches feature
+8) Rework/Fix/Finish the Shared Workbench feature
+9) Implement support/optional hook with Realistic Seasons to allow Survival Plus to know it's special weather/special seasons/special biomes and adjust thirst/hunger/energy values accordingly according to environment
+10) Investigate the possibility of shifting from Resource Packs to Datapacks
+11) Add some code to ensure that necessary items (namely coal, gravel and clay) *always* spawn in the world in specific biomes, such as rivers (when using compatible world generator, such as Terra)
+12) Remove the rest of "Oh-The-Dungeons-You'll-Go
 ```
