@@ -10,19 +10,23 @@ All info can be found on the [**WIKI**](https://github.com/Pixelated-Studios/Sur
 Plugin downloads can be found on [**SpigotMC**](https://www.spigotmc.org/resources/survival-plus-recoded-making-survival-fun-again.67351/)
 
 
-Survival Plus To-Do (Prioritized)
+## Survival Plus To-Do (Prioritized)
 
-```
-1) 1.19 Compatibilty
-2) Purpur Support
-3) Complete shift to the Paper API
-4) Recode Furnace system to be more efficient (current code sometimes causes all fuel to disappear)
-5) Fix issue where campfires placed under cauldrons causes all water to disappear
-6) Remove deprecations
-7) Rework/Fix/Finish the Burn-Out torches feature
-8) Rework/Fix/Finish the Shared Workbench feature
-9) Implement support/optional hook with Realistic Seasons to allow Survival Plus to know it's special weather/special seasons/special biomes and adjust thirst/hunger/energy values accordingly according to environment
-10) Investigate the possibility of shifting from Resource Packs to Datapacks
-11) Add some code to ensure that necessary items (namely coal, gravel and clay) *always* spawn in the world in specific biomes, such as rivers (when using compatible world generator, such as Terra)
-12) Remove the rest of "Oh-The-Dungeons-You'll-Go
-```
+
+> 1. **1.19** Compatibilty
+> 2. **Purpur** Support
+> 3. Complete shift to the **Paper API**
+> 4. Recode Furnace system to be more efficient 
+>    * current code sometimes causes all fuel to disappear
+> 5. Fix issue where campfires placed under cauldrons causes all water and the cauldron to disappear 
+>    * [Issue 9](https://github.com/Pixelated-Studios/SurvivalPlus/issues/9)
+> 6. Remove deprecations
+> 7. Rework/Fix/Finish the **Burn-Out torches feature**
+> 8. Rework/Fix/Finish the **Shared Workbench feature**
+> 9. Implement support/optional hook with **Realistic Seasons** to allow **Survival Plus** to know it's special weather/special seasons/special biomes and adjust  thirst/hunger/energy values accordingly according to environment
+> 10. Investigate the possibility of shifting from **Resource Packs** to **Datapacks**
+> 11. Add some code to ensure that necessary items *always* spawn in the world in specific biomes, such as rivers
+>     * namely **coal**, **gravel**, and **clay**
+>     * when using compatible world generator, such as **Terra**
+> 12. Remove the rest of "**Oh-The-Dungeons-You'll-Go**"
+
