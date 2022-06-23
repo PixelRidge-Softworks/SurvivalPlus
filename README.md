@@ -29,4 +29,5 @@ Plugin downloads can be found on [**SpigotMC**](https://www.spigotmc.org/resourc
 >     * namely **coal**, **gravel**, and **clay**
 >     * when using compatible world generator, such as **Terra**
 > 12. Remove the rest of "**Oh-The-Dungeons-You'll-Go**"
+> 13. Add the feature to disable individual recipes/items from config
 
