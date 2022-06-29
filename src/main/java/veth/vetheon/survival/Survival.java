@@ -27,6 +27,7 @@ import veth.vetheon.survival.tasks.TaskManager;
 import veth.vetheon.survival.config.Config;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
+import veth.vetheon.survival.bStats.Metrics;
 
 import java.util.*;
 
@@ -71,6 +72,8 @@ public class Survival extends JavaPlugin implements Listener {
 		instance = this;
 		long time = System.currentTimeMillis();
 
+		int pluginId = 15629;
+		Metrics metrics = new Metrics(this, pluginId);
 		// VERSION CHECK
 		if (!Utils.isRunningMinecraft(1, 17)) {
 			String ver = Bukkit.getServer().getBukkitVersion().split("-")[0];
