@@ -70,9 +70,6 @@ public class Survival extends JavaPlugin implements Listener {
 	public void onEnable() {
 		instance = this;
 		long time = System.currentTimeMillis();
-
-		int pluginId = 15629;
-		Metrics metrics = new Metrics(this, pluginId);
 		// VERSION CHECK
 		if (!Utils.isRunningMinecraft(1, 17)) {
 			String ver = Bukkit.getServer().getBukkitVersion().split("-")[0];
