@@ -27,7 +27,6 @@ import veth.vetheon.survival.tasks.TaskManager;
 import veth.vetheon.survival.config.Config;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
-import veth.vetheon.survival.bStats.Metrics;
 
 import java.util.*;
 
