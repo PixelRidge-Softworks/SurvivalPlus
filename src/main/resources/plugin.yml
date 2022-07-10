@@ -6,7 +6,7 @@ api-version: '1.18'
 softdepend:
    - PlaceholderAPI
    - Multiverse-Core
-   - Oh_the_dungeons_youll_go
+   - Oh_the_dungeons_youll_goo
 commands:
    reload-survival:
       aliases: [survival-reload]

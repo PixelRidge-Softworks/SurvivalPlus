@@ -16,6 +16,10 @@
 
     <repositories>
         <repository>
+            <id>pixelated-maven</id>
+            <url>https://github.com/Pixelated-Studios/maven/raw/main</url>
+        </repository>
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
@@ -47,11 +51,16 @@
             <version>23.0.0</version>
         </dependency>
         <dependency>
-        <groupId>com.zaxxer</groupId>
-      <artifactId>HikariCP</artifactId>
-      <version>5.0.1</version>
-      <scope>compile</scope>
-      </dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.experimental</groupId>
+            <artifactId>PixelatedUtils</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -35,6 +35,7 @@ public class Healthboard extends BukkitRunnable {
         this.thirst = playerData.isInfoDisplayed(Info.THIRST);
         this.energy = playerData.isInfoDisplayed(Info.ENERGY);
         this.nutrients = playerData.isInfoDisplayed(Info.NUTRIENTS);
+        boolean test = playerData.isInfoDisplayed(Info.TEST);
 
         this.board.setTitle(Utils.getColoredString(plugin.getLang().healthboard_title));
 

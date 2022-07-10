@@ -1,5 +1,6 @@
 package veth.vetheon.survival;
 
+import me.experimental.PixelatedPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
@@ -31,7 +32,7 @@ import veth.vetheon.survival.util.Utils;
 import java.util.*;
 
 @SuppressWarnings("ConstantConditions")
-public class Survival extends JavaPlugin implements Listener {
+public class Survival extends PixelatedPlugin implements Listener {
 
 	static {
 		ConfigurationSerialization.registerClass(PlayerData.class, "PlayerData");
@@ -75,7 +76,7 @@ public class Survival extends JavaPlugin implements Listener {
 			String ver = Bukkit.getServer().getBukkitVersion().split("-")[0];
 			Utils.log("&c-----------------------------------------------------------");
 			Utils.log("&cYour version is not supported: &b" + ver);
-			Utils.log("&eThis plugin only works on Minecraft &b1.16+");
+			Utils.log("&eThis plugin only works on Minecraft &b1.15+");
 			Utils.log("&c-----------------------------------------------------------");
 			loaded = false;
 			Bukkit.getPluginManager().disablePlugin(this);
@@ -86,7 +87,7 @@ public class Survival extends JavaPlugin implements Listener {
 		if (!Utils.isRunningSpigot()) {
 			Utils.log("&c-----------------------------------------------------------");
 			Utils.log("&7Your server software is not supported: &c" + Bukkit.getName());
-			Utils.log("&7This plugin will only work on &aSpigot &7, &aPaper &7ir, &5Purpur.");
+			Utils.log("&7This plugin will only work on &aSpigot &7and &aPaper.");
 			Utils.log("&c-----------------------------------------------------------");
 			loaded = false;
 			Bukkit.getPluginManager().disablePlugin(this);
