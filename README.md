@@ -7,7 +7,7 @@ SurvivalPlus is a Spigot Plugin that adds new contents and experience to Minecra
 
 All info can be found on the [**WIKI**](https://github.com/Pixelated-Studios/SurvivalPlus/wiki)
 
-Plugin downloads can be found on [**SpigotMC**](https://www.spigotmc.org/resources/survival-plus-recoded-making-survival-fun-again.67351/)
+Plugin downloads can be found in [**Releases**](https://github.com/Pixelated-Studios/SurvivalPlus/releases)
 
 
 ## Survival Plus To-Do (Prioritized)
