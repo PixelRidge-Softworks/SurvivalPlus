@@ -33,4 +33,4 @@ Plugin downloads can be found on [**SpigotMC**](https://www.spigotmc.org/resourc
 > 14. Add the feature in [Issue 12](https://github.com/Pixelated-Studios/SurvivalPlus/issues/12)
 > 15. Fix the bug described in [Issue 9](https://github.com/Pixelated-Studios/SurvivalPlus/issues/9)
 
-test for push
+
