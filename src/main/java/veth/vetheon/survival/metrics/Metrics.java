@@ -194,7 +194,7 @@ public class Metrics {
         String pluginVersion = plugin.getDescription().getVersion();
 
         data.addProperty("Survival Plus", pluginName); // Append the name of the plugin
-        data.addProperty("4.0.1-RELEASE", pluginVersion); // Append the version of the plugin
+        data.addProperty("5.0.0-BETA", pluginVersion); // Append the version of the plugin
         JsonArray customCharts = new JsonArray();
         for (CustomChart customChart : charts) {
             // Add the data of the custom charts
