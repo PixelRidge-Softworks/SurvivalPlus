@@ -1,5 +1,6 @@
 package veth.vetheon.survival.item.items;
 
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,6 +21,8 @@ import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.item.Item;
 import veth.vetheon.survival.util.Utils;
+import veth.vetheon.survival.item.items.FireStriker;
+import net.kyori.adventure.text.*;
 
 public class FireStriker implements Runnable, InventoryHolder {
 
@@ -35,7 +38,7 @@ public class FireStriker implements Runnable, InventoryHolder {
     public FireStriker(Player player, ItemStack item) {
         Survival plugin = Survival.getInstance();
         Lang lang = plugin.getLang();
-        this.inv = Bukkit.createInventory(null, InventoryType.FURNACE, Utils.getColoredString(lang.firestriker));
+        this.inv = Bukkit.createInventory(this, InventoryType.FURNACE, "FireStriker");
         this.player = player;
         this.item = item;
         this.MAX_COOK_TIME = plugin.getSurvivalConfig().ITEM_FIRESTRIKER_COOK_TIME;

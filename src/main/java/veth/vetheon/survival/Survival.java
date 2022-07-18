@@ -1,6 +1,5 @@
 package veth.vetheon.survival;
 
-import me.experimental.PixelatedPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
@@ -32,7 +31,7 @@ import veth.vetheon.survival.util.Utils;
 import java.util.*;
 
 @SuppressWarnings("ConstantConditions")
-public class Survival extends PixelatedPlugin implements Listener {
+public class Survival extends JavaPlugin implements Listener {
 
 	static {
 		ConfigurationSerialization.registerClass(PlayerData.class, "PlayerData");
