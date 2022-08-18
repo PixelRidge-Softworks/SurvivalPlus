@@ -52,23 +52,31 @@ public class PlayerData implements ConfigurationSerializable {
     private int recurveFiring = 0;
     private int recurveCooldown = 0;
 
+    private double temperature = 0L;
+
     // Scoreboard info
     private boolean score_hunger = true;
     private boolean score_thirst = true;
     private boolean score_energy = true;
     private boolean score_nutrients = true;
+    private boolean score_temperature = true;
 
     public PlayerData(OfflinePlayer player, int thirst, int proteins, int carbs, int salts, double energy) {
         this(player.getUniqueId(), thirst, proteins, carbs, salts, energy);
     }
 
     public PlayerData(UUID uuid, int thirst, int proteins, int carbs, int salts, double energy) {
+        this(uuid, thirst, proteins, carbs, salts, energy, 0.0);
+    }
+
+    public PlayerData(UUID uuid, int thirst, int proteins, int carbs, int salts, double energy, double temperature) {
         this.uuid = uuid;
         this.thirst = thirst;
         this.proteins = proteins;
         this.carbs = carbs;
         this.salts = salts;
         this.energy = energy;
+        this.temperature = temperature;
     }
 
     /**
@@ -98,6 +106,10 @@ public class PlayerData implements ConfigurationSerializable {
         return thirst;
     }
 
+    public double getTemperature() {
+        return this.temperature;
+    }
+
     /**
      * Set the thirst for this data
      *
@@ -114,6 +126,10 @@ public class PlayerData implements ConfigurationSerializable {
      */
     public void increaseThirst(int thirst) {
         this.thirst = Math.clamp(this.thirst + thirst, 0, 40);
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = Math.round(temperature * 10);
     }
 
     /**
@@ -317,6 +333,8 @@ public class PlayerData implements ConfigurationSerializable {
                 return score_energy;
             case NUTRIENTS:
                 return score_nutrients;
+            case TEMPERATURE:
+                return score_temperature;
             default:
                 throw new IllegalArgumentException("Unexpected value: " + info);
         }

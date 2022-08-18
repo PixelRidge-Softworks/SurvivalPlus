@@ -8,6 +8,8 @@ public enum Info {
 	HUNGER,
 	THIRST,
     ENERGY,
-	NUTRIENTS
+	NUTRIENTS,
+
+	TEMPERATURE
 
 }

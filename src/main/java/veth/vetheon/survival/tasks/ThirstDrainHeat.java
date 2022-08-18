@@ -17,7 +17,7 @@ class ThirstDrainHeat extends BukkitRunnable {
 
     ThirstDrainHeat(Survival plugin) {
         this.playerManager = plugin.getPlayerManager();
-        this.runTaskTimer(plugin, 0, 20 * plugin.getSurvivalConfig().MECHANICS_THIRST_DRAIN_HEAT);
+        this.runTaskTimer(plugin, 0, 20L * plugin.getSurvivalConfig().MECHANICS_THIRST_DRAIN_HEAT);
     }
 
     @Override

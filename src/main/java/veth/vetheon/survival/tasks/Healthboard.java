@@ -18,6 +18,7 @@ public class Healthboard extends BukkitRunnable {
     private final Player player;
     private final PlayerData playerData;
     private final Board board;
+    private boolean temperature;
 
     // Board stuff
     private boolean hunger;
@@ -35,6 +36,7 @@ public class Healthboard extends BukkitRunnable {
         this.thirst = playerData.isInfoDisplayed(Info.THIRST);
         this.energy = playerData.isInfoDisplayed(Info.ENERGY);
         this.nutrients = playerData.isInfoDisplayed(Info.NUTRIENTS);
+        this.temperature = playerData.isInfoDisplayed(Info.TEMPERATURE);
 
         this.board.setTitle(Utils.getColoredString(plugin.getLang().healthboard_title));
 
@@ -66,15 +68,21 @@ public class Healthboard extends BukkitRunnable {
         this.thirst = playerData.isInfoDisplayed(Info.THIRST);
         this.energy = playerData.isInfoDisplayed(Info.ENERGY);
         this.nutrients = playerData.isInfoDisplayed(Info.NUTRIENTS);
+        this.temperature = playerData.isInfoDisplayed(Info.TEMPERATURE);
 
         // If all options on the board are disabled, turn board off
-        if (!hunger && !thirst && !energy && !nutrients) {
+        if (!hunger && !thirst && !energy && !nutrients && !temperature) {
             if (board.isOn()) {
                 board.toggle(false);
             }
             return;
         }
 
+        if (temperature) {
+            board.setLine(12, pm.ShowTemperature(player));
+        } else {
+            board.deleteLine(12);
+        }
         if (hunger) {
             board.setLine(11, pm.ShowHunger(player).get(0));
             board.setLine(10, pm.ShowHunger(player).get(1));
