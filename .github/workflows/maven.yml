@@ -42,3 +42,4 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         FOLDER: target/site/apidocs
+        BRANCH: pages
