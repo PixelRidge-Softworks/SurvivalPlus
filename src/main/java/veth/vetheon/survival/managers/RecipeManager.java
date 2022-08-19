@@ -747,15 +747,17 @@ public class RecipeManager {
 
         //Add recipes
         if (config.SURVIVAL_ENABLED) {
-            plugin.getServer().addRecipe(hatchet1);
-            plugin.getServer().addRecipe(hatchet2);
-            plugin.getServer().addRecipe(mattock);
-            plugin.getServer().addRecipe(shiv);
-            plugin.getServer().addRecipe(hammer);
-            plugin.getServer().addRecipe(firestriker);
-            plugin.getServer().addRecipe(chest);
-            plugin.getServer().addRecipe(flint);
-            plugin.getServer().addRecipe(unlit_campfire);
+            if (config.RECIPES_HATCHET) {
+                plugin.getServer().addRecipe(hatchet1);
+                plugin.getServer().addRecipe(hatchet2);
+            }
+            if (config.RECIPES_MATTOCK) plugin.getServer().addRecipe(mattock);
+            if (config.RECIPES_SHIV) plugin.getServer().addRecipe(shiv);
+            if (config.RECIPES_HAMMER) plugin.getServer().addRecipe(hammer);
+            if (config.RECIPES_FIRESTRIKER) plugin.getServer().addRecipe(firestriker);
+            if (config.RECIPES_CHEST) plugin.getServer().addRecipe(chest);
+            if (config.RECIPES_FLINT) plugin.getServer().addRecipe(flint);
+            if (config.RECIPES_UNLITCAMFIRE) plugin.getServer().addRecipe(unlit_campfire);
             if (config.BREAK_ONLY_WITH_SICKLE) {
                 if (config.SURVIVAL_SICKLE_FLINT)
                     plugin.getServer().addRecipe(flint_sickle);

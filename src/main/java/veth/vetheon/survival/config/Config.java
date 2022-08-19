@@ -13,6 +13,7 @@ import java.util.List;
 public class Config {
 
 	private final Survival plugin;
+
 	private FileConfiguration settings;
 	private File configFile;
 	private final String prefix;
@@ -214,6 +215,14 @@ public class Config {
 	public boolean RECIPES_FISHING_ROD;
 	public boolean RECIPES_FURNACE;
 	public boolean RECIPES_WORKBENCH;
+	public boolean RECIPES_HATCHET;
+	public boolean RECIPES_MATTOCK;
+	public boolean RECIPES_SHIV;
+	public boolean RECIPES_HAMMER;
+	public boolean RECIPES_FIRESTRIKER;
+	public boolean RECIPES_CHEST;
+	public boolean RECIPES_FLINT;
+	public boolean RECIPES_UNLITCAMFIRE;
 
 	// LEGENDARY TOOLS
 	public boolean LEGENDARY_VALKYRIE;
@@ -485,6 +494,14 @@ public class Config {
 		this.RECIPES_FISHING_ROD = settings.getBoolean("Recipes.FishingRod");
 		this.RECIPES_FURNACE = settings.getBoolean("Recipes.Furnace");
 		this.RECIPES_WORKBENCH = settings.getBoolean("Recipes.Workbench");
+		this.RECIPES_HATCHET = settings.getBoolean("Recipes.Hatchet");
+		this.RECIPES_MATTOCK = settings.getBoolean("Recipes.Mattock");
+		this.RECIPES_SHIV = settings.getBoolean("Recipes.Shiv");
+		this.RECIPES_HAMMER = settings.getBoolean("Recipes.Hammer");
+		this.RECIPES_FIRESTRIKER = settings.getBoolean("Recipes.Firestriker");
+		this.RECIPES_CHEST = settings.getBoolean("Recipes.Chest");
+		this.RECIPES_FLINT = settings.getBoolean("Recipes.Flint");
+		this.RECIPES_UNLITCAMFIRE = settings.getBoolean("Recipes.Unlit_Camfire");
 
 		// LEGENDARY ITEMS
 		this.LEGENDARY_VALKYRIE = settings.getBoolean("LegendaryItems.ValkyrieAxe");

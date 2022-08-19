@@ -419,7 +419,15 @@ Recipes:
   FishingRod: true
   Furnace: true
   Workbench: true
-
+  # Requires survival enabled
+  Hatchet: true
+  Mattock: true
+  Shiv: true
+  Hammer: true
+  Firestriker: true
+  Chest: true
+  Flint: true
+  Unlit_Camfire: true
 # Enables legendary items
 LegendaryItems:
   ValkyrieAxe: true
