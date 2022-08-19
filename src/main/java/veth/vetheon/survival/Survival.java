@@ -1,5 +1,7 @@
 package veth.vetheon.survival;
 
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
@@ -13,19 +15,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
-
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import veth.vetheon.survival.commands.*;
+import veth.vetheon.survival.config.Config;
+import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.config.PlayerDataConfig;
 import veth.vetheon.survival.data.PlayerData;
 import veth.vetheon.survival.listeners.EventManager;
 import veth.vetheon.survival.managers.*;
 import veth.vetheon.survival.metrics.Metrics;
 import veth.vetheon.survival.tasks.TaskManager;
-import veth.vetheon.survival.config.Config;
-import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
 
 import java.util.*;
@@ -69,6 +67,10 @@ public class Survival extends JavaPlugin implements Listener {
 
 	public void onEnable() {
 		instance = this;
+		Utils.log("&7-----------------------------------------------------------");
+		Utils.log("&bSurvival&3Plus&7 by &6&lPixelated&e&lStudios");
+		Utils.log("&b&lDiscord&r&7: &ahttps://discord.gg/gQnpZguwJB");
+		Utils.log("&7-----------------------------------------------------------");
 		long time = System.currentTimeMillis();
 		// VERSION CHECK
 		if (!Utils.isRunningMinecraft(1, 17)) {
@@ -175,7 +177,6 @@ public class Survival extends JavaPlugin implements Listener {
 		int pluginId = 12789;
 		Metrics metrics = new Metrics(this);
 		Utils.log("&7Metrics " + (metrics.isEnabled() ? "&aenabled" : "&cdisabled"));
-
 		Utils.log("&aSuccessfully loaded &7in " + (System.currentTimeMillis() - time) + " milliseconds");
 
 		// BETA WARNING
