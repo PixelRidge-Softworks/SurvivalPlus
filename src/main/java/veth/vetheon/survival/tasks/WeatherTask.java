@@ -32,7 +32,7 @@ public class WeatherTask extends BukkitRunnable {
         this.stormSpeed = config.MECHANICS_WEATHER_SPEED_STORM;
         this.snowSpeed = config.MECHANICS_WEATHER_SPEED_SNOW;
         this.snowstormSpeed = config.MECHANICS_WEATHER_SPEED_SNOWSTORM;
-        this.runTaskTimer(plugin, 20, 10);
+        this.runTaskTimer(plugin, 20, 15);
     }
 
     @Override
