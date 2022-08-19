@@ -23,12 +23,7 @@ import veth.vetheon.survival.listeners.entity.PiglinBarter;
 import veth.vetheon.survival.listeners.item.*;
 import veth.vetheon.survival.listeners.player.EnergyChange;
 import veth.vetheon.survival.listeners.player.PlayerDataListener;
-import veth.vetheon.survival.listeners.server.Guide;
-import veth.vetheon.survival.listeners.server.InventoryUpdate;
-import veth.vetheon.survival.listeners.server.LocalChat;
-import veth.vetheon.survival.listeners.server.NoPos;
-import veth.vetheon.survival.listeners.server.RecipeDiscovery;
-import veth.vetheon.survival.listeners.server.SetResourcePack;
+import veth.vetheon.survival.listeners.server.*;
 import veth.vetheon.survival.util.Utils;
 
 /**
@@ -129,11 +124,11 @@ public class EventManager {
 
 		if (config.NO_POS) {
 		    if (Utils.isRunningMinecraft(1, 16)) {
-                Utils.log("&7NoPos &ccurrently broken. &7Please use the &breducedDebugInfo &7gamerule for the time being");
+				Bukkit.getPluginManager().registerEvents(new NoPos(), this.plugin);
             } else {
-                Bukkit.getPluginManager().registerEvents(new NoPos(), this.plugin);
-                Utils.log("&7NoPos &aimplemented &7- F3 coordinates are disabled!");
+                Bukkit.getPluginManager().registerEvents(new NoPosOld(), this.plugin);
             }
+			Utils.log("&7NoPos &aimplemented &7- F3 coordinates are disabled!");
 		}
         if (config.ENTITY_MECHANICS_BEEKEEPER_SUIT_ENABLED) {
             Bukkit.getPluginManager().registerEvents(new BeeKeeperSuit(), this.plugin);
