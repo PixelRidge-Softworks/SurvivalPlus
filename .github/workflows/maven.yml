@@ -38,7 +38,7 @@ jobs:
 
         retention-days: 30 # optional
     - name: Deploy Javadocs 🚀
-      uses: JamesIves/github-pages-deploy-action@3.5.9
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         FOLDER: target/site/apidocs
