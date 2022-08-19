@@ -1,15 +1,14 @@
 package veth.vetheon.survival.listeners.server;
 
+/**
+ * Originally by Rolyndev's plugin, NoPos
+ * Modified and implemented by FattyMieo
+ * Thanks to Rolyndev for allowing implementation!
+**/
 
-import net.minecraft.network.protocol.game.PacketPlayOutEntityStatus;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.network.PlayerConnection;
-import net.minecraft.server.network.ServerPlayerConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,10 +16,12 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class NoPos implements Listener {
+public class NoPosOld implements Listener {
 	@EventHandler
 	private void onJoin(PlayerJoinEvent e) {
 		Player player = e.getPlayer();
@@ -54,9 +55,11 @@ public class NoPos implements Listener {
 	@SuppressWarnings("WeakerAccess")
 	public static void disableF3(Player player) {
 		try {
-			EntityPlayer player1 = (EntityPlayer) getHandle(player);
-			PacketPlayOutEntityStatus packet = new PacketPlayOutEntityStatus(player1, (byte) 22);
-			player1.b.a(packet);
+			Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
+			Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
+			Object packet = packetConstructor.newInstance(getHandle(player), (byte) 22);
+			Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
+			sendPacket.invoke(getConnection(player), packet);
 		} catch (Exception e) {
 			Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
 		}
@@ -70,12 +73,28 @@ public class NoPos implements Listener {
 	@SuppressWarnings("WeakerAccess")
 	public static void enableF3(Player player) {
 		try {
-			EntityPlayer player1 = (EntityPlayer) getHandle(player);
-			PacketPlayOutEntityStatus packet = new PacketPlayOutEntityStatus(player1, (byte) 23);
-			player1.b.a(packet);
+			Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
+			Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
+			Object packet = packetConstructor.newInstance(getHandle(player), (byte) 23);
+			Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
+			sendPacket.invoke(getConnection(player), packet);
 		} catch (Exception e) {
 			Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
 		}
+	}
+
+	private static Class<?> getNMSClass(String nmsClassString)
+			throws ClassNotFoundException {
+		String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";
+
+		String name = "net.minecraft.server." + version + nmsClassString;
+		return Class.forName(name);
+	}
+
+	private static Object getConnection(Player player)
+			throws SecurityException, NoSuchMethodException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		Field conField = getHandle(player).getClass().getField("playerConnection");
+		return conField.get(getHandle(player));
 	}
 
 	private static Object getHandle(Player player)
@@ -83,4 +102,5 @@ public class NoPos implements Listener {
 		Method getHandle = player.getClass().getMethod("getHandle");
 		return getHandle.invoke(player);
 	}
+
 }

@@ -240,12 +240,12 @@ public class PlayerManager implements Listener {
         if(player == null) return null;
         double temperture = getPlayerData(player).getTemperature();
         ChatColor awareness = ChatColor.GREEN;
-        if (temperture <= 0.2) awareness = ChatColor.DARK_AQUA;
-        if (temperture >= 0.2) awareness = ChatColor.AQUA;
-        if (temperture >= 0.4) awareness = ChatColor.GREEN;
-        if (temperture >= 0.7) awareness = ChatColor.YELLOW;
-        if (temperture >= 1.0) awareness = ChatColor.RED;
-        if (temperture >= 1.5) awareness = ChatColor.DARK_RED;
+        if (temperture <= 2) awareness = ChatColor.DARK_AQUA;
+        if (temperture >= 2) awareness = ChatColor.AQUA;
+        if (temperture >= 4) awareness = ChatColor.GREEN;
+        if (temperture >= 7) awareness = ChatColor.YELLOW;
+        if (temperture >= 10) awareness = ChatColor.RED;
+        if (temperture >= 15) awareness = ChatColor.DARK_RED;
         return ChatColor.YELLOW + "Temperature: " + awareness + temperture + "°C";
     }
 

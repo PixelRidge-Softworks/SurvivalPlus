@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="codemc-nms" />
+      <option name="name" value="codemc-nms" />
+      <option name="url" value="https://repo.codemc.io/repository/nms/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="pixelated-maven" />
       <option name="name" value="pixelated-maven" />
       <option name="url" value="https://github.com/Pixelated-Studios/maven/raw/main" />
