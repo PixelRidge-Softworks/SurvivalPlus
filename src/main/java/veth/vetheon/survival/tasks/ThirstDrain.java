@@ -2,6 +2,7 @@ package veth.vetheon.survival.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import veth.vetheon.survival.Survival;
@@ -49,7 +50,7 @@ class ThirstDrain extends BukkitRunnable {
 				}
 				// Damage player when thirst is too low
 				PlayerData playerData = playerManager.getPlayerData(player);
-
+				playerData.setTemperature(player.getLocation().getBlock().getRelative(BlockFace.DOWN).getTemperature());
 				if (playerData.getThirst() <= 0) {
 					switch (player.getWorld().getDifficulty()) {
 						case EASY:

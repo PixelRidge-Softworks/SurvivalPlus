@@ -6,7 +6,8 @@
 
     <groupId>veth.vetheon</groupId>
     <artifactId>SurvivalPlus</artifactId>
-    <version>4.0.7-BETA</version>
+    <version>4.0.8-BETA</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -62,7 +63,6 @@
             <version>4.11.0</version>
         </dependency>
     </dependencies>
-
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <finalName>${project.name}-${project.version}</finalName>
