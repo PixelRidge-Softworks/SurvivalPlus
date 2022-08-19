@@ -6,7 +6,7 @@
 
     <groupId>veth.vetheon</groupId>
     <artifactId>SurvivalPlus</artifactId>
-    <version>4.0.7-BETA</version>
+    <version>4.0.8-BETA</version>
     <packaging>jar</packaging>
 
     <properties>
