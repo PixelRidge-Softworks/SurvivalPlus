@@ -37,3 +37,11 @@ jobs:
 #Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
 
         retention-days: 30 # optional
+    - name: Deploy Javadocs 🚀
+      uses: JamesIves/github-pages-deploy-action@3.5.9
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        CLEAN: true
+        FOLDER: target/site/apidocs
+        TARGET_FOLDER: javadoc
