@@ -68,6 +68,7 @@ public class SnowballThrow implements Listener {
 		Player player = e.getPlayer();
 		if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE) {
 			ItemStack mainItem = player.getInventory().getItemInMainHand();
+			// TODO: Switch statements to be switched to enhanced "switch" statements
 			switch (mainItem.getType()) {
 				case WOODEN_SHOVEL:
 				case GOLDEN_SHOVEL:
