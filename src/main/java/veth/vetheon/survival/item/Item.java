@@ -94,12 +94,13 @@ public class Item {
     /**
      * @deprecated Use {@link #WATER_BOWL} instead
      */
+    // TODO remove
     @SuppressWarnings("DeprecatedIsStillUsed")
-    @Deprecated // Removed in 3.11.0 - Will remove old water bowl in future
+    @Deprecated // Remove old waterbowl function
     public static final Item WATER_BOWL_OLD = get("water_bowl_old", Material.BEETROOT_SOUP, 1);
     public static final Item WATER_BOWL = get("water_bowl", Material.POTION, 10881);
 
-    // TODO Experimental
+    // TODO Finish
     public static final Item PERSISTENT_TORCH = get("persistent_torch", Material.TORCH, 1);
 
     private static Item get(String key, Material material, int model) {
