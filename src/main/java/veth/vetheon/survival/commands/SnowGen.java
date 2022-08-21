@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.listeners.block.SnowGeneration;
 
+// TODO: Remove this entire feature
 public class SnowGen implements CommandExecutor {
 
 	private final Survival plugin;
