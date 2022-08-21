@@ -150,6 +150,7 @@ public class Chairs implements Listener {
 		}
 	}
 
+	// TODO: Remove deprecations from this class and replace with the new Paper Adventure Library
 	@EventHandler(priority = EventPriority.HIGHEST)
 	private void onBlockBreak(BlockBreakEvent event) {
 		if (event.isCancelled()) return;
@@ -252,6 +253,7 @@ public class Chairs implements Listener {
 		return width;
 	}
 
+	// TODO: Replace Switch Statement with a enhanced 'switch'.
 	private boolean checkSign(Block block, BlockFace face) {
 		// Go through the blocks next to the clicked block and check if are signs on the end.
 		for (int i = 1; true; i++) {
