@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class BurnoutTorches implements Listener {
 
-    // TODO Experimental Feature
+    // TODO Finish this
 
     private final boolean RELIGHTABLE;
     private final boolean PERSISTENT_TORCHES;
