@@ -27,6 +27,7 @@ import veth.vetheon.survival.config.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Add remainder of stair and sign block types
 public class Chairs implements Listener {
 
 	private final Survival plugin;
