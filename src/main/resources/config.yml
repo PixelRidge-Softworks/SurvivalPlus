@@ -419,6 +419,7 @@ Recipes:
   FishingRod: true
   Furnace: true
   Workbench: true
+  # Enables and disables Custom Items/Recipes
   # Requires survival enabled
   Hatchet: true
   Mattock: true
@@ -428,7 +429,7 @@ Recipes:
   Chest: true
   Flint: true
   Unlit_Camfire: true
-# Enables legendary items
+# Enables and disables legendary items/recipes
 LegendaryItems:
   ValkyrieAxe: true
   QuartzPickaxe: true
