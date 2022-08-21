@@ -33,6 +33,8 @@ public class PlayerDataConfig {
 		return !file.exists();
 	}
 
+
+	// TODO: Remove Deprecation
 	public void createConvertedFile(int conversions) {
 		File file = new File(playerDirectory, "converted.yml");
 		YamlConfiguration converted = YamlConfiguration.loadConfiguration(file);
@@ -41,6 +43,7 @@ public class PlayerDataConfig {
 		saveFile(converted, file);
 	}
 
+	// TODO: Fix unnecessary 'toString()' calls
 	public boolean hasPlayerDataFile(OfflinePlayer player) {
 		File file = new File(playerDirectory, player.getUniqueId().toString() + ".yml");
 		return file.exists();
