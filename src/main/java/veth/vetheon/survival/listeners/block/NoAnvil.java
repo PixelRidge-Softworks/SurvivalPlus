@@ -48,6 +48,7 @@ public class NoAnvil implements Listener {
 								|| ItemManager.compare(item, Item.HAMMER)) {
 							e.setCancelled(true);
 							e.getWhoClicked().closeInventory();
+							// TODO: Remove getDisplayName() and replace with new Paper Adventure Library one
 							e.getWhoClicked().sendMessage(ChatColor.RED + Utils.getColoredString(lang.no_rename) + item.getItemMeta().getDisplayName() + ChatColor.RED + Utils.getColoredString(lang.period));
 						}
 					}
