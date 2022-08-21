@@ -1,6 +1,5 @@
 package veth.vetheon.survival.item.items;
 
-import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,9 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.item.Item;
-import veth.vetheon.survival.util.Utils;
-import veth.vetheon.survival.item.items.FireStriker;
-import net.kyori.adventure.text.*;
 
 public class FireStriker implements Runnable, InventoryHolder {
 
