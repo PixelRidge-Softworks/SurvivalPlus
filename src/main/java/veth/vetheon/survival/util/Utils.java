@@ -616,6 +616,7 @@ public class Utils {
 	 */
     public static List<Material> getDrops(Material material, Boolean grown) {
         List<Material> mat = new ArrayList<>();
+		// TODO: Replace switch with ehanced switch
         switch (material) {
             case PUMPKIN:
                 mat.add(Material.PUMPKIN);
@@ -712,6 +713,7 @@ public class Utils {
         if (isRunningMinecraft(1, 16)) {
             Matcher matcher = HEX_PATTERN.matcher(string);
             while (matcher.find()) {
+				// TODO: Replace Deprecation
                 final net.md_5.bungee.api.ChatColor hexColor = net.md_5.bungee.api.ChatColor.of(matcher.group().substring(1, matcher.group().length() - 1));
                 final String before = string.substring(0, matcher.start());
                 final String after = string.substring(matcher.end());
@@ -719,6 +721,7 @@ public class Utils {
                 matcher = HEX_PATTERN.matcher(string);
             }
         }
+		// TODO: Replace Deprecation
         return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', string);
     }
 
