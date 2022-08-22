@@ -54,6 +54,7 @@ public class NutritionGUI implements InventoryHolder, Listener {
             listSize = nutritions.size() - p;
             rows = listSize > 45 ? 6 : (int) Math.ceil((double) listSize / 9) + 1;
         }
+        // TODO: Replace deprecated method
         this.inv = Bukkit.createInventory(this, rows * 9, Utils.getColoredString(lang.nutrition_gui));
 
         for (int i = 0; i < (Math.min(listSize, pages ? 45 : 54)); i++) {
@@ -69,10 +70,12 @@ public class NutritionGUI implements InventoryHolder, Listener {
         player.openInventory(inv);
     }
 
+    // TODO: Investigate warning
     private ItemStack getButton(Material material, String name) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta meta = itemStack.getItemMeta();
         assert meta != null;
+        // TODO: Replace deprecated method
         meta.setDisplayName(Utils.getColoredString(name));
         itemStack.setItemMeta(meta);
         return itemStack;
@@ -83,11 +86,13 @@ public class NutritionGUI implements InventoryHolder, Listener {
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
 
+        // TODO: Replace deprecated method
         List<String> lore = meta.getLore() != null ? meta.getLore() : new ArrayList<>();
         lore.add(" ");
         lore.add(Utils.getColoredString("&2" + lang.carbohydrates + ": &7" + nutrition.getCarbs()));
         lore.add(Utils.getColoredString("&4" + lang.protein + ": &7" + nutrition.getProteins()));
         lore.add(Utils.getColoredString("&5" + lang.vitamins + ": &7" + nutrition.getVitamins()));
+        // TODO: Replace deprecated method
         meta.setLore(lore);
 
         item.setItemMeta(meta);
