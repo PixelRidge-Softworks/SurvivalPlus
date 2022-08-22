@@ -17,6 +17,7 @@ import veth.vetheon.survival.data.PlayerData;
 import veth.vetheon.survival.managers.PlayerManager;
 import veth.vetheon.survival.util.Utils;
 
+// TODO: Fix me
 public class CompassWaypoint implements Listener {
 
     private final Lang lang;
