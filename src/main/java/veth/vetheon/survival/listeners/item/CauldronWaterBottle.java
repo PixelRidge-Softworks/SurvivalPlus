@@ -20,6 +20,7 @@ public class CauldronWaterBottle implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	private void onItemClick(PlayerInteractEvent event) {
+		// TODO: Replace Deprecation
 		if (event.isCancelled()) return;
 		if (event.hasItem()) {
 			Player player = event.getPlayer();
@@ -27,6 +28,7 @@ public class CauldronWaterBottle implements Listener {
 				ItemStack mainItem = player.getInventory().getItemInMainHand();
 				if (mainItem.getType() == Material.GLASS_BOTTLE) {
 					if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+						// TODO: Investigate warning
 						if (event.getClickedBlock().getType() == Material.WATER_CAULDRON) {
 							Levelled cauldron = (Levelled) (event.getClickedBlock().getBlockData());
 							if (cauldron.getLevel() > 0) {
