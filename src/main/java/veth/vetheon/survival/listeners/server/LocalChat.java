@@ -16,6 +16,7 @@ import veth.vetheon.survival.config.Config;
 
 public class LocalChat implements Listener {
 
+	// TODO: Investigate warnings
 	private Config config;
 	private PlayerManager playerManager;
 
@@ -25,6 +26,7 @@ public class LocalChat implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
+	// TODO: Replace deprecation
 	private void onChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled()) return;
 		Player player = event.getPlayer();
@@ -50,11 +52,13 @@ public class LocalChat implements Listener {
 		// LOCAL CHAT
 		event.setCancelled(true);
 
+		// TODO: Replace deprecation
 		Bukkit.getConsoleSender().sendMessage("<" + player.getDisplayName() + "> " + msg);
 		double maxDist = config.LOCAL_CHAT_DISTANCE;
 		for (Player other : Bukkit.getServer().getOnlinePlayers()) {
 			if (other.getLocation().getWorld() == player.getLocation().getWorld()) {
 				if (other.getLocation().distance(player.getLocation()) <= maxDist) {
+					// TODO: Replace deprecation
 					other.sendMessage(ChatColor.RESET + "<" + player.getDisplayName() + "> " + msg);
 				}
 			}
