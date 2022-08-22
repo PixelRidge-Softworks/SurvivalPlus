@@ -94,6 +94,7 @@ public class Consume implements Listener {
 					change = config.MECHANICS_THIRST_REP_WATER;
 				}
 				break;
+				// TODO: Remove deprecated code
 			case BEETROOT_SOUP: //OLD Water Bowl (removed in 3.11.0 - keep for a few versions)
 				if (ItemManager.compare(event.getPlayer().getInventory().getItemInMainHand(), Item.WATER_BOWL_OLD)) {
 					event.setCancelled(true);
@@ -192,6 +193,7 @@ public class Consume implements Listener {
             playerManager.getPlayerData(player).setThirst(thirst);
 
             int hunger = config.MECHANICS_HUNGER_RESPAWN_AMOUNT;
+			// TODO: Replace deprecation
             Bukkit.getScheduler().runTaskLater(plugin, () -> StatusManager.setHunger(player, hunger), 1);
         }
     }
@@ -207,6 +209,7 @@ public class Consume implements Listener {
 	private boolean checkWaterBottle(ItemStack bottle) {
 		ItemMeta meta = bottle.getItemMeta();
 		assert meta != null;
+		// TODO: Replace switch with enhanced switch
 		switch (((PotionMeta) meta).getBasePotionData().getType()) {
 			case WATER:
 			case MUNDANE:
