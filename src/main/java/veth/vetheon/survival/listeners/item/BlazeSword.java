@@ -33,6 +33,7 @@ public class BlazeSword implements Listener {
 				if (player.isSneaking()) {
 					if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
 						if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+							// TODO: Investigate warning
 							Material mat = event.getClickedBlock().getType();
 							if (Tag.BEDS.isTagged(mat) || Tag.DOORS.isTagged(mat) || Tag.TRAPDOORS.isTagged(mat) || Utils.isWoodGate(mat)) {
 								return;
