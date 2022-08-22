@@ -115,7 +115,7 @@ public class EventManager {
 		    pm.registerEvents(new ChickenSpawn(this.plugin), this.plugin);
 		if (config.WELCOME_GUIDE_ENABLED)
 			pm.registerEvents(new Guide(plugin), this.plugin);
-		if (config.MECHANICS_BURNOUT_TORCH_ENABLED) // TODO experimental feature, not 100% sure about this
+		if (config.MECHANICS_BURNOUT_TORCH_ENABLED) // TODO finish this
 			pm.registerEvents(new BurnoutTorches(this.plugin), this.plugin);
 		pm.registerEvents(new InventoryUpdate(), this.plugin);
 
