@@ -33,7 +33,9 @@ public class FireStriker implements Runnable, InventoryHolder {
 
     public FireStriker(Player player, ItemStack item) {
         Survival plugin = Survival.getInstance();
+        // TODO: Investigate if this is needed
         Lang lang = plugin.getLang();
+        // TODO: Replace deprecations
         this.inv = Bukkit.createInventory(this, InventoryType.FURNACE, "FireStriker");
         this.player = player;
         this.item = item;
