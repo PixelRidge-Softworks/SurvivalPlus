@@ -174,6 +174,7 @@ public class Survival extends JavaPlugin implements Listener {
 		}
 
 		// LOAD METRICS
+		// TODO: Investigate if this pluginId is needed
 		int pluginId = 12789;
 		Metrics metrics = new Metrics(this);
 		Utils.log("&7Metrics " + (metrics.isEnabled() ? "&aenabled" : "&cdisabled"));
