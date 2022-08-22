@@ -45,6 +45,7 @@ public class MerchantManager {
     }
 
     private boolean canUpdate(Material material) {
+        // TODO: Replace switch with enhanced switch
         switch (material) {
             case CHAINMAIL_HELMET:
             case CHAINMAIL_CHESTPLATE:
