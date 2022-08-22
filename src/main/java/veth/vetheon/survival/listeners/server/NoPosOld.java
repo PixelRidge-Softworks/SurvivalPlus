@@ -21,6 +21,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+// TODO: Replace NoPos with new NoPos code in NoPosOld
 public class NoPosOld implements Listener {
 	@EventHandler
 	private void onJoin(PlayerJoinEvent e) {
