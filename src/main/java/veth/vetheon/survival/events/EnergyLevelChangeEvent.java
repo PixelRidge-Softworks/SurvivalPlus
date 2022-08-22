@@ -48,6 +48,7 @@ public class EnergyLevelChangeEvent extends Event implements Cancellable {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
+	// TODO: Investigate warning
 	@Override
 	public HandlerList getHandlers() {
 		return handlers;
