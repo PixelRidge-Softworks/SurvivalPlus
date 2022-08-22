@@ -105,6 +105,7 @@ public class FoodDiversityConsume implements Listener {
 		double damageMultiplier = 1;
 
 		if (playerData.getNutrient(Nutrient.PROTEIN) <= 75) {
+			// TODO: replace switch with enhanced switch
 			switch (player.getWorld().getDifficulty()) {
 				case EASY:
 					damageMultiplier *= 1.25;
@@ -119,6 +120,7 @@ public class FoodDiversityConsume implements Listener {
 			}
 		}
 		if (playerData.getNutrient(Nutrient.SALTS) <= 100) {
+			// TODO: replace switch with enhanced switch
 			switch (player.getWorld().getDifficulty()) {
 				case EASY:
 					damageMultiplier *= 1.25;
