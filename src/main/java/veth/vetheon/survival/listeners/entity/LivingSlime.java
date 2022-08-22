@@ -21,6 +21,7 @@ import veth.vetheon.survival.Survival;
 
 public class LivingSlime implements Listener {
 
+	// TODO: Investigate warning
 	private Survival plugin;
 
 	public LivingSlime(Survival plugin) {
