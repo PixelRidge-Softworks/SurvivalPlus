@@ -5,6 +5,7 @@ import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.data.Nutrient;
 import veth.vetheon.survival.data.PlayerData;
 
+// TODO: investigate if this is needed still or if it can be removed
 /**
  * Manage a player's different status levels
  * @deprecated Use <b>{@link PlayerData}</b>
