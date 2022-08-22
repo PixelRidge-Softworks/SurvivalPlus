@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Utils {
 
+	// TODO: Investigate if HEX_PATTERN can be simplified
     private static final Pattern HEX_PATTERN = Pattern.compile("<#([A-Fa-f0-9]){6}>");
     private static final ImmutableSet<Material> CONCRETE_BLOCKS;
 	private static final ImmutableSet<Material> CONCRETE_POWDER;
