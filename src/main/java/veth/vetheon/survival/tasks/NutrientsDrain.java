@@ -8,7 +8,6 @@ import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.data.Nutrient;
 import veth.vetheon.survival.data.PlayerData;
 import veth.vetheon.survival.managers.PlayerManager;
-import veth.vetheon.survival.managers.StatusManager;
 
 class NutrientsDrain extends BukkitRunnable {
 
