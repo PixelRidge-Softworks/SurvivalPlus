@@ -52,6 +52,7 @@ public class PlayerData implements ConfigurationSerializable {
     private int recurveFiring = 0;
     private int recurveCooldown = 0;
 
+    // TODO: Investigate if this is needed
     private double temperature = 0L;
 
     // Scoreboard info
@@ -59,6 +60,7 @@ public class PlayerData implements ConfigurationSerializable {
     private boolean score_thirst = true;
     private boolean score_energy = true;
     private boolean score_nutrients = true;
+    // TODO: Investigate warnings
     private boolean score_temperature = true;
 
     public PlayerData(OfflinePlayer player, int thirst, int proteins, int carbs, int salts, double energy) {
@@ -138,6 +140,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to get
      * @return Level of the nutrient
      */
+    // TODO: replace switch statement with enhanced switch statement
     public int getNutrient(Nutrient nutrient) {
         switch (nutrient) {
             case PROTEIN:
@@ -157,6 +160,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to set
      * @param value    Level to set
      */
+    // TODO: replace switch statement with enhanced switch statement
     public void setNutrient(Nutrient nutrient, int value) {
         switch (nutrient) {
             case PROTEIN:
@@ -192,6 +196,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to increase
      * @param value    Level of increase
      */
+    // TODO: replace switch statement with enhanced switch statement
     public void increaseNutrient(Nutrient nutrient, int value) {
         switch (nutrient) {
             case PROTEIN:
@@ -242,6 +247,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param stat  Stat to set
      * @param value Value of stat to set
      */
+    // TODO: replace switch statement with enhanced switch statement
     public void setStat(Stat stat, int value) {
         switch (stat) {
             case CHARGE:
@@ -276,6 +282,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param stat Stat to retrieve
      * @return Value of stat
      */
+    // TODO: replace switch statement with enhanced switch statement
     public int getStat(Stat stat) {
         switch (stat) {
             case CHARGE:
@@ -323,6 +330,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param info Healthboard info
      * @return True if this info is displayed on the player's scoreboard
      */
+    // TODO: replace switch statement with enhanced switch statement
     public boolean isInfoDisplayed(Info info) {
         switch (info) {
             case HUNGER:
@@ -346,6 +354,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param info    Healthboard info to display
      * @param visible Whether the info should be displayed or not
      */
+    // TODO: replace switch statement with enhanced switch statement
     public void setInfoDisplayed(Info info, boolean visible) {
         switch (info) {
             case HUNGER:
@@ -527,6 +536,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param type  DataType to set
      * @param value Value to set
      */
+    // TODO: replace switch statement with enhanced switch statement
     public void setData(DataType type, Number value) {
         switch (type) {
             case THIRST:
@@ -558,6 +568,7 @@ public class PlayerData implements ConfigurationSerializable {
      * @param type DataType to get
      * @return Value from this player data
      */
+    // TODO: replace switch statement with enhanced switch statement
     public double getData(DataType type) {
         switch (type) {
             case THIRST:
