@@ -22,7 +22,8 @@ import veth.vetheon.survival.Survival;
 import java.util.*;
 
 public class WorkbenchShare implements Listener {
-	
+
+	// TODO: Investigate warning
 	private Survival plugin;
 	
 	public WorkbenchShare(Survival plugin) {
@@ -47,6 +48,7 @@ public class WorkbenchShare implements Listener {
 			if (!block.hasMetadata("shared_players"))
 				block.setMetadata("shared_players", new FixedMetadataValue(plugin, new ArrayList<UUID>()));
 
+			// TODO: Investigate warning about unchecked cast
 			final List<UUID> list = (block.getMetadata("shared_players").get(0).value() instanceof List<?>) ? (List<UUID>) block.getMetadata("shared_players").get(0).value() : new ArrayList<>();
 
 			final Inventory open = p.getOpenInventory().getTopInventory();
@@ -108,6 +110,7 @@ public class WorkbenchShare implements Listener {
 
 			assert workbench != null;
 			if (!workbench.hasMetadata("shared_players") || workbench.getType() != Material.CRAFTING_TABLE) {
+				// TODO: Investigate warning about getTopInventory()
 				if (p.getOpenInventory().getTopInventory() != null)
 					p.getOpenInventory().getTopInventory().clear();
 				p.closeInventory();
@@ -115,6 +118,7 @@ public class WorkbenchShare implements Listener {
 				return;
 			}
 
+			// TODO: Investigate warning about unchecked cast
 			List<UUID> list = (workbench.getMetadata("shared_players").get(0).value() instanceof List<?>) ? (List<UUID>) workbench.getMetadata("shared_players").get(0).value() : new ArrayList<UUID>();
 
 			final Inventory pInv = p.getOpenInventory().getTopInventory();
@@ -168,6 +172,7 @@ public class WorkbenchShare implements Listener {
 			return;
 		if (e.getInventory().getType() == InventoryType.WORKBENCH) {
 			// Workaround to get the accessed WorkBench
+			// TODO: Investigate warning
 			final Block workbench = p.getTargetBlock((Set<Material>) null, 8);
 
 			if (!workbench.hasMetadata("shared_players") || workbench.getType() != Material.CRAFTING_TABLE) {
@@ -178,6 +183,7 @@ public class WorkbenchShare implements Listener {
 				return;
 			}
 
+			// TODO: Investigate warning about unchecked cast
 			List<UUID> list = (workbench.getMetadata("shared_players").get(0).value() instanceof List<?>) ? (List<UUID>) workbench.getMetadata("shared_players").get(0).value() : new ArrayList<UUID>();
 
 			assert list != null;
@@ -202,6 +208,7 @@ public class WorkbenchShare implements Listener {
 		Block workbench = (p.getMetadata("shared_workbench").get(0).value() instanceof Block) ? (Block) p.getMetadata("shared_workbench").get(0).value() : null;
 
 		if (workbench != null && workbench.hasMetadata("shared_players") && workbench.getType() == Material.CRAFTING_TABLE) {
+			// TODO: Investigate warning about unchecked cast
 			List<UUID> list = (workbench.getMetadata("shared_players").get(0).value() instanceof List<?>) ? (List<UUID>) workbench.getMetadata("shared_players").get(0).value() : new ArrayList<UUID>();
 
 			assert list != null;
@@ -225,6 +232,7 @@ public class WorkbenchShare implements Listener {
 		if (!workbench.hasMetadata("shared_players") || workbench.getType() != Material.CRAFTING_TABLE)
 			return;
 
+		// TODO: Investigate warning about unchecked cast
 		List<UUID> list = (workbench.getMetadata("shared_players").get(0).value() instanceof List<?>) ? (List<UUID>) workbench.getMetadata("shared_players").get(0).value() : new ArrayList<UUID>();
 
 		assert list != null;
