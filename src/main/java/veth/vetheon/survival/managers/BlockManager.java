@@ -67,6 +67,7 @@ public class BlockManager {
 			}
             ((Lightable) data).setLit(false);
 			block.setBlockData(data);
+			// TODO: Investigate warning
 		}, 20 * seconds);
 	}
 
@@ -91,6 +92,7 @@ public class BlockManager {
 	public void setNonPersistent(Block block) {
 		List<String> list = data.getStringList("NonPersistent Torches");
 		long time = System.currentTimeMillis();
+		// TODO: Investigate Warning
 		time = time + (1000 * seconds);
 		list.add(locToString(block.getLocation()) + " time:" + time);
 		data.set("NonPersistent Torches", list);
