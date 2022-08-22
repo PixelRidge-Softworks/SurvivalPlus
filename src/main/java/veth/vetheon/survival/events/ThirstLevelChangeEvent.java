@@ -49,6 +49,7 @@ public class ThirstLevelChangeEvent extends Event implements Cancellable {
 		return handlers;
 	}
 
+	// TODO: Investigate warning
 	@Override
 	public HandlerList getHandlers() {
 		return handlers;
