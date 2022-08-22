@@ -22,7 +22,8 @@ import org.bukkit.util.Vector;
 import veth.vetheon.survival.Survival;
 
 public class GrapplingHook implements Listener {
-	
+
+	// TODO: Investigate warning
 	private Lang lang;
 	
 	public GrapplingHook(Survival plugin) {
