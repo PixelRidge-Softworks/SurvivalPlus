@@ -27,6 +27,7 @@ public class Placeholders extends PlaceholderExpansion {
         return true;
     }
 
+    // TODO: Investigate warnings
     @Override
     public String getIdentifier() {
         return "survivalplus";
