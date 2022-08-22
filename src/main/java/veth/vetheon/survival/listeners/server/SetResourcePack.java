@@ -15,6 +15,7 @@ import veth.vetheon.survival.util.Utils;
 
 public class SetResourcePack implements Listener {
 
+	// TODO: Investigate warnings
 	private Survival plugin;
 	private Config config;
 	private Lang lang;
