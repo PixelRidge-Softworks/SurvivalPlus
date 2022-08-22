@@ -27,6 +27,7 @@ import java.util.Objects;
 
 public class WaterBottleCrafting implements Listener {
 
+	//  TODO: Investigate warnings
 	private Survival plugin;
 	private Config config;
 
@@ -91,6 +92,7 @@ public class WaterBottleCrafting implements Listener {
         return data instanceof Waterlogged && ((Waterlogged) data).isWaterlogged();
     }
 
+	// TODO: Investigate if this is needed
 	private boolean checkWaterBottle(ItemStack bottle) {
 
 		return ((PotionMeta) Objects.requireNonNull(bottle.getItemMeta())).getBasePotionData().getType() == PotionType.WATER;
