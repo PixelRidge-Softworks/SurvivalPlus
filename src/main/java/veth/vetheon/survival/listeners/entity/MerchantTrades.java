@@ -10,6 +10,7 @@ import veth.vetheon.survival.managers.MerchantManager;
 
 public class MerchantTrades implements Listener {
 
+    // TODO: Investigate warning
     private MerchantManager merchantManager;
 
     public MerchantTrades(Survival plugin) {
