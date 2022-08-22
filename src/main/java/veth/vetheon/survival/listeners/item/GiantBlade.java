@@ -89,7 +89,7 @@ public class GiantBlade implements Listener {
 		ItemStack mainItem = player.getInventory().getItemInMainHand();
 		ItemStack offItem = player.getInventory().getItemInOffHand();
 		ItemMeta mainItemMeta = mainItem.getItemMeta();
-		ItemMeta offItemMeta = offItem.getItemMeta();;
+		ItemMeta offItemMeta = offItem.getItemMeta();
 		assert mainItemMeta != null;
 		assert offItemMeta != null;
 
