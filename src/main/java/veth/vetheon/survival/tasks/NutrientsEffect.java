@@ -35,6 +35,7 @@ class NutrientsEffect extends BukkitRunnable {
 				PlayerData playerData = playerManager.getPlayerData(player);
 
 				if (playerData.getNutrient(Nutrient.CARBS) <= 0) {
+					// TODO: Replace switch with enhanced switch
 					switch (player.getWorld().getDifficulty()) {
 						case EASY:
 							player.setExhaustion(player.getExhaustion() + Math.max(config.MECHANICS_FOOD_EFFECTS_CARBS_EX_AMP_EASY, 0));
@@ -55,11 +56,13 @@ class NutrientsEffect extends BukkitRunnable {
 						case NORMAL:
 							//update from deprecated
 							if (SALTS_NORMAL != null) {
+								// TODO: Replace deprecation
 								player.addPotionEffect(SALTS_NORMAL, true);
 							}
 							break;
 						case HARD:
 							if (SALTS_HARD != null) {
+								// TODO: Replace deprecation
 								player.addPotionEffect(SALTS_HARD, true);
 							}
 							break;
@@ -72,11 +75,13 @@ class NutrientsEffect extends BukkitRunnable {
 					switch (player.getWorld().getDifficulty()) {
 						case NORMAL:
 							if (PROTEIN_NORMAL != null) {
+								// TODO: Replace deprecation
 								player.addPotionEffect(PROTEIN_NORMAL, true);
 							}
 							break;
 						case HARD:
 							if (PROTEIN_HARD != null) {
+								// TODO: Replace deprecation
 								player.addPotionEffect(PROTEIN_HARD, true);
 							}
 							break;
