@@ -19,6 +19,7 @@ class ThirstAlert extends BukkitRunnable {
 		this.playerManager = plugin.getPlayerManager();
 		this.lang = plugin.getLang();
 		final int ALERT_INTERVAL = plugin.getSurvivalConfig().MECHANICS_ALERT_INTERVAL;
+		// TODO: Investigate warning
 		this.runTaskTimer(plugin, -1, ALERT_INTERVAL * 20);
 	}
 	@Override
