@@ -21,6 +21,7 @@ public class ChestPigmen implements Listener {
 
 	private final List<Material> GOLD_ITEMS;
 	private final int RADIUS;
+	// TODO: Investigate warning
 	private double SPEED;
 
 	public ChestPigmen(Survival plugin) {
@@ -68,7 +69,9 @@ public class ChestPigmen implements Listener {
 
 	private void moveFaster(Attributable entity, double modifier) {
 		if (entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED) != null) {
+			// TODO: Investigate warning
 			double speed = entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue();
+			// TODO: Investigate warning
 			entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(speed * modifier);
 		}
 	}
