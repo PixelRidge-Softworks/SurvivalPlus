@@ -50,7 +50,7 @@ public class GiantBlade extends BukkitRunnable {
 	}
 
 	@Override
-	public void run() { //TODO this guy needs some serious work
+	public void run() { //TODO Fix this garbage spaghetti code
 		for (Player player : plugin.getServer().getOnlinePlayers()) {
 			ItemStack mainItem = player.getInventory().getItemInMainHand();
 			ItemStack offItem = player.getInventory().getItemInOffHand();
