@@ -161,6 +161,7 @@ public class FirestrikerClick implements Listener {
 
     @EventHandler
     private void onCloseInventory(InventoryCloseEvent event) {
+        // TODO: Replace Deprecation
         if (event.getView().getTitle().equalsIgnoreCase(Utils.getColoredString(lang.firestriker))) {
             Inventory inv = event.getInventory();
             if (inv.getHolder() instanceof FireStriker) {
