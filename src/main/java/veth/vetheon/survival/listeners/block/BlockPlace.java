@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class BlockPlace implements Listener {
 
+	// TODO: Investigate warnings
 	private Config config;
 	private Lang lang;
 
@@ -28,6 +29,7 @@ public class BlockPlace implements Listener {
 		this.lang = plugin.getLang();
 	}
 
+	// TODO: Check if this suppression is needed
 	@SuppressWarnings("ConstantConditions")
 	@EventHandler(priority = EventPriority.HIGHEST)
 	private void onBlockPlace(BlockPlaceEvent event) {
