@@ -9,6 +9,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 import veth.vetheon.survival.Survival;
 
+// TODO: This entire feature is being removed
 public class SnowGeneration implements Listener {
 	
 	private Survival plugin;
