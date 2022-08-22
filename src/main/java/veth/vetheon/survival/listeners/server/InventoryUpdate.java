@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import veth.vetheon.survival.managers.ItemManager;
 import veth.vetheon.survival.item.Item;
 
+// TODO: Investigate if this suppression is needed
 @SuppressWarnings("deprecation")
 public class InventoryUpdate implements Listener {
 
@@ -34,10 +35,12 @@ public class InventoryUpdate implements Listener {
     private void itemCheck(Inventory inv) {
         for (int i = 0; i < inv.getSize(); i++) {
             ItemStack item = inv.getItem(i);
+            // TODO: Investigate if 'continue' is needed
             if (item == null) continue;
         }
     }
 
+    // TODO: Investigate if this is needed
     private void itemUpdate(Inventory inv, int slot, ItemStack oldItem, Item newItem) {
         assert oldItem.getItemMeta() != null;
         int damage = ((Damageable) oldItem.getItemMeta()).getDamage();
