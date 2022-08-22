@@ -67,6 +67,7 @@ public class PiglinBarter implements Listener {
 
         // If anything else we have some random drops
         ItemStack altItem = null;
+        // TODO: Replace switch with enhanced switch
         switch (itemDropMaterial) {
             case LEATHER:
                 altItem = Item.SUSPICIOUS_MEAT.getItem();
