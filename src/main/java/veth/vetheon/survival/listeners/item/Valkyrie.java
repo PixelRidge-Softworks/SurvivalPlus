@@ -27,6 +27,7 @@ import veth.vetheon.survival.Survival;
 
 public class Valkyrie implements Listener {
 
+	// TODO: Investigate warning
 	private Survival plugin;
 	private Lang lang;
 
@@ -143,6 +144,7 @@ public class Valkyrie implements Listener {
 
 		damageNearbyEnemies(player, 8);
 
+		// TODO: replace statement lambda with expression lambda
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			playerData.setStat(Stat.SPIN, 0);
 		}, 20L);
@@ -161,6 +163,7 @@ public class Valkyrie implements Listener {
 		}
 	}
 
+	// TODO: Investigate warning
 	private void damageNearbyEnemies(Player player, int dmg) {
 		assert player.getLocation().getWorld()  != null;
 		Collection<Entity> enemies = player.getLocation().getWorld().getNearbyEntities(player.getLocation().add(0, 0.5, 0), 3.5f, 1.5f, 3.5f);
