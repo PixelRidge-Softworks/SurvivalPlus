@@ -24,7 +24,8 @@ import veth.vetheon.survival.util.Utils;
 import java.util.Random;
 
 public class BlockBreak implements Listener {
-	
+
+	// TODO: Investigate warnings
 	private Config settings;
 	private Lang lang;
 	
