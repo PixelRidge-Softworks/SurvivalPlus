@@ -36,6 +36,7 @@ import java.util.UUID;
 /**
  * Manager for custom <b>SurvivalPlus</b> items
  */
+// TODO: Investigate if this suppression is needed
 @SuppressWarnings("ConstantConditions")
 public class ItemManager {
 
@@ -51,6 +52,7 @@ public class ItemManager {
         if (item == Item.HATCHET) {
             ItemStack i_hatchet = new ItemStack(Item.HATCHET.getMaterialType(), 1);
             ItemMeta hatchetMeta = i_hatchet.getItemMeta();
+            // TODO: Replace deprecation
             hatchetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hatchet));
             hatchetMeta.setCustomModelData(Item.HATCHET.getModelData());
             i_hatchet.setItemMeta(hatchetMeta);
@@ -58,6 +60,7 @@ public class ItemManager {
         } else if (item == Item.MATTOCK) {
             ItemStack i_mattock = new ItemStack(Item.MATTOCK.getMaterialType(), 1);
             ItemMeta mattockMeta = i_mattock.getItemMeta();
+            // TODO: Replace deprecation
             mattockMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.mattock));
             mattockMeta.setCustomModelData(Item.MATTOCK.getModelData());
             i_mattock.setItemMeta(mattockMeta);
@@ -80,7 +83,9 @@ public class ItemManager {
 
             i_shivMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_shivMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.shiv));
+            // TODO: Replace deprecation
             i_shivMeta.setLore(Arrays.asList(
                     ChatColor.RESET + Utils.getColoredString(lang.poisoned_enemy),
                     "",
@@ -98,6 +103,7 @@ public class ItemManager {
         } else if (item == Item.HAMMER) {
             ItemStack i_hammer = new ItemStack(Item.HAMMER.getMaterialType(), 1);
             ItemMeta hammerMeta = i_hammer.getItemMeta();
+            // TODO: Replace deprecation
             hammerMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hammer));
             hammerMeta.setCustomModelData(Item.HAMMER.getModelData());
             i_hammer.setItemMeta(hammerMeta);
@@ -116,7 +122,9 @@ public class ItemManager {
 
             i_gAxeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_gAxeMeta.setDisplayName(ChatColor.RESET + "" + Utils.getColoredString(lang.valkyrie_axe));
+            // TODO: Replace deprecation
             i_gAxeMeta.setLore(Arrays.asList(
                     ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_unable_dual),
                     "",
@@ -149,7 +157,9 @@ public class ItemManager {
 
             i_gPickaxeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_gPickaxeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.quartz_breaker));
+            // TODO: Replace deprecation
             i_gPickaxeMeta.setLore(Arrays.asList(
                     "",
                     ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
@@ -186,7 +196,9 @@ public class ItemManager {
 
             i_gSpadeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_gSpadeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.obsidian_mace));
+            // TODO: Replace deprecation
             i_gSpadeMeta.setLore(Arrays.asList(
                     ChatColor.RESET + Utils.getColoredString(lang.cripple_hit),
                     ChatColor.RESET + Utils.getColoredString(lang.drain_hit),
@@ -227,7 +239,9 @@ public class ItemManager {
 
             i_gHoeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_gHoeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade));
+            // TODO: Replace deprecation
             i_gHoeMeta.setLore(Arrays.asList(
                     ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade_unable_duel),
                     "",
@@ -270,7 +284,9 @@ public class ItemManager {
 
             i_gSwordMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
+            // TODO: Replace deprecation
             i_gSwordMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.blaze_sword));
+            // TODO: Replace deprecation
             i_gSwordMeta.setLore(Arrays.asList(
                     "",
                     ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
@@ -291,6 +307,7 @@ public class ItemManager {
         } else if (item == Item.WORKBENCH) {
             ItemStack workbench = new ItemStack(Item.WORKBENCH.getMaterialType(), 1);
             ItemMeta workbenchMeta = workbench.getItemMeta();
+            // TODO: Replace deprecation
             workbenchMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.workbench));
             workbench.setItemMeta(workbenchMeta);
             return workbench;
@@ -307,14 +324,17 @@ public class ItemManager {
 
             i_firestrikerMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, i_firestrikerSpeed);
             i_firestrikerMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            // TODO: Replace deprecation
             i_firestrikerMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.firestriker));
             String lore = Utils.getColoredString(lang.firestriker_lore);
+            // TODO: Replace deprecation
             i_firestrikerMeta.setLore(Arrays.asList(lore.split("\\|\\|")));
             i_firestriker.setItemMeta(i_firestrikerMeta);
             return i_firestriker;
         } else if (item == Item.FERMENTED_SKIN) {
             ItemStack i_fermentedSkin = new ItemStack(Item.FERMENTED_SKIN.getMaterialType(), 1);
             ItemMeta fermentedSkinMeta = i_fermentedSkin.getItemMeta();
+            // TODO: Replace deprecation
             fermentedSkinMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.fermented_skin));
             i_fermentedSkin.setItemMeta(fermentedSkinMeta);
             return i_fermentedSkin;
@@ -322,6 +342,7 @@ public class ItemManager {
             ItemStack i_medicKit = new ItemStack(Item.MEDIC_KIT.getMaterialType(), 1);
             ItemMeta medicKitMeta = i_medicKit.getItemMeta();
             medicKitMeta.setCustomModelData(Item.MEDIC_KIT.getModelData());
+            // TODO: Replace deprecation
             medicKitMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.medical_kit));
             i_medicKit.setItemMeta(medicKitMeta);
             return i_medicKit;
@@ -334,6 +355,7 @@ public class ItemManager {
                     "generic.armor", 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
             i_leatherBootsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, i_leatherBootsArmor);
 
+            // TODO: Replace deprecation
             i_leatherBootsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_boots));
 
             i_leatherBoots.setItemMeta(i_leatherBootsMeta);
@@ -343,6 +365,7 @@ public class ItemManager {
 
             ItemMeta leatherChestplateMeta = i_leatherChestplate.getItemMeta();
             leatherChestplateMeta.setCustomModelData(Item.REINFORCED_LEATHER_TUNIC.getModelData());
+            // TODO: Replace deprecation
             leatherChestplateMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_tunic));
 
             i_leatherChestplate.setItemMeta(leatherChestplateMeta);
@@ -352,6 +375,7 @@ public class ItemManager {
 
             ItemMeta leatherLeggingsMeta = i_leatherLeggings.getItemMeta();
             leatherLeggingsMeta.setCustomModelData(Item.REINFORCED_LEATHER_TROUSERS.getModelData());
+            // TODO: Replace deprecation
             leatherLeggingsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_pants));
 
             i_leatherLeggings.setItemMeta(leatherLeggingsMeta);
@@ -362,6 +386,7 @@ public class ItemManager {
 
             ItemMeta leatherHelmetMeta = i_leatherHelmet.getItemMeta();
             leatherHelmetMeta.setCustomModelData(Item.REINFORCED_LEATHER_HELMET.getModelData());
+            // TODO: Replace deprecation
             leatherHelmetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_hat));
 
             i_leatherHelmet.setItemMeta(leatherHelmetMeta);
@@ -378,6 +403,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.0125, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.FEET);
             i_goldBootsMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldBootsSpeed);
 
+            // TODO: Replace deprecation
             i_goldBootsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_sabatons));
             i_goldBootsMeta.addEnchant(org.bukkit.enchantments.Enchantment.PROTECTION_FALL, 4, true);
 
@@ -395,6 +421,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.02, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.CHEST);
             i_goldChestplateMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldChestSpeed);
 
+            // TODO: Replace deprecation
             i_goldChestplateMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_guard));
             i_goldChestplateMeta.addEnchant(org.bukkit.enchantments.Enchantment.PROTECTION_EXPLOSIONS, 4, true);
 
@@ -412,6 +439,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.02, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.LEGS);
             i_goldLeggingsMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldLeggingsSpeed);
 
+            // TODO: Replace deprecation
             i_goldLeggingsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_greaves));
             i_goldLeggingsMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, true);
 
@@ -429,6 +457,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.0125, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.HEAD);
             i_goldHelmetMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldHelmetSpeed);
 
+            // TODO: Replace deprecation
             i_goldHelmetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_crown));
             i_goldHelmetMeta.addEnchant(org.bukkit.enchantments.Enchantment.MENDING, 1, true);
 
@@ -550,7 +579,9 @@ public class ItemManager {
 
             ItemMeta recurveBowMeta = i_recurveBow.getItemMeta();
             recurveBowMeta.setCustomModelData(Item.RECURVE_BOW.getModelData());
+            // TODO: Replace deprecation
             recurveBowMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.recurved_bow));
+            // TODO: Replace deprecation
             recurveBowMeta.setLore(Collections.singletonList(ChatColor.RESET + "" + ChatColor.LIGHT_PURPLE +
                     Utils.getColoredString(lang.recurved)));
             recurveBowMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 1, true);
@@ -560,7 +591,9 @@ public class ItemManager {
             ItemStack recurveCrossbow = new ItemStack(Item.RECURVE_CROSSBOW.getMaterialType(), 1);
             ItemMeta recurveCrossbowMeta = recurveCrossbow.getItemMeta();
             recurveCrossbowMeta.setCustomModelData(Item.RECURVE_BOW.getModelData());
+            // TODO: Replace deprecation
             recurveCrossbowMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.recurved_crossbow));
+            // TODO: Replace deprecation
             recurveCrossbowMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.recurved)));
             recurveCrossbowMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 1, true);
             recurveCrossbow.setItemMeta(recurveCrossbowMeta);
@@ -571,7 +604,9 @@ public class ItemManager {
             dirtyMeta.setCustomModelData(Item.DIRTY_WATER.getModelData());
             ((PotionMeta) dirtyMeta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) dirtyMeta).setColor(Color.fromRGB(lang.dirty_water_color));
+            // TODO: Replace deprecation
             dirtyMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.dirty_water));
+            // TODO: Replace deprecation
             dirtyMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.dirty_water_lore)));
             dirtyMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             dirty_water.setItemMeta(dirtyMeta);
@@ -582,7 +617,9 @@ public class ItemManager {
             cleanMeta.setCustomModelData(Item.CLEAN_WATER.getModelData());
             ((PotionMeta) cleanMeta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) cleanMeta).setColor(Color.fromRGB(lang.clean_water_color));
+            // TODO: Replace deprecation
             cleanMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.clean_water));
+            // TODO: Replace deprecation
             cleanMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.clean_water_lore)));
             cleanMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             clean_water.setItemMeta(cleanMeta);
@@ -593,7 +630,9 @@ public class ItemManager {
             meta.setCustomModelData(Item.PURIFIED_WATER.getModelData());
             ((PotionMeta) meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) meta).setColor(Color.fromRGB(lang.purified_water_color));
+            // TODO: Replace deprecation
             meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.purified_water));
+            // TODO: Replace deprecation
             meta.setLore(Collections.singletonList(Utils.getColoredString(lang.purified_water_lore)));
             meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             purified_water.setItemMeta(meta);
@@ -603,13 +642,16 @@ public class ItemManager {
             PotionMeta water_bowlMeta = ((PotionMeta) water_bowl.getItemMeta());
             water_bowlMeta.setBasePotionData(new PotionData(PotionType.WATER));
             water_bowlMeta.setCustomModelData(Item.WATER_BOWL.getModelData());
+            // TODO: Replace deprecation
             water_bowlMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.water_bowl));
             water_bowl.setItemMeta(water_bowlMeta);
             return water_bowl;
         } else if (item == Item.CAMPFIRE) {
             ItemStack campfire = new ItemStack(Item.CAMPFIRE.getMaterialType());
             ItemMeta campfireMeta = campfire.getItemMeta();
+            // TODO: Replace deprecation
             campfireMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.campfire_name));
+            // TODO: Replace deprecation
             campfireMeta.setLore(Arrays.asList(Utils.getColoredString(lang.campfire_lore).split("\\|\\|")));
             campfireMeta.setCustomModelData(Item.CAMPFIRE.getModelData());
             BlockData data = Material.CAMPFIRE.createBlockData();
@@ -621,6 +663,7 @@ public class ItemManager {
             ItemStack stone_sickle = new ItemStack(Item.STONE_SICKLE.getMaterialType());
             ItemMeta stone_sickleMeta = stone_sickle.getItemMeta();
             stone_sickleMeta.setCustomModelData(Item.STONE_SICKLE.getModelData());
+            // TODO: Replace deprecation
             stone_sickleMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.stone_sickle));
             stone_sickle.setItemMeta(stone_sickleMeta);
             return stone_sickle;
@@ -628,6 +671,7 @@ public class ItemManager {
             ItemStack iron_sickle_new = new ItemStack(Item.IRON_SICKLE.getMaterialType());
             ItemMeta iron_sickle_new_meta = iron_sickle_new.getItemMeta();
             iron_sickle_new_meta.setCustomModelData(Item.IRON_SICKLE.getModelData());
+            // TODO: Replace deprecation
             iron_sickle_new_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.iron_sickle));
             iron_sickle_new.setItemMeta(iron_sickle_new_meta);
             return iron_sickle_new;
@@ -635,6 +679,7 @@ public class ItemManager {
             ItemStack flint_sickle = new ItemStack(Item.FLINT_SICKLE.getMaterialType());
             ItemMeta flint_sickle_meta = flint_sickle.getItemMeta();
             flint_sickle_meta.setCustomModelData(Item.FLINT_SICKLE.getModelData());
+            // TODO: Replace deprecation
             flint_sickle_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.flint_sickle));
             flint_sickle.setItemMeta(flint_sickle_meta);
             return flint_sickle;
@@ -642,12 +687,14 @@ public class ItemManager {
             ItemStack diamond_sickle = new ItemStack(Item.DIAMOND_SICKLE.getMaterialType());
             ItemMeta diamond_sickle_meta = diamond_sickle.getItemMeta();
             diamond_sickle_meta.setCustomModelData(Item.DIAMOND_SICKLE.getModelData());
+            // TODO: Replace deprecation
             diamond_sickle_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.diamond_sickle));
             diamond_sickle.setItemMeta(diamond_sickle_meta);
             return diamond_sickle;
         } else if (item == Item.GRAPPLING_HOOK) {
             ItemStack grappling_hook = new ItemStack(Item.GRAPPLING_HOOK.getMaterialType());
             ItemMeta grappling_meta = grappling_hook.getItemMeta();
+            // TODO: Replace deprecation
             grappling_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.grappling_hook));
             grappling_meta.setCustomModelData(Item.GRAPPLING_HOOK.getModelData());
             grappling_hook.setItemMeta(grappling_meta);
@@ -658,6 +705,7 @@ public class ItemManager {
             coffee_meta.setCustomModelData(Item.COFFEE.getModelData());
             ((PotionMeta) coffee_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) coffee_meta).setColor(Color.fromRGB(lang.coffee_color));
+            // TODO: Replace deprecation
             coffee_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.coffee_name));
             coffee_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             coffee.setItemMeta(coffee_meta);
@@ -668,6 +716,7 @@ public class ItemManager {
             hot_milk_meta.setCustomModelData(Item.HOT_MILK.getModelData());
             ((PotionMeta) hot_milk_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) hot_milk_meta).setColor(Color.fromRGB(lang.hot_milk_color));
+            // TODO: Replace deprecation
             hot_milk_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hot_milk_name));
             hot_milk_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             hot_milk.setItemMeta(hot_milk_meta);
@@ -678,6 +727,7 @@ public class ItemManager {
             cold_milk_meta.setCustomModelData(Item.COLD_MILK.getModelData());
             ((PotionMeta) cold_milk_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) cold_milk_meta).setColor(Color.fromRGB(lang.cold_milk_color));
+            // TODO: Replace deprecation
             cold_milk_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.cold_milk_name));
             cold_milk_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             cold_milk.setItemMeta(cold_milk_meta);
@@ -686,6 +736,7 @@ public class ItemManager {
             ItemStack coffee_bean = new ItemStack(Item.COFFEE_BEAN.getMaterialType());
             ItemMeta coffee_bean_meta = coffee_bean.getItemMeta();
             coffee_bean_meta.setCustomModelData(Item.COFFEE_BEAN.getModelData());
+            // TODO: Replace deprecation
             coffee_bean_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.coffee_bean_name));
             coffee_bean.setItemMeta(coffee_bean_meta);
             return coffee_bean;
@@ -693,6 +744,7 @@ public class ItemManager {
             ItemStack breeding_egg = new ItemStack(Item.BREEDING_EGG.getMaterialType());
             ItemMeta breeding_egg_meta = breeding_egg.getItemMeta();
             breeding_egg_meta.setCustomModelData(Item.BREEDING_EGG.getModelData());
+            // TODO: Replace deprecation
             breeding_egg_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.breeding_egg_name));
             breeding_egg.setItemMeta(breeding_egg_meta);
             return breeding_egg;
@@ -703,14 +755,16 @@ public class ItemManager {
             for (int i = 0; i < lang.compass_lore.size(); i++) {
                 compass_lore.add(Utils.getColoredString(lang.compass_lore.get(i)));
             }
+            // TODO: Replace deprecation
             compass_meta.setLore(compass_lore);
             compass.setItemMeta(compass_meta);
             return compass;
         } else if (item == Item.PERSISTENT_TORCH) {
-            // TODO Experimental
+            // TODO Finish This
             ItemStack persistent_torch = new ItemStack(Item.PERSISTENT_TORCH.getMaterialType());
             ItemMeta p_torch_meta = persistent_torch.getItemMeta();
             p_torch_meta.setCustomModelData(Item.PERSISTENT_TORCH.getModelData());
+            // TODO: Replace deprecation
             p_torch_meta.setLore(Collections.singletonList(ChatColor.AQUA + "Persistent"));
             persistent_torch.setItemMeta(p_torch_meta);
             return persistent_torch;
@@ -718,7 +772,9 @@ public class ItemManager {
             ItemStack beeHelmet = new ItemStack(Item.BEEKEEPER_HELMET.getMaterialType());
             ItemMeta bhMeta = beeHelmet.getItemMeta();
             bhMeta.setCustomModelData(Item.BEEKEEPER_HELMET.getModelData());
+            // TODO: Replace deprecation
             bhMeta.setDisplayName(Utils.getColoredString(lang.bee_helmet_name));
+            // TODO: Replace deprecation
             bhMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bhMeta).setColor(Color.WHITE);
             bhMeta.addItemFlags(ItemFlag.HIDE_DYE);
@@ -728,7 +784,9 @@ public class ItemManager {
             ItemStack beeChest = new ItemStack(Item.BEEKEEPER_CHESTPLATE.getMaterialType());
             ItemMeta bcMeta = beeChest.getItemMeta();
             bcMeta.setCustomModelData(Item.BEEKEEPER_CHESTPLATE.getModelData());
+            // TODO: Replace deprecation
             bcMeta.setDisplayName(Utils.getColoredString(lang.bee_chest_name));
+            // TODO: Replace deprecation
             bcMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bcMeta).setColor(Color.WHITE);
             bcMeta.addItemFlags(ItemFlag.HIDE_DYE);
@@ -738,7 +796,9 @@ public class ItemManager {
             ItemStack beeLegs = new ItemStack(Item.BEEKEEPER_LEGGINGS.getMaterialType());
             ItemMeta blMeta = beeLegs.getItemMeta();
             blMeta.setCustomModelData(Item.BEEKEEPER_LEGGINGS.getModelData());
+            // TODO: Replace deprecation
             blMeta.setDisplayName(Utils.getColoredString(lang.bee_legs_name));
+            // TODO: Replace deprecation
             blMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) blMeta).setColor(Color.WHITE);
             blMeta.addItemFlags(ItemFlag.HIDE_DYE);
@@ -748,7 +808,9 @@ public class ItemManager {
             ItemStack beeBoots = new ItemStack(Item.BEEKEEPER_BOOTS.getMaterialType());
             ItemMeta bbMeta = beeBoots.getItemMeta();
             bbMeta.setCustomModelData(Item.BEEKEEPER_BOOTS.getModelData());
+            // TODO: Replace deprecation
             bbMeta.setDisplayName(Utils.getColoredString(lang.bee_boots_name));
+            // TODO: Replace deprecation
             bbMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bbMeta).setColor(Color.WHITE);
             bbMeta.addItemFlags(ItemFlag.HIDE_DYE);
@@ -759,6 +821,7 @@ public class ItemManager {
             SuspiciousStewMeta suspicious_meat_meta = ((SuspiciousStewMeta) suspicious_meat.getItemMeta());
             suspicious_meat_meta.setCustomModelData(Item.SUSPICIOUS_MEAT.getModelData());
             suspicious_meat_meta.addCustomEffect(getRandomPotionEffect(), false);
+            // TODO: Replace deprecation
             suspicious_meat_meta.setDisplayName(Utils.getColoredString(lang.suspicious_meat));
             suspicious_meat.setItemMeta(suspicious_meat_meta);
             return suspicious_meat;
@@ -857,7 +920,9 @@ public class ItemManager {
                 ((LeatherArmorMeta) snow_boots_meta).setColor(Color.fromRGB(158, 201, 202));
             }
             snow_boots_meta.setCustomModelData(Item.SNOW_BOOTS.getModelData());
+            // TODO: Replace deprecation
             snow_boots_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.snow_boots_name));
+            // TODO: Replace deprecation
             snow_boots_meta.setLore(Collections.singletonList(Utils.getColoredString(lang.snow_boots_lore)));
             snow_boots.setItemMeta(snow_boots_meta);
 
@@ -869,7 +934,9 @@ public class ItemManager {
                 ((LeatherArmorMeta) rain_boots_meta).setColor(Color.fromRGB(214, 231, 3));
             }
             rain_boots_meta.setCustomModelData(Item.RAIN_BOOTS.getModelData());
+            // TODO: Replace deprecation
             rain_boots_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.rain_boots_name));
+            // TODO: Replace deprecation
             rain_boots_meta.setLore(Collections.singletonList(Utils.getColoredString(lang.rain_boots_lore)));
             rain_boots.setItemMeta(rain_boots_meta);
 
