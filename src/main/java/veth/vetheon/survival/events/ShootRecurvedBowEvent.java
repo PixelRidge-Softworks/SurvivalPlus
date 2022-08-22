@@ -13,6 +13,7 @@ import veth.vetheon.survival.item.Item;
 @SuppressWarnings("unused")
 public class ShootRecurvedBowEvent extends Event implements Cancellable {
 
+	// TODO: Investigate warning
 	private static HandlerList handlers = new HandlerList();
 	private final Player player;
 	private final ItemStack itemStack;
