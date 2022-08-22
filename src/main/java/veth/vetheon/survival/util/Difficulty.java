@@ -25,6 +25,7 @@ public class Difficulty {
 		} else {
 			boolean hard = difficulty == org.bukkit.Difficulty.HARD;
 			float f1 = 0.75F;
+			// TODO: Investigate warning
 			float f2 = Math.clamp(((float) worldTime + -72000.0F) / 1440000.0F, 0.0F, 1.0F) * 0.25F;
 
 			f1 += f2;
@@ -42,6 +43,7 @@ public class Difficulty {
 	}
 
 	public static int difficultyNum(org.bukkit.Difficulty difficulty) {
+		// TODO: Replace switch with enhanced switch
 		switch (difficulty) {
 			case PEACEFUL:
 				return 0;
@@ -74,6 +76,7 @@ public class Difficulty {
 		return round(value, 2);
 	}
 
+	// TODO: Investigate warning
 	private static float round(double value, int places) {
 		if (places < 0) throw new IllegalArgumentException();
 
@@ -90,6 +93,7 @@ public class Difficulty {
 	public static float getMoonPhase(World world) {
 		long time = world.getFullTime();
 		int phase = (int)(time / 24000L % 8L + 8L) % 8;
+		// TODO: replace switch with enhanced switch
 		switch (phase) {
 			case 1:
 			case 7:
