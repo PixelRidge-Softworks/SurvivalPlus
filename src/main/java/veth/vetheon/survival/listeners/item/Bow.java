@@ -15,7 +15,8 @@ import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
 
 public class Bow implements Listener {
-	
+
+	// TODO: Investigate warning
 	private Lang lang;
 	
 	public Bow(Survival plugin) {
