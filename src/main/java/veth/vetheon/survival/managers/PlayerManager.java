@@ -164,6 +164,7 @@ public class PlayerManager implements Listener {
         if (url != null) {
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 try {
+                    // TODO: Replace deprecation
                     player.setResourcePack(url);
                 } catch (Exception e) {
                     Bukkit.getConsoleSender().sendMessage("ResourcePackURL is null or URL is too long! Plugin disabled.");
@@ -218,6 +219,7 @@ public class PlayerManager implements Listener {
         PlayerData data = getPlayerData(player);
         int thirst = data.getThirst();
 
+        // TODO: Investigate using a 'String.repeat()' instead of a for loop
         for (int i = 0; i < thirst; i++) {
             thirstBar.append("|");
         }
@@ -258,6 +260,7 @@ public class PlayerManager implements Listener {
         int saturation = Math.round(player.getSaturation());
         StringBuilder hungerBar = new StringBuilder();
         StringBuilder saturationBar = new StringBuilder(ChatColor.YELLOW + "");
+        // TODO: Investigate using a 'String.repeat()' instead of a for loop
         for (int i = 0; i < hunger; i++) {
             hungerBar.append("|");
         }
@@ -325,6 +328,7 @@ public class PlayerManager implements Listener {
         for (int i = 0; i < energy; i++) {
             energyBar.append("|");
         }
+        // TODO: Investigate using a 'String.repeat()' instead of a for loop
         for (int i = ((int) energy); i < 20; i++) {
             energyBar.append(".");
         }
