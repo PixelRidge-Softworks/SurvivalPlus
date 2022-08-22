@@ -15,7 +15,8 @@ import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
 
 public class Guide implements Listener {
-    
+
+    // TODO: Investigate Warnings
     private Survival plugin;
     private Lang lang;
     private Config config;
@@ -32,12 +33,19 @@ public class Guide implements Listener {
         int delay = config.WELCOME_GUIDE_DELAY;
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             Player player = e.getPlayer();
+            // TODO: Replace deprecation
             TextComponent msg = new TextComponent(Utils.getColoredString(lang.survival_guide_msg));
+            // TODO: Replace deprecation
             TextComponent link = new TextComponent(Utils.getColoredString(lang.survival_guide_click_msg));
+            // TODO: Replace deprecation
             link.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, lang.survival_guide_link));
+            // TODO: Replace deprecation
             link.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                    // TODO: Replace deprecations
                     new ComponentBuilder(Utils.getColoredString(lang.survival_guide_hover_msg)).create()));
+            // TODO: Replace deprecation
             player.spigot().sendMessage(msg, link);
+            // TODO: Investigate warning
         }, 20 * delay);
     }
 
