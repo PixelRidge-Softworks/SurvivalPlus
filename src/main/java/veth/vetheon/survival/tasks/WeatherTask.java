@@ -112,11 +112,13 @@ public class WeatherTask extends BukkitRunnable {
         }
     }
 
+    // TODO: Investigate warning
     private boolean hasRainBoots(Player player) {
         ItemStack boots = player.getInventory().getBoots();
         return boots != null && Item.RAIN_BOOTS.compare(boots);
     }
 
+    // TODO: Investigate warning
     private boolean hasSnowBoots(Player player) {
         ItemStack boots = player.getInventory().getBoots();
         return boots != null && Item.SNOW_BOOTS.compare(boots);
