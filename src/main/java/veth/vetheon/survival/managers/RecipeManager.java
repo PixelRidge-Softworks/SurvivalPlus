@@ -36,6 +36,7 @@ public class RecipeManager {
     /**
      * Load all custom server recipes
      */
+    // TODO: Investigate if this suppression is needed or not
     @SuppressWarnings("deprecation")
     public void loadCustomRecipes() {
         removeRecipes();
