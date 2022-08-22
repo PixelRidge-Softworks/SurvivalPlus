@@ -93,7 +93,9 @@ public class Board {
         Survival plugin = Survival.getInstance();
         ScoreboardManager scoreboardManager = plugin.getServer().getScoreboardManager();
         oldScoreboard = player.getScoreboard();
+        // TODO: Replace Deprecations with new method
         if (!load) {
+            //todo: investigate this scoreboardManager warning
             assert scoreboardManager != null;
             scoreboard = scoreboardManager.getNewScoreboard();
             this.player.setScoreboard(scoreboard);
@@ -123,6 +125,7 @@ public class Board {
      *
      * @param title Title to set
      */
+    // TODO: Replace Deprecated with new method
     public void setTitle(String title) {
         board.setDisplayName(getColString(title));
     }
@@ -134,6 +137,7 @@ public class Board {
      * @param line Line to set (1 - 15)
      * @param text Text to put in line
      */
+    // TODO: Replace Deprecated with new method
     public void setLine(int line, String text) {
         Validate.isBetween(line, 1, 15);
         Team t = lines[line - 1];
