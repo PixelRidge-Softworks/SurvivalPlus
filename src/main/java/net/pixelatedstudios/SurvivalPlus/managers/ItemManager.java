@@ -25,7 +25,7 @@ import java.util.*;
 
 /**
  * Manager for custom <b>SurvivalPlus</b> items
- */g
+ */
 public class ItemManager {
 
     private static final Lang lang = Survival.getInstance().getLang();
