@@ -1,5 +1,5 @@
 name: SurvivalPlus
-main: Pixelated.Studios.survival.Survival
+main: net.pixelatedstudios.SurvivalPlus.Survival
 authors: [FattyMieo, ShaneBee, VetheonGames, Pixelated Studios]
 version: '${project.version}'
 api-version: '1.18'
