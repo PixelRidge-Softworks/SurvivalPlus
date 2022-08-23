@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.entity;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
 import java.util.Random;
 

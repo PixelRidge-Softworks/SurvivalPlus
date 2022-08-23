@@ -7,7 +7,9 @@ package net.pixelatedstudios.SurvivalPlus.util;
 @SuppressWarnings("unused")
 public class Math {
 
-    /** Math utility for getting a value between a min and a max double
+    /**
+     * Math utility for getting a value between a min and a max double
+     *
      * @param val Value to try
      * @param min Minimum value to pass
      * @param max Maximum value to pass
@@ -17,7 +19,9 @@ public class Math {
         return java.lang.Math.max(min, java.lang.Math.min(max, val));
     }
 
-    /** Math utility for getting a value between a min and a max float
+    /**
+     * Math utility for getting a value between a min and a max float
+     *
      * @param val Value to try
      * @param min Minimum value to pass
      * @param max Maximum value to pass
@@ -27,7 +31,9 @@ public class Math {
         return java.lang.Math.max(min, java.lang.Math.min(max, val));
     }
 
-    /** Math utility for getting a value between a min and a max int
+    /**
+     * Math utility for getting a value between a min and a max int
+     *
      * @param val Value to try
      * @param min Minimum value to pass
      * @param max Maximum value to pass
@@ -37,7 +43,9 @@ public class Math {
         return java.lang.Math.max(min, java.lang.Math.min(max, val));
     }
 
-    /** Returns the smaller of two double values.
+    /**
+     * Returns the smaller of two double values.
+     *
      * @param a first double
      * @param b second double
      * @return The smaller of a and b
@@ -46,7 +54,9 @@ public class Math {
         return java.lang.Math.min(a, b);
     }
 
-    /** Returns the smaller of two int values.
+    /**
+     * Returns the smaller of two int values.
+     *
      * @param a first int
      * @param b second int
      * @return The smaller of a and b
@@ -55,7 +65,9 @@ public class Math {
         return java.lang.Math.min(a, b);
     }
 
-    /** Returns the greater of two double values.
+    /**
+     * Returns the greater of two double values.
+     *
      * @param a first double
      * @param b second double
      * @return The larger of a and b
@@ -64,7 +76,9 @@ public class Math {
         return java.lang.Math.max(a, b);
     }
 
-    /** Returns the greater of two int values.
+    /**
+     * Returns the greater of two int values.
+     *
      * @param a first int
      * @param b second int
      * @return The larger of a and b
@@ -73,7 +87,9 @@ public class Math {
         return java.lang.Math.max(a, b);
     }
 
-    /** Returns the closest long to the argument, with ties rounding to positive infinity.
+    /**
+     * Returns the closest long to the argument, with ties rounding to positive infinity.
+     *
      * @param val a floating-point value to be rounded to a long.
      * @return the value of the argument rounded to the nearest long value.
      */
@@ -81,7 +97,9 @@ public class Math {
         return java.lang.Math.round(val);
     }
 
-    /** Returns the closest int to the argument, with ties rounding to positive infinity.
+    /**
+     * Returns the closest int to the argument, with ties rounding to positive infinity.
+     *
      * @param val a floating-point value to be rounded to a long.
      * @return the value of the argument rounded to the nearest int value.
      */
@@ -89,7 +107,9 @@ public class Math {
         return java.lang.Math.round(val);
     }
 
-    /** See {@link java.lang.Math#pow(double, double)}
+    /**
+     * See {@link java.lang.Math#pow(double, double)}
+     *
      * @param a a
      * @param b b
      * @return return

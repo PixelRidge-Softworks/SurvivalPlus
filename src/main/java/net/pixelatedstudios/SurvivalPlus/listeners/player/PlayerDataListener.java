@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.player;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.PlayerDataConfig;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
 public class PlayerDataListener implements Listener {
 

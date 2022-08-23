@@ -1,15 +1,15 @@
 package net.pixelatedstudios.SurvivalPlus.tasks;
 
-import net.pixelatedstudios.SurvivalPlus.config.Config;
-import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.data.Board;
 import net.pixelatedstudios.SurvivalPlus.data.Info;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Healthboard extends BukkitRunnable {
 

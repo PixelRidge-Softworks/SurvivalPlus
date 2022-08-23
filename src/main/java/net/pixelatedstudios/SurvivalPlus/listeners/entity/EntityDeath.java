@@ -26,7 +26,8 @@ public class EntityDeath implements Listener {
 
     @EventHandler
     private void onEntityDeath(EntityDeathEvent event) {
-        if (!this.config.ENTITY_MECHANICS_SUSPICIOUS_MEAT_ENABLED) return; // May need to move if we add more items to drop in the future
+        if (!this.config.ENTITY_MECHANICS_SUSPICIOUS_MEAT_ENABLED)
+            return; // May need to move if we add more items to drop in the future
         LivingEntity entity = event.getEntity();
         Player killer = entity.getKiller();
         if (killer != null) {

@@ -11,40 +11,42 @@ import org.bukkit.inventory.ItemStack;
 @SuppressWarnings("unused")
 public class WaterBowlFillEvent extends Event implements Cancellable {
 
-	private static final HandlerList handlers = new HandlerList();
-	private final ItemStack item;
-	private boolean isCancelled;
+    private static final HandlerList handlers = new HandlerList();
+    private final ItemStack item;
+    private boolean isCancelled;
 
-	public WaterBowlFillEvent(ItemStack item) {
-		this.item = item;
-		this.isCancelled = false;
-	}
+    public WaterBowlFillEvent(ItemStack item) {
+        this.item = item;
+        this.isCancelled = false;
+    }
 
-	/** Get the bowl the player filled
-	 * @return The bowl
-	 */
-	public ItemStack getWaterBowl() {
-		return this.item;
-	}
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
-	@SuppressWarnings("NullableProblems")
-	@Override
-	public HandlerList getHandlers() {
-		return handlers;
-	}
+    /**
+     * Get the bowl the player filled
+     *
+     * @return The bowl
+     */
+    public ItemStack getWaterBowl() {
+        return this.item;
+    }
 
-	public static HandlerList getHandlerList() {
-		return handlers;
-	}
+    @SuppressWarnings("NullableProblems")
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
 
-	@Override
-	public boolean isCancelled() {
-		return isCancelled;
-	}
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
+    }
 
-	@Override
-	public void setCancelled(boolean b) {
-		this.isCancelled = b;
-	}
+    @Override
+    public void setCancelled(boolean b) {
+        this.isCancelled = b;
+    }
 
 }

@@ -1,7 +1,11 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
 import com.google.common.collect.ImmutableList;
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.item.Item;
 import net.pixelatedstudios.SurvivalPlus.managers.ItemManager;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -11,10 +15,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.item.Item;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +41,8 @@ public class GiveItem implements CommandExecutor, TabCompleter {
                 if (args.length == 3) {
                     amount = Integer.parseInt(args[2]);
                 }
-            } catch (IllegalArgumentException ignore) {}
+            } catch (IllegalArgumentException ignore) {
+            }
             try {
                 item = Item.valueOf(args[1].toUpperCase());
                 ItemStack itemStack = ItemManager.get(item);

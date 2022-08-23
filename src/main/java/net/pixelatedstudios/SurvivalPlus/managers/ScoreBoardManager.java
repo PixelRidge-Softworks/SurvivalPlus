@@ -1,9 +1,9 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
-import org.bukkit.entity.Player;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.data.Board;
 import net.pixelatedstudios.SurvivalPlus.tasks.Healthboard;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +18,12 @@ public class ScoreBoardManager {
         this.plugin = plugin;
     }
 
-    /** Sets up a scoreboard for a player
+    /**
+     * Sets up a scoreboard for a player
      * <p>
-     *     This is generally used internally
+     * This is generally used internally
      * </p>
+     *
      * @param player Player to setup a scoreboard for
      */
     public void setupScoreboard(Player player) {

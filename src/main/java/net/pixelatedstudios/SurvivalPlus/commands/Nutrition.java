@@ -1,13 +1,13 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.gui.NutritionGUI;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.gui.NutritionGUI;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 public class Nutrition implements CommandExecutor {
 

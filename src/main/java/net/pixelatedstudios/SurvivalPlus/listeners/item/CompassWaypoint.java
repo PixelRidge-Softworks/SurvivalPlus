@@ -1,5 +1,10 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.item;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -11,11 +16,6 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
-import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 // TODO: Fix me
 public class CompassWaypoint implements Listener {

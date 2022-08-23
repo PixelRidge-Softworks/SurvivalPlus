@@ -1,8 +1,11 @@
 package net.pixelatedstudios.SurvivalPlus.tasks;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
 import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World.Environment;
@@ -12,11 +15,40 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 public class EnergyDrain extends BukkitRunnable {
+
+    // BAD EFFECTS
+    private static final PotionEffect SICK_40;
+    private static final PotionEffect SICK_120;
+    private static final PotionEffect BLIND_50;
+    private static final PotionEffect BLIND_120;
+    private static final PotionEffect NIGHT_10;
+    private static final PotionEffect NIGHT_120;
+    private static final PotionEffect MINING_120;
+    private static final PotionEffect MINING_120_2;
+    private static final PotionEffect MINING_120_3;
+    private static final PotionEffect SLOW_120;
+    private static final PotionEffect WITHER_100;
+    // GOOD EFFECTS
+    private static final PotionEffect HASTE_120;
+    private static final PotionEffect ABSORPTION_500;
+
+    static {
+        SICK_40 = new PotionEffect(PotionEffectType.CONFUSION, 40, 0);
+        SICK_120 = new PotionEffect(PotionEffectType.CONFUSION, 120, 0);
+        BLIND_50 = new PotionEffect(PotionEffectType.BLINDNESS, 50, 0);
+        BLIND_120 = new PotionEffect(PotionEffectType.BLINDNESS, 120, 0);
+        NIGHT_10 = new PotionEffect(PotionEffectType.NIGHT_VISION, 10, 0);
+        NIGHT_120 = new PotionEffect(PotionEffectType.NIGHT_VISION, 120, 0);
+        MINING_120 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 0, false, false);
+        MINING_120_2 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 1, false, false);
+        MINING_120_3 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 2, false, false);
+        SLOW_120 = new PotionEffect(PotionEffectType.SLOW, 120, 0, false, false);
+        WITHER_100 = new PotionEffect(PotionEffectType.WITHER, 100, 0);
+        HASTE_120 = new PotionEffect(PotionEffectType.FAST_DIGGING, 120, 0, false, false, true);
+        ABSORPTION_500 = new PotionEffect(PotionEffectType.ABSORPTION, 500, 1, false, false);
+    }
 
     private final PlayerManager playerManager;
     private final Config config;
@@ -38,7 +70,7 @@ public class EnergyDrain extends BukkitRunnable {
         this.increaseRateBed = config.MECHANICS_ENERGY_REFRESH_RATE_BED; // amount of energy to gain every 5 seconds of sleeping
         this.increaseRateChair = config.MECHANICS_ENERGY_REFRESH_RATE_CHAIR; // amount of energy to gain every 5 seconds of sitting in chair
         this.absorb = config.MECHANICS_ENERGY_ABSORPTION ? 20 - (drainRate * 12) : 200; // Roughly 1 minute of absorption hearts after full energy
-        this.haste = config.MECHANICS_ENERGY_HASTE ? 20 - (drainRate * 25): 200; // Roughly 2 minutes of haste after full energy
+        this.haste = config.MECHANICS_ENERGY_HASTE ? 20 - (drainRate * 25) : 200; // Roughly 2 minutes of haste after full energy
         this.runTaskTimer(plugin, 5 * 20, 5 * 20);
     }
 
@@ -83,39 +115,6 @@ public class EnergyDrain extends BukkitRunnable {
     // Check if the change passed a certain amount
     private boolean targetMatch(double target, double level, double newLevel) {
         return level > target && newLevel <= target;
-    }
-
-    // BAD EFFECTS
-    private static final PotionEffect SICK_40;
-    private static final PotionEffect SICK_120;
-    private static final PotionEffect BLIND_50;
-    private static final PotionEffect BLIND_120;
-    private static final PotionEffect NIGHT_10;
-    private static final PotionEffect NIGHT_120;
-    private static final PotionEffect MINING_120;
-    private static final PotionEffect MINING_120_2;
-    private static final PotionEffect MINING_120_3;
-    private static final PotionEffect SLOW_120;
-    private static final PotionEffect WITHER_100;
-
-    // GOOD EFFECTS
-    private static final PotionEffect HASTE_120;
-    private static final PotionEffect ABSORPTION_500;
-
-    static {
-        SICK_40 = new PotionEffect(PotionEffectType.CONFUSION, 40, 0);
-        SICK_120 = new PotionEffect(PotionEffectType.CONFUSION, 120, 0);
-        BLIND_50 = new PotionEffect(PotionEffectType.BLINDNESS, 50, 0);
-        BLIND_120 = new PotionEffect(PotionEffectType.BLINDNESS, 120, 0);
-        NIGHT_10 = new PotionEffect(PotionEffectType.NIGHT_VISION, 10, 0);
-        NIGHT_120 = new PotionEffect(PotionEffectType.NIGHT_VISION, 120, 0);
-        MINING_120 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 0, false, false);
-        MINING_120_2 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 1, false, false);
-        MINING_120_3 = new PotionEffect(PotionEffectType.SLOW_DIGGING, 120, 2, false, false);
-        SLOW_120 = new PotionEffect(PotionEffectType.SLOW, 120, 0, false, false);
-        WITHER_100 = new PotionEffect(PotionEffectType.WITHER, 100, 0);
-        HASTE_120 = new PotionEffect(PotionEffectType.FAST_DIGGING, 120, 0, false, false, true);
-        ABSORPTION_500 = new PotionEffect(PotionEffectType.ABSORPTION, 500, 1, false, false);
     }
 
     private void effects(Player player, PlayerData playerData) {

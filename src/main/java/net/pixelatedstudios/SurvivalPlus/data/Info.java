@@ -5,11 +5,11 @@ package net.pixelatedstudios.SurvivalPlus.data;
  */
 public enum Info {
 
-	HUNGER,
-	THIRST,
+    HUNGER,
+    THIRST,
     ENERGY,
-	NUTRIENTS,
+    NUTRIENTS,
 
-	TEMPERATURE
+    TEMPERATURE
 
 }

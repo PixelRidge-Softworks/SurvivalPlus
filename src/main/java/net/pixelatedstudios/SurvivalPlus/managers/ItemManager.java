@@ -1,5 +1,9 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.item.Item;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -11,27 +15,13 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockDataMeta;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.inventory.meta.SuspiciousStewMeta;
+import org.bukkit.inventory.meta.*;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
-import net.pixelatedstudios.SurvivalPlus.item.Item;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Manager for custom <b>SurvivalPlus</b> items
@@ -41,6 +31,27 @@ import java.util.UUID;
 public class ItemManager {
 
     private static final Lang lang = Survival.getInstance().getLang();
+    private static final List<PotionEffectType> POTION_EFFECTS;
+
+    static {
+        POTION_EFFECTS = new ArrayList<>();
+        // BAD
+        POTION_EFFECTS.add(PotionEffectType.BAD_OMEN);
+        POTION_EFFECTS.add(PotionEffectType.CONFUSION);
+        POTION_EFFECTS.add(PotionEffectType.POISON);
+        POTION_EFFECTS.add(PotionEffectType.UNLUCK);
+        POTION_EFFECTS.add(PotionEffectType.HUNGER);
+        POTION_EFFECTS.add(PotionEffectType.HARM);
+        POTION_EFFECTS.add(PotionEffectType.SLOW);
+        // GOOD
+        POTION_EFFECTS.add(PotionEffectType.DOLPHINS_GRACE);
+        POTION_EFFECTS.add(PotionEffectType.ABSORPTION);
+        POTION_EFFECTS.add(PotionEffectType.FAST_DIGGING);
+        POTION_EFFECTS.add(PotionEffectType.LUCK);
+        POTION_EFFECTS.add(PotionEffectType.HEALTH_BOOST);
+        POTION_EFFECTS.add(PotionEffectType.REGENERATION);
+        POTION_EFFECTS.add(PotionEffectType.SPEED);
+    }
 
     /**
      * Get a custom SurvivalPlus item
@@ -87,15 +98,15 @@ public class ItemManager {
             i_shivMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.shiv));
             // TODO: Replace deprecation
             i_shivMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.poisoned_enemy),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + shiv_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + shiv_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.poisoned_retain),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.reduce_50)
+                            ChatColor.RESET + Utils.getColoredString(lang.poisoned_enemy),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + shiv_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + shiv_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
+                            ChatColor.GRAY + " " + Utils.getColoredString(lang.poisoned_retain),
+                            ChatColor.GRAY + " " + Utils.getColoredString(lang.reduce_50)
                     )
             );
             i_shiv.setItemMeta(i_shivMeta);
@@ -126,14 +137,14 @@ public class ItemManager {
             i_gAxeMeta.setDisplayName(ChatColor.RESET + "" + Utils.getColoredString(lang.valkyrie_axe));
             // TODO: Replace deprecation
             i_gAxeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_unable_dual),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gAxe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gAxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_spin),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.valkyrie_axe_cooldown),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value)
+                            ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_unable_dual),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + gAxe_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + gAxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_spin),
+                            ChatColor.RESET + "  " + Utils.getColoredString(lang.valkyrie_axe_cooldown),
+                            ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value)
                     )
             );
             i_gAxeMeta.addEnchant(Enchantment.DURABILITY, 5, true);
@@ -161,11 +172,11 @@ public class ItemManager {
             i_gPickaxeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.quartz_breaker));
             // TODO: Replace deprecation
             i_gPickaxeMeta.setLore(Arrays.asList(
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gPickaxe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gPickaxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.haste)
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + gPickaxe_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + gPickaxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            ChatColor.GRAY + " " + Utils.getColoredString(lang.haste)
                     )
             );
             i_gPickaxeMeta.addEnchant(Enchantment.SILK_TOUCH, 1, false);
@@ -200,15 +211,15 @@ public class ItemManager {
             i_gSpadeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.obsidian_mace));
             // TODO: Replace deprecation
             i_gSpadeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.cripple_hit),
-                    ChatColor.RESET + Utils.getColoredString(lang.drain_hit),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gSpade_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gSpade_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.exhausted_slow),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.expire_disarm),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.knockback_resistance)
+                            ChatColor.RESET + Utils.getColoredString(lang.cripple_hit),
+                            ChatColor.RESET + Utils.getColoredString(lang.drain_hit),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + gSpade_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + gSpade_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.exhausted_slow),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.expire_disarm),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.knockback_resistance)
                     )
             );
             i_gSpadeMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
@@ -243,19 +254,19 @@ public class ItemManager {
             i_gHoeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade));
             // TODO: Replace deprecation
             i_gHoeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade_unable_duel),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gHoe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gHoe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.right_click_sprinting),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_charge),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_cooldown),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.half_shield_resistance),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.reflecting_coming)
+                            ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade_unable_duel),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + gHoe_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + gHoe_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            ChatColor.GRAY + " " + Utils.getColoredString(lang.right_click_sprinting),
+                            ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_charge),
+                            ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_cooldown),
+                            ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.half_shield_resistance),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.reflecting_coming)
                     )
             );
             i_gHoeMeta.addEnchant(Enchantment.DURABILITY, 5, true);
@@ -288,16 +299,16 @@ public class ItemManager {
             i_gSwordMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.blaze_sword));
             // TODO: Replace deprecation
             i_gSwordMeta.setLore(Arrays.asList(
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gSword_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gSword_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fire_resistance),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fiery),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.right_click_sneaking),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_spread_fire),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_cost)
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
+                            ChatColor.DARK_GREEN + " " + gSword_spd + " " + Utils.getColoredString(lang.attack_speed),
+                            ChatColor.DARK_GREEN + " " + gSword_dmg + " " + Utils.getColoredString(lang.attack_damage),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fire_resistance),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fiery),
+                            "",
+                            ChatColor.GRAY + Utils.getColoredString(lang.right_click_sneaking),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_spread_fire),
+                            ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_cost)
                     )
             );
             i_gSwordMeta.addEnchant(Enchantment.FIRE_ASPECT, 2, true);
@@ -998,28 +1009,6 @@ public class ItemManager {
             metaFrom.addEnchant(enchantment, enchants.get(enchantment), true);
         }
         itemStack.setItemMeta(metaFrom);
-    }
-
-    private static final List<PotionEffectType> POTION_EFFECTS;
-
-    static {
-        POTION_EFFECTS = new ArrayList<>();
-        // BAD
-        POTION_EFFECTS.add(PotionEffectType.BAD_OMEN);
-        POTION_EFFECTS.add(PotionEffectType.CONFUSION);
-        POTION_EFFECTS.add(PotionEffectType.POISON);
-        POTION_EFFECTS.add(PotionEffectType.UNLUCK);
-        POTION_EFFECTS.add(PotionEffectType.HUNGER);
-        POTION_EFFECTS.add(PotionEffectType.HARM);
-        POTION_EFFECTS.add(PotionEffectType.SLOW);
-        // GOOD
-        POTION_EFFECTS.add(PotionEffectType.DOLPHINS_GRACE);
-        POTION_EFFECTS.add(PotionEffectType.ABSORPTION);
-        POTION_EFFECTS.add(PotionEffectType.FAST_DIGGING);
-        POTION_EFFECTS.add(PotionEffectType.LUCK);
-        POTION_EFFECTS.add(PotionEffectType.HEALTH_BOOST);
-        POTION_EFFECTS.add(PotionEffectType.REGENERATION);
-        POTION_EFFECTS.add(PotionEffectType.SPEED);
     }
 
     private static PotionEffect getRandomPotionEffect() {

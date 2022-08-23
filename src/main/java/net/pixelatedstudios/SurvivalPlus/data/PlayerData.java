@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.data;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
 import net.pixelatedstudios.SurvivalPlus.util.Math;
@@ -10,13 +11,8 @@ import org.bukkit.World;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Holder of data for player
@@ -30,24 +26,21 @@ public class PlayerData implements ConfigurationSerializable {
     private final int max_proteins = config.MECHANICS_FOOD_MAX_PROTEINS;
     private final int max_salts = config.MECHANICS_FOOD_MAX_SALTS;
     private final UUID uuid;
+    private final int dualWieldMsg = 0;
     private int thirst;
     private Map<String, Location> compassMap = new HashMap<>();
-
     // Nutrients
     private int proteins;
     private int carbs;
     private int salts;
     private double energy;
-
     // Dunno yet
     private boolean localChat = false;
-
     // Stats
     private int charge = 0;
     private int charging = 0;
     private int spin = 0;
     private int dualWield = 0;
-    private final int dualWieldMsg = 0;
     private int healing = 0;
     private int healTimes = 0;
     private int recurveFiring = 0;
@@ -83,6 +76,58 @@ public class PlayerData implements ConfigurationSerializable {
     }
 
     /**
+     * Internal deserializer for yaml config
+     *
+     * @param args Args from yaml config
+     * @return New PlayerData loaded from config
+     */
+    public static PlayerData deserialize(Map<String, Object> args) {
+        UUID uuid = UUID.fromString(args.get("uuid").toString());
+        int thirst = ((Integer) args.get("thirst"));
+        double energy = getDouble(args, "energy", 20.0);
+        int proteins = ((Integer) args.get("nutrients.proteins"));
+        int carbs = ((Integer) args.get("nutrients.carbs"));
+        int salts = ((Integer) args.get("nutrients.salts"));
+
+        PlayerData data = new PlayerData(uuid, thirst, proteins, carbs, salts, energy);
+
+        boolean localChat = getBool(args, "local-chat", false);
+        data.setLocalChat(localChat);
+
+        boolean score_hunger = getBool(args, "score.hunger", true);
+        boolean score_thirst = getBool(args, "score.thirst", true);
+        boolean score_energy = getBool(args, "score.energy", true);
+        boolean score_nutrients = getBool(args, "score.nutrients", false);
+        data.setInfoDisplayed(score_hunger, score_thirst, score_energy, score_nutrients);
+
+        if (args.containsKey("compass")) {
+            //noinspection unchecked
+            data.compassMap = (Map<String, Location>) args.get("compass");
+        }
+
+        return data;
+    }
+
+    // Methods for grabbing sections from map, defaults if section isn't set
+    private static int getInt(Map<String, Object> args, String val, int def) {
+        if (args.containsKey(val))
+            return ((int) args.get(val));
+        return def;
+    }
+
+    private static double getDouble(Map<String, Object> args, String val, double def) {
+        if (args.containsKey(val))
+            return ((double) args.get(val));
+        return def;
+    }
+
+    private static boolean getBool(Map<String, Object> args, String val, boolean def) {
+        if (args.containsKey(val))
+            return (boolean) args.get(val);
+        return def;
+    }
+
+    /**
      * Get the player from this data
      *
      * @return Player from this data
@@ -109,10 +154,6 @@ public class PlayerData implements ConfigurationSerializable {
         return thirst;
     }
 
-    public double getTemperature() {
-        return this.temperature;
-    }
-
     /**
      * Set the thirst for this data
      *
@@ -122,6 +163,14 @@ public class PlayerData implements ConfigurationSerializable {
         this.thirst = Math.clamp(thirst, 0, 40);
     }
 
+    public double getTemperature() {
+        return this.temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = Math.round(temperature * 10);
+    }
+
     /**
      * Increase the thirst for this data
      *
@@ -129,10 +178,6 @@ public class PlayerData implements ConfigurationSerializable {
      */
     public void increaseThirst(int thirst) {
         this.thirst = Math.clamp(this.thirst + thirst, 0, 40);
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = Math.round(temperature * 10);
     }
 
     /**
@@ -308,21 +353,21 @@ public class PlayerData implements ConfigurationSerializable {
     }
 
     /**
-     * Set whether the player is using local chat
-     *
-     * @param localChat Whether the player is using local chat
-     */
-    public void setLocalChat(boolean localChat) {
-        this.localChat = localChat;
-    }
-
-    /**
      * Check if the player is using local chat
      *
      * @return True if local chat is activated
      */
     public boolean isLocalChat() {
         return localChat;
+    }
+
+    /**
+     * Set whether the player is using local chat
+     *
+     * @param localChat Whether the player is using local chat
+     */
+    public void setLocalChat(boolean localChat) {
+        this.localChat = localChat;
     }
 
     /**
@@ -443,58 +488,6 @@ public class PlayerData implements ConfigurationSerializable {
         result.put("score.nutrients", score_nutrients);
         result.put("compass", compassMap);
         return result;
-    }
-
-    /**
-     * Internal deserializer for yaml config
-     *
-     * @param args Args from yaml config
-     * @return New PlayerData loaded from config
-     */
-    public static PlayerData deserialize(Map<String, Object> args) {
-        UUID uuid = UUID.fromString(args.get("uuid").toString());
-        int thirst = ((Integer) args.get("thirst"));
-        double energy = getDouble(args, "energy", 20.0);
-        int proteins = ((Integer) args.get("nutrients.proteins"));
-        int carbs = ((Integer) args.get("nutrients.carbs"));
-        int salts = ((Integer) args.get("nutrients.salts"));
-
-        PlayerData data = new PlayerData(uuid, thirst, proteins, carbs, salts, energy);
-
-        boolean localChat = getBool(args, "local-chat", false);
-        data.setLocalChat(localChat);
-
-        boolean score_hunger = getBool(args, "score.hunger", true);
-        boolean score_thirst = getBool(args, "score.thirst", true);
-        boolean score_energy = getBool(args, "score.energy", true);
-        boolean score_nutrients = getBool(args, "score.nutrients", false);
-        data.setInfoDisplayed(score_hunger, score_thirst, score_energy, score_nutrients);
-
-        if (args.containsKey("compass")) {
-            //noinspection unchecked
-            data.compassMap = (Map<String, Location>) args.get("compass");
-        }
-
-        return data;
-    }
-
-    // Methods for grabbing sections from map, defaults if section isn't set
-    private static int getInt(Map<String, Object> args, String val, int def) {
-        if (args.containsKey(val))
-            return ((int) args.get(val));
-        return def;
-    }
-
-    private static double getDouble(Map<String, Object> args, String val, double def) {
-        if (args.containsKey(val))
-            return ((double) args.get(val));
-        return def;
-    }
-
-    private static boolean getBool(Map<String, Object> args, String val, boolean def) {
-        if (args.containsKey(val))
-            return (boolean) args.get(val);
-        return def;
     }
 
     /**

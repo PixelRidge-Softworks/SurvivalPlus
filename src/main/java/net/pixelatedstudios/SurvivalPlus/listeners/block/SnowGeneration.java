@@ -10,170 +10,170 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 // TODO: This entire feature is being removed
 public class SnowGeneration implements Listener {
-	
-	private Survival plugin;
-	
-	public SnowGeneration(Survival plugin) {
-		this.plugin = plugin;
-	}
-	
-	@EventHandler(ignoreCancelled = true)
-	private void chunkLoad(final ChunkLoadEvent event) {
-		if (plugin.isSnowGenOption()) {
-			if (event.isNewChunk()) {
-				Bukkit.getScheduler().runTask(plugin, () -> checkChunk(event.getChunk()));
-			}
-		}
-	}
 
-	/**
-	 * Internal usage, do not use
-	 *
-	 * @param chunk A chunk
-	 */
-	public void checkChunk(final Chunk chunk) {
-		final ChunkSnapshot chunkSnap = chunk.getChunkSnapshot(true, false, false);
+    private Survival plugin;
 
-		for (int x = 0; x < 16; x++) {
-			for (int z = 0; z < 16; z++) {
-				final int y = chunkSnap.getHighestBlockYAt(x, z);
+    public SnowGeneration(Survival plugin) {
+        this.plugin = plugin;
+    }
 
-				if (chunkSnap.getBlockType(x, y, z) == Material.SNOW)
+    @EventHandler(ignoreCancelled = true)
+    private void chunkLoad(final ChunkLoadEvent event) {
+        if (plugin.isSnowGenOption()) {
+            if (event.isNewChunk()) {
+                Bukkit.getScheduler().runTask(plugin, () -> checkChunk(event.getChunk()));
+            }
+        }
+    }
 
-					placeSnow(chunk, chunkSnap, x, y, z);
-			}
-		}
-	}
+    /**
+     * Internal usage, do not use
+     *
+     * @param chunk A chunk
+     */
+    public void checkChunk(final Chunk chunk) {
+        final ChunkSnapshot chunkSnap = chunk.getChunkSnapshot(true, false, false);
 
-	@EventHandler(ignoreCancelled = true)
-	private void snowForm(final BlockFormEvent event) {
-		if (plugin.isSnowGenOption()) {
-			if (event.getNewState().getType() != Material.SNOW)
-				return;
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                final int y = chunkSnap.getHighestBlockYAt(x, z);
 
-			Bukkit.getScheduler().runTask(plugin, () -> placeSnow(event.getBlock()));
-		}
-	}
+                if (chunkSnap.getBlockType(x, y, z) == Material.SNOW)
 
-	private void placeSnow(final Block block) {
-		final Location loc = block.getLocation();
-		final Chunk chunk = block.getChunk();
+                    placeSnow(chunk, chunkSnap, x, y, z);
+            }
+        }
+    }
 
-		placeSnow(chunk, chunk.getChunkSnapshot(true, false, false), Math.abs((chunk.getX() * 16) - loc.getBlockX()), loc.getBlockY(), Math.abs((chunk.getZ() * 16) - loc.getBlockZ()));
-	}
+    @EventHandler(ignoreCancelled = true)
+    private void snowForm(final BlockFormEvent event) {
+        if (plugin.isSnowGenOption()) {
+            if (event.getNewState().getType() != Material.SNOW)
+                return;
 
-	private void placeSnow(final Chunk chunk, final ChunkSnapshot chunkSnap, final int x, int y, final int z) {
-		if (y <= 1)
-			return;
+            Bukkit.getScheduler().runTask(plugin, () -> placeSnow(event.getBlock()));
+        }
+    }
 
-		Material type = chunkSnap.getBlockType(x, --y, z);
+    private void placeSnow(final Block block) {
+        final Location loc = block.getLocation();
+        final Chunk chunk = block.getChunk();
 
-		if (!(Tag.LEAVES.isTagged(type)))
-			return;
+        placeSnow(chunk, chunk.getChunkSnapshot(true, false, false), Math.abs((chunk.getX() * 16) - loc.getBlockX()), loc.getBlockY(), Math.abs((chunk.getZ() * 16) - loc.getBlockZ()));
+    }
 
-		Material lastType = type;
+    private void placeSnow(final Chunk chunk, final ChunkSnapshot chunkSnap, final int x, int y, final int z) {
+        if (y <= 1)
+            return;
 
-		while (true) {
-			type = chunkSnap.getBlockType(x, --y, z);
+        Material type = chunkSnap.getBlockType(x, --y, z);
 
-			switch (type) {
-				case AIR: // ignore air and snow
-				case SNOW:
-					break;
-				case OAK_LEAVES:
-				case BIRCH_LEAVES:
-				case JUNGLE_LEAVES:
-				case DARK_OAK_LEAVES:
-				case ACACIA_LEAVES:
-				case SPRUCE_LEAVES: // check leaves if they have air above them to place snow
-				{
-					if (lastType == Material.AIR) {
-						try {
-							chunk.getBlock(x, y + 1, z).setType(Material.SNOW);
-						} catch (Exception ignore) {
-						}
-					}
+        if (!(Tag.LEAVES.isTagged(type)))
+            return;
 
-					break;
-				}
+        Material lastType = type;
 
-				// snowable blocks and the stop
-				case STONE:
-				case GRASS:
-				case DIRT:
-				case COBBLESTONE:
-				case BEDROCK:
-				case SAND:
-				case GRAVEL:
-				case GOLD_ORE:
-				case IRON_ORE:
-				case COAL_ORE:
-				case SPONGE:
-				case GLASS:
-				case LAPIS_ORE:
-				case LAPIS_BLOCK:
-				case DISPENSER:
-				case SANDSTONE:
-				case NOTE_BLOCK:
+        while (true) {
+            type = chunkSnap.getBlockType(x, --y, z);
+
+            switch (type) {
+                case AIR: // ignore air and snow
+                case SNOW:
+                    break;
+                case OAK_LEAVES:
+                case BIRCH_LEAVES:
+                case JUNGLE_LEAVES:
+                case DARK_OAK_LEAVES:
+                case ACACIA_LEAVES:
+                case SPRUCE_LEAVES: // check leaves if they have air above them to place snow
+                {
+                    if (lastType == Material.AIR) {
+                        try {
+                            chunk.getBlock(x, y + 1, z).setType(Material.SNOW);
+                        } catch (Exception ignore) {
+                        }
+                    }
+
+                    break;
+                }
+
+                // snowable blocks and the stop
+                case STONE:
+                case GRASS:
+                case DIRT:
+                case COBBLESTONE:
+                case BEDROCK:
+                case SAND:
+                case GRAVEL:
+                case GOLD_ORE:
+                case IRON_ORE:
+                case COAL_ORE:
+                case SPONGE:
+                case GLASS:
+                case LAPIS_ORE:
+                case LAPIS_BLOCK:
+                case DISPENSER:
+                case SANDSTONE:
+                case NOTE_BLOCK:
 //				case PISTON_BASE:
 //				case PISTON_STICKY_BASE:
 //				case PISTON_MOVING_PIECE:
 //				case PISTON_EXTENSION:
-				case GOLD_BLOCK:
-				case IRON_BLOCK:
-				case BRICK:
-				case TNT:
-				case BOOKSHELF:
-				case MOSSY_COBBLESTONE:
-				case OBSIDIAN:
-				case SPAWNER:
-				case DIAMOND_ORE:
-				case DIAMOND_BLOCK:
-				case CRAFTING_TABLE:
-				case FURNACE:
+                case GOLD_BLOCK:
+                case IRON_BLOCK:
+                case BRICK:
+                case TNT:
+                case BOOKSHELF:
+                case MOSSY_COBBLESTONE:
+                case OBSIDIAN:
+                case SPAWNER:
+                case DIAMOND_ORE:
+                case DIAMOND_BLOCK:
+                case CRAFTING_TABLE:
+                case FURNACE:
 //				case BURNING_FURNACE:
-				case REDSTONE_ORE:
+                case REDSTONE_ORE:
 //				case ICE:
-				case SNOW_BLOCK:
-				case CLAY:
-				case JUKEBOX:
-				case PUMPKIN:
-				case NETHERRACK:
-				case SOUL_SAND:
-				case GLOWSTONE:
+                case SNOW_BLOCK:
+                case CLAY:
+                case JUKEBOX:
+                case PUMPKIN:
+                case NETHERRACK:
+                case SOUL_SAND:
+                case GLOWSTONE:
 //				case JACK_O_LANTERN:
 //				case SMOOTH_BRICK:
-				case MELON:
-				case NETHER_BRICK:
-				case END_STONE:
-				case REDSTONE_LAMP:
-				case EMERALD_BLOCK:
-				case EMERALD_ORE: {
-					setSnow(lastType, chunk, x, y, z);
-					return;
-				}
+                case MELON:
+                case NETHER_BRICK:
+                case END_STONE:
+                case REDSTONE_LAMP:
+                case EMERALD_BLOCK:
+                case EMERALD_ORE: {
+                    setSnow(lastType, chunk, x, y, z);
+                    return;
+                }
 
-				default: // everything else stops
-					if (Tag.LOGS.isTagged(type) ||
-							Tag.WOOL.isTagged(type) ||
-							Tag.PLANKS.isTagged(type) ||
-							Tag.SLABS.isTagged(type)) setSnow(lastType, chunk, x, y, z);
-					return;
-			}
+                default: // everything else stops
+                    if (Tag.LOGS.isTagged(type) ||
+                            Tag.WOOL.isTagged(type) ||
+                            Tag.PLANKS.isTagged(type) ||
+                            Tag.SLABS.isTagged(type)) setSnow(lastType, chunk, x, y, z);
+                    return;
+            }
 
-			lastType = type;
-		}
-	}
+            lastType = type;
+        }
+    }
 
-	private void setSnow(Material mat, Chunk chunk, final int x, int y, final int z) {
+    private void setSnow(Material mat, Chunk chunk, final int x, int y, final int z) {
 
-		if (mat == Material.AIR) {
-			try {
-				chunk.getBlock(x, y + 1, z).setType(Material.SNOW);
-			} catch (Exception ignore) {
-			}
-		}
+        if (mat == Material.AIR) {
+            try {
+                chunk.getBlock(x, y + 1, z).setType(Material.SNOW);
+            } catch (Exception ignore) {
+            }
+        }
 
-	}
+    }
 
 }

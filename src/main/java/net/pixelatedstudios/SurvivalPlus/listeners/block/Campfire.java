@@ -72,8 +72,10 @@ public class Campfire implements Listener {
                 camp.setLit(false);
                 e.getClickedBlock().setBlockData(camp);
                 Player p = e.getPlayer();
-                if (e.getHand() == EquipmentSlot.HAND) p.getInventory().setItemInMainHand(new ItemStack(Material.GLASS_BOTTLE));
-                if (e.getHand() == EquipmentSlot.OFF_HAND) p.getInventory().setItemInOffHand(new ItemStack(Material.GLASS_BOTTLE));
+                if (e.getHand() == EquipmentSlot.HAND)
+                    p.getInventory().setItemInMainHand(new ItemStack(Material.GLASS_BOTTLE));
+                if (e.getHand() == EquipmentSlot.OFF_HAND)
+                    p.getInventory().setItemInOffHand(new ItemStack(Material.GLASS_BOTTLE));
                 p.playSound(e.getPlayer().getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 1, 1);
 
             }

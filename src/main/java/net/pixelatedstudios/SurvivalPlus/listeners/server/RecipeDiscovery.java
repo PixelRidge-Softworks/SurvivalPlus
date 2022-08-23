@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.server;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import net.pixelatedstudios.SurvivalPlus.managers.ItemManager;
 import net.pixelatedstudios.SurvivalPlus.managers.RecipeManager;
@@ -16,7 +17,6 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
 public class RecipeDiscovery implements Listener {
 

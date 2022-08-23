@@ -5,18 +5,18 @@ package net.pixelatedstudios.SurvivalPlus.data;
  */
 public enum Nutrient {
 
-	CARBS("Carbs"),
-	PROTEIN("Protein"),
-	SALTS("Salts");
+    CARBS("Carbs"),
+    PROTEIN("Protein"),
+    SALTS("Salts");
 
-	private final String name;
+    private final String name;
 
-	Nutrient(String nutrient){
-		name = nutrient;
-	}
+    Nutrient(String nutrient) {
+        name = nutrient;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
 }

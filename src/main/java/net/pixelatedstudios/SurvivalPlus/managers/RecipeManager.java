@@ -1,24 +1,13 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Server;
-import org.bukkit.Tag;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.BlastingRecipe;
-import org.bukkit.inventory.CampfireRecipe;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.RecipeChoice.ExactChoice;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.SmokingRecipe;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
+import org.bukkit.*;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.RecipeChoice.ExactChoice;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -934,136 +923,6 @@ public class RecipeManager {
         }
     }
 
-    /**
-     * Enums of all custom recipes
-     */
-    public enum Recipes {
-        // CUSTOM TOOLS/ITEMS
-        HATCHET("hatchet1", "hatchet2"),
-        MATTOCK("mattock"),
-        SHIV("shiv"),
-        HAMMER("hammer"),
-        WORKBENCH("workbench"),
-        FIRESTRIKER("firestriker"),
-        VALKYRIES_AXE("valkyrie_axe"),
-        QUARTZ_PICKAXE("quartz_pickaxe"),
-        OBSIDIAN_MACE("obsidian_mace"),
-        ENDER_GIANT_BLADE("ender_giant_blade"),
-        BLAZE_SWORD("blaze_sword"),
-        FERMENTED_SKIN("fermented_skin"),
-        MEDIC_KIT("medic_kit"),
-        REINFORCED_LEATHER_BOOTS("reinforced_leather_boots"),
-        REINFORCED_LEATHER_CHESTPLATE("reinforced_leather_chestplate"),
-        REINFORCED_LEATHER_LEGGINGS("reinforced_leather_leggings"),
-        REINFORCED_LEATHER_HELMET("reinforced_leather_helmet"),
-        GOLD_SABATONS("gold_sabatons"),
-        GOLD_GUARD("gold_guard"),
-        GOLD_GREAVES("gold_greaves"),
-        GOLD_CROWN("gold_crown"),
-        RECURVED_BOW("recurved_bow"),
-        RECURVED_CROSSBOW("recurved_crossbow"),
-        UNLIT_CAMPFIRE("unlit_campfire"),
-        FLINT_SICKLE("flint_sickle"),
-        STONE_SICKLE("stone_sickle"),
-        IRON_SICKLE("iron_sickle"),
-        DIAMOND_SICKLE("diamond_sickle"),
-        GRAPPLING_HOOK("grappling_hook"),
-        WATER_BOTTLES("clean_water_furnace", "clean_water_smoker", "clean_water_campfire"),
-        COFFEE_BEAN("coffee_bean"),
-        COLD_MILK("cold_milk"),
-        HOT_MILK("hot_milk"),
-        COFFEE("coffee"),
-        BEEKEEPER_SUIT("beekeeper_helmet", "beekeeper_chestplate", "beekeeper_leggings", "beekeeper_boots"),
-        SNOW_BOOTS("snow_boots"),
-        RAIN_BOOTS("rain_boots"),
-
-        // VANILLA ITEMS
-        ENCHANTED_GOLDEN_APPLE("enchanted_golden_apple"),
-        SADDLE("saddle"),
-        NAMETAG("nametag"),
-        STRING("string1", "string2"),
-        IRON_HORSE_ARMOR("iron_horse_armor"),
-        GOLD_HORSE_ARMOR("gold_horse_armor"),
-        DIAMOND_HORSE_ARMOR("diamond_horse_armor"),
-        LEATHER_HORSE_ARMOR("leather_horse_armor"),
-        TORCH("torch1", "torch2"),
-        FLINT("flint"),
-        FERMENTED_SPIDER_EYE("fermented_spider_eye"),
-        POISONOUS_POTATO("poisonous_potato"),
-        GLASS_BOTTLE("glass_bottle"),
-        BOWL("bowl"),
-        FISHING_ROD("fishing_rod"),
-        IRON_INGOT("iron_ingot"),
-        IRON_NUGGET("iron_nugget"),
-        GOLD_INGOT("gold_ingot"),
-        GOLD_NUGGET("gold_nugget"),
-        BREAD("bread"),
-        COOKIE("cookie"),
-        SLIMEBALL("slimeball"),
-        COBWEB("cobweb"),
-        STICK("stick"),
-        IRON_BOOTS("iron_boots"),
-        IRON_LEGGINGS("iron_leggings"),
-        IRON_CHESTPLATE("iron_chestplate"),
-        IRON_HELMET("iron_helmet"),
-        DIAMOND_BOOTS("diamond_boots"),
-        DIAMOND_LEGGINGS("diamond_leggings"),
-        DIAMOND_CHESTPLATE("diamond_chestplate"),
-        DIAMOND_HELMET("diamond_helmet"),
-        COMPASS("compass"),
-
-        // VANILLA BLOCKS
-        CLAY_BRICK("clay_brick"),
-        QUARTZ("quartz"),
-        FURNACE("furnace"),
-        CHEST("chest"),
-        CLAY("clay"),
-        DIORITE("diorite"),
-        ANDESITE("andesite"),
-        GRANITE("granite"),
-        GRAVEL("gravel"),
-        ICE("ice1", "ice2"),
-        PACKED_ICE("packed_ice"),
-
-        // SMELTING RECIPES
-        FURNACE_IRON_INGOT("furnace_iron_ingot"),
-        FURNACE_GOLD_INGOT("furnace_gold_ingot"),
-        BLAST_IRON_INGOT("blast_iron_ingot"),
-        BLAST_GOLD_INGOT("blast_gold_ingot");
-
-        private final Collection<NamespacedKey> keys;
-        private static final Collection<NamespacedKey> allKeys;
-
-        static {
-            allKeys = new ArrayList<>();
-            for (Recipes recipes : values()) {
-                allKeys.addAll(recipes.keys);
-            }
-        }
-
-        Recipes(String... keys) {
-            ArrayList<NamespacedKey> list = new ArrayList<>();
-            for (String key : keys) {
-                assert false;
-                list.add(Utils.getNamespacedKey(key));
-            }
-            this.keys = list;
-        }
-
-        /**
-         * Get the {@link NamespacedKey}s for this recipe
-         *
-         * @return NamespacedKeys for this recipe
-         */
-        public Collection<NamespacedKey> getKeys() {
-            return this.keys;
-        }
-
-        private static Collection<NamespacedKey> getAllKeys() {
-            return allKeys;
-        }
-    }
-
     private void removeRecipes() {
         if (config.SURVIVAL_ENABLED) {
             removeRecipeByKey("campfire");
@@ -1183,6 +1042,137 @@ public class RecipeManager {
 
     private NamespacedKey key(String key) {
         return new NamespacedKey(plugin, key);
+    }
+
+    /**
+     * Enums of all custom recipes
+     */
+    public enum Recipes {
+        // CUSTOM TOOLS/ITEMS
+        HATCHET("hatchet1", "hatchet2"),
+        MATTOCK("mattock"),
+        SHIV("shiv"),
+        HAMMER("hammer"),
+        WORKBENCH("workbench"),
+        FIRESTRIKER("firestriker"),
+        VALKYRIES_AXE("valkyrie_axe"),
+        QUARTZ_PICKAXE("quartz_pickaxe"),
+        OBSIDIAN_MACE("obsidian_mace"),
+        ENDER_GIANT_BLADE("ender_giant_blade"),
+        BLAZE_SWORD("blaze_sword"),
+        FERMENTED_SKIN("fermented_skin"),
+        MEDIC_KIT("medic_kit"),
+        REINFORCED_LEATHER_BOOTS("reinforced_leather_boots"),
+        REINFORCED_LEATHER_CHESTPLATE("reinforced_leather_chestplate"),
+        REINFORCED_LEATHER_LEGGINGS("reinforced_leather_leggings"),
+        REINFORCED_LEATHER_HELMET("reinforced_leather_helmet"),
+        GOLD_SABATONS("gold_sabatons"),
+        GOLD_GUARD("gold_guard"),
+        GOLD_GREAVES("gold_greaves"),
+        GOLD_CROWN("gold_crown"),
+        RECURVED_BOW("recurved_bow"),
+        RECURVED_CROSSBOW("recurved_crossbow"),
+        UNLIT_CAMPFIRE("unlit_campfire"),
+        FLINT_SICKLE("flint_sickle"),
+        STONE_SICKLE("stone_sickle"),
+        IRON_SICKLE("iron_sickle"),
+        DIAMOND_SICKLE("diamond_sickle"),
+        GRAPPLING_HOOK("grappling_hook"),
+        WATER_BOTTLES("clean_water_furnace", "clean_water_smoker", "clean_water_campfire"),
+        COFFEE_BEAN("coffee_bean"),
+        COLD_MILK("cold_milk"),
+        HOT_MILK("hot_milk"),
+        COFFEE("coffee"),
+        BEEKEEPER_SUIT("beekeeper_helmet", "beekeeper_chestplate", "beekeeper_leggings", "beekeeper_boots"),
+        SNOW_BOOTS("snow_boots"),
+        RAIN_BOOTS("rain_boots"),
+
+        // VANILLA ITEMS
+        ENCHANTED_GOLDEN_APPLE("enchanted_golden_apple"),
+        SADDLE("saddle"),
+        NAMETAG("nametag"),
+        STRING("string1", "string2"),
+        IRON_HORSE_ARMOR("iron_horse_armor"),
+        GOLD_HORSE_ARMOR("gold_horse_armor"),
+        DIAMOND_HORSE_ARMOR("diamond_horse_armor"),
+        LEATHER_HORSE_ARMOR("leather_horse_armor"),
+        TORCH("torch1", "torch2"),
+        FLINT("flint"),
+        FERMENTED_SPIDER_EYE("fermented_spider_eye"),
+        POISONOUS_POTATO("poisonous_potato"),
+        GLASS_BOTTLE("glass_bottle"),
+        BOWL("bowl"),
+        FISHING_ROD("fishing_rod"),
+        IRON_INGOT("iron_ingot"),
+        IRON_NUGGET("iron_nugget"),
+        GOLD_INGOT("gold_ingot"),
+        GOLD_NUGGET("gold_nugget"),
+        BREAD("bread"),
+        COOKIE("cookie"),
+        SLIMEBALL("slimeball"),
+        COBWEB("cobweb"),
+        STICK("stick"),
+        IRON_BOOTS("iron_boots"),
+        IRON_LEGGINGS("iron_leggings"),
+        IRON_CHESTPLATE("iron_chestplate"),
+        IRON_HELMET("iron_helmet"),
+        DIAMOND_BOOTS("diamond_boots"),
+        DIAMOND_LEGGINGS("diamond_leggings"),
+        DIAMOND_CHESTPLATE("diamond_chestplate"),
+        DIAMOND_HELMET("diamond_helmet"),
+        COMPASS("compass"),
+
+        // VANILLA BLOCKS
+        CLAY_BRICK("clay_brick"),
+        QUARTZ("quartz"),
+        FURNACE("furnace"),
+        CHEST("chest"),
+        CLAY("clay"),
+        DIORITE("diorite"),
+        ANDESITE("andesite"),
+        GRANITE("granite"),
+        GRAVEL("gravel"),
+        ICE("ice1", "ice2"),
+        PACKED_ICE("packed_ice"),
+
+        // SMELTING RECIPES
+        FURNACE_IRON_INGOT("furnace_iron_ingot"),
+        FURNACE_GOLD_INGOT("furnace_gold_ingot"),
+        BLAST_IRON_INGOT("blast_iron_ingot"),
+        BLAST_GOLD_INGOT("blast_gold_ingot");
+
+        private static final Collection<NamespacedKey> allKeys;
+
+        static {
+            allKeys = new ArrayList<>();
+            for (Recipes recipes : values()) {
+                allKeys.addAll(recipes.keys);
+            }
+        }
+
+        private final Collection<NamespacedKey> keys;
+
+        Recipes(String... keys) {
+            ArrayList<NamespacedKey> list = new ArrayList<>();
+            for (String key : keys) {
+                assert false;
+                list.add(Utils.getNamespacedKey(key));
+            }
+            this.keys = list;
+        }
+
+        private static Collection<NamespacedKey> getAllKeys() {
+            return allKeys;
+        }
+
+        /**
+         * Get the {@link NamespacedKey}s for this recipe
+         *
+         * @return NamespacedKeys for this recipe
+         */
+        public Collection<NamespacedKey> getKeys() {
+            return this.keys;
+        }
     }
 
 }

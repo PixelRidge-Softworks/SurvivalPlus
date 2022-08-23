@@ -4,7 +4,7 @@ package net.pixelatedstudios.SurvivalPlus.listeners.server;
  * Originally by Rolyndev's plugin, NoPos
  * Modified and implemented by FattyMieo
  * Thanks to Rolyndev for allowing implementation!
-**/
+ **/
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,85 +23,85 @@ import java.lang.reflect.Method;
 
 // TODO: Replace NoPos with new NoPos code in NoPosOld
 public class NoPosOld implements Listener {
-	@EventHandler
-	private void onJoin(PlayerJoinEvent e) {
-		Player player = e.getPlayer();
-		if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
-			disableF3(player);
-	}
+    /**
+     * Disable a player's coordinates in their Minecraft Debug screen
+     *
+     * @param player The player to disable coords for
+     */
+    @SuppressWarnings("WeakerAccess")
+    public static void disableF3(Player player) {
+        try {
+            Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
+            Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
+            Object packet = packetConstructor.newInstance(getHandle(player), (byte) 22);
+            Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
+            sendPacket.invoke(getConnection(player), packet);
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
+        }
+    }
 
-	@EventHandler
-	private void onGamemodeChange(PlayerGameModeChangeEvent e) {
-		Player player = e.getPlayer();
-		if (e.getNewGameMode() == GameMode.ADVENTURE || e.getNewGameMode() == GameMode.SURVIVAL) {
-			disableF3(player);
-		} else {
-			enableF3(player);
-		}
-	}
+    /**
+     * Enable a player's coordinates in their Minecraft Debug screen
+     *
+     * @param player The player to enable coords for
+     */
+    @SuppressWarnings("WeakerAccess")
+    public static void enableF3(Player player) {
+        try {
+            Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
+            Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
+            Object packet = packetConstructor.newInstance(getHandle(player), (byte) 23);
+            Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
+            sendPacket.invoke(getConnection(player), packet);
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
+        }
+    }
 
-	@EventHandler
-	private void onWorldChange(PlayerChangedWorldEvent e) {
-		Player player = e.getPlayer();
-		if (player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL) {
-			disableF3(player);
-		}
-	}
+    private static Class<?> getNMSClass(String nmsClassString)
+            throws ClassNotFoundException {
+        String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";
 
-	/**
-	 * Disable a player's coordinates in their Minecraft Debug screen
-	 *
-	 * @param player The player to disable coords for
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public static void disableF3(Player player) {
-		try {
-			Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
-			Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
-			Object packet = packetConstructor.newInstance(getHandle(player), (byte) 22);
-			Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
-			sendPacket.invoke(getConnection(player), packet);
-		} catch (Exception e) {
-			Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
-		}
-	}
+        String name = "net.minecraft.server." + version + nmsClassString;
+        return Class.forName(name);
+    }
 
-	/**
-	 * Enable a player's coordinates in their Minecraft Debug screen
-	 *
-	 * @param player The player to enable coords for
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public static void enableF3(Player player) {
-		try {
-			Class<?> packetClass = getNMSClass("PacketPlayOutEntityStatus");
-			Constructor<?> packetConstructor = packetClass.getConstructor(getNMSClass("Entity"), Byte.TYPE);
-			Object packet = packetConstructor.newInstance(getHandle(player), (byte) 23);
-			Method sendPacket = getNMSClass("PlayerConnection").getMethod("sendPacket", getNMSClass("Packet"));
-			sendPacket.invoke(getConnection(player), packet);
-		} catch (Exception e) {
-			Bukkit.getConsoleSender().sendMessage("[SurvivalPlus] " + ChatColor.RED + e.getMessage());
-		}
-	}
+    private static Object getConnection(Player player)
+            throws SecurityException, NoSuchMethodException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+        Field conField = getHandle(player).getClass().getField("playerConnection");
+        return conField.get(getHandle(player));
+    }
 
-	private static Class<?> getNMSClass(String nmsClassString)
-			throws ClassNotFoundException {
-		String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";
+    private static Object getHandle(Player player)
+            throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+        Method getHandle = player.getClass().getMethod("getHandle");
+        return getHandle.invoke(player);
+    }
 
-		String name = "net.minecraft.server." + version + nmsClassString;
-		return Class.forName(name);
-	}
+    @EventHandler
+    private void onJoin(PlayerJoinEvent e) {
+        Player player = e.getPlayer();
+        if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
+            disableF3(player);
+    }
 
-	private static Object getConnection(Player player)
-			throws SecurityException, NoSuchMethodException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		Field conField = getHandle(player).getClass().getField("playerConnection");
-		return conField.get(getHandle(player));
-	}
+    @EventHandler
+    private void onGamemodeChange(PlayerGameModeChangeEvent e) {
+        Player player = e.getPlayer();
+        if (e.getNewGameMode() == GameMode.ADVENTURE || e.getNewGameMode() == GameMode.SURVIVAL) {
+            disableF3(player);
+        } else {
+            enableF3(player);
+        }
+    }
 
-	private static Object getHandle(Player player)
-			throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-		Method getHandle = player.getClass().getMethod("getHandle");
-		return getHandle.invoke(player);
-	}
+    @EventHandler
+    private void onWorldChange(PlayerChangedWorldEvent e) {
+        Player player = e.getPlayer();
+        if (player.getGameMode() == GameMode.ADVENTURE || player.getGameMode() == GameMode.SURVIVAL) {
+            disableF3(player);
+        }
+    }
 
 }

@@ -1,7 +1,11 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
 import com.google.common.collect.ImmutableList;
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData.DataType;
 import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,10 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData.DataType;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +23,8 @@ import java.util.List;
 public class PlayerDataCmd implements TabExecutor {
 
     private final PlayerManager playerManager;
+    private final String[] DATA_TYPES = PlayerData.DataType.getNames();
+    private final String[] CHANGE = new String[]{"add", "set", "remove"};
 
     public PlayerDataCmd(Survival plugin) {
         this.playerManager = plugin.getPlayerManager();
@@ -72,9 +74,6 @@ public class PlayerDataCmd implements TabExecutor {
 
         return true;
     }
-
-    private final String[] DATA_TYPES = PlayerData.DataType.getNames();
-    private final String[] CHANGE = new String[]{"add", "set", "remove"};
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {

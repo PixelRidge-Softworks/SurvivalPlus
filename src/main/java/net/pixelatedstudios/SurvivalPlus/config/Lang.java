@@ -1,10 +1,10 @@
 package net.pixelatedstudios.SurvivalPlus.config;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 import java.io.File;
 import java.io.InputStream;
@@ -417,13 +417,13 @@ public class Lang {
     }
 
     //private void saveLang(YamlConfiguration lang, File file) {
-     //   try {
-     //       lang.save(file);
-       //     String prefix = lang.getString("prefix");
-       //     Utils.sendColoredMsg(Bukkit.getConsoleSender(), prefix + "&7" + lang_yml + " &aUpdated");
-       // } catch (IOException e) {
-      //      e.printStackTrace();
-     //   }
+    //   try {
+    //       lang.save(file);
+    //     String prefix = lang.getString("prefix");
+    //     Utils.sendColoredMsg(Bukkit.getConsoleSender(), prefix + "&7" + lang_yml + " &aUpdated");
+    // } catch (IOException e) {
+    //      e.printStackTrace();
+    //   }
     //}
 
 }

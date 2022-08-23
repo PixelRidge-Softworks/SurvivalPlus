@@ -1,19 +1,15 @@
 package net.pixelatedstudios.SurvivalPlus.item;
 
 import com.google.common.base.Preconditions;
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Nutritional values for foods
@@ -21,11 +17,7 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class Nutrition implements Keyed {
 
-    static void setup() {
-    }
-
     private static final Map<NamespacedKey, Nutrition> NUTRITION_MAP = new LinkedHashMap<>();
-
     // FRUITS AND VEGGIES
     public static final Nutrition POTATO = register(25, 0, 10, Material.POTATO);
     public static final Nutrition BAKED_POTATO = register(200, 0, 60, Material.BAKED_POTATO);
@@ -40,7 +32,6 @@ public class Nutrition implements Keyed {
     public static final Nutrition BEETROOT = register(0, 0, 35, Material.BEETROOT);
     public static final Nutrition DRIED_KELP = register(15, 50, 50, Material.DRIED_KELP);
     public static final Nutrition SWEET_BERRIES = register(40, 0, 60, Material.SWEET_BERRIES);
-
     // PREPARED FOODS
     public static final Nutrition BREAD = register(300, 25, 12, Material.BREAD);
     public static final Nutrition PUMPKIN_PIE = register(300, 50, 60, Material.PUMPKIN_PIE);
@@ -50,7 +41,6 @@ public class Nutrition implements Keyed {
     public static final Nutrition BEETROOT_SOUP = register(0, 50, 200, Material.BEETROOT_SOUP);
     public static final Nutrition COOKIE = register(107, 11, 3, Material.COOKIE);
     public static final Nutrition CAKE = register(171, 114, 3, Material.CAKE);
-
     // MEATS
     public static final Nutrition BEEF = register(0, 50, 0, Material.BEEF);
     public static final Nutrition COOKED_BEEF = register(0, 200, 0, Material.COOKED_BEEF);
@@ -68,11 +58,38 @@ public class Nutrition implements Keyed {
     public static final Nutrition COOKED_SALMON = register(0, 225, 0, Material.COOKED_SALMON);
     public static final Nutrition PUFFERFISH = register(0, 75, 0, Material.PUFFERFISH);
     public static final Nutrition TROPICAL_FISH = register(0, 75, 0, Material.TROPICAL_FISH);
-
     // MISC
     public static final Nutrition SPIDER_EYE = register(0, 50, 0, Material.SPIDER_EYE);
     public static final Nutrition ROTTEN_FLESH = register(0, 25, 25, Material.ROTTEN_FLESH);
     public static final Nutrition MILK_BUCKET = register(0, 250, 0, Material.MILK_BUCKET);
+    private final NamespacedKey key;
+    private final boolean custom;
+    private final int carbs;
+    private final int proteins;
+    private final int vitamins;
+    private final ItemStack itemStack;
+    private Item item = null;
+    Nutrition(NamespacedKey key, boolean custom, int carbs, int proteins, int vitamins, ItemStack itemStack) {
+        this.key = key;
+        this.custom = custom;
+        this.carbs = carbs;
+        this.proteins = proteins;
+        this.vitamins = vitamins;
+        this.itemStack = itemStack;
+    }
+    // Will be used in the future for custom food items
+    Nutrition(NamespacedKey key, boolean custom, int carbs, int proteins, int vitamins, Item item) {
+        this.key = key;
+        this.custom = custom;
+        this.carbs = carbs;
+        this.proteins = proteins;
+        this.vitamins = vitamins;
+        this.item = item;
+        this.itemStack = item.getItem();
+    }
+
+    static void setup() {
+    }
 
     @NotNull
     private static Nutrition register(int carbs, int proteins, int vitamins, Material material) {
@@ -134,32 +151,38 @@ public class Nutrition implements Keyed {
         return false;
     }
 
-    private final NamespacedKey key;
-    private final boolean custom;
-    private final int carbs;
-    private final int proteins;
-    private final int vitamins;
-    private final ItemStack itemStack;
-    private Item item = null;
-
-    Nutrition(NamespacedKey key, boolean custom, int carbs, int proteins, int vitamins, ItemStack itemStack) {
-        this.key = key;
-        this.custom = custom;
-        this.carbs = carbs;
-        this.proteins = proteins;
-        this.vitamins = vitamins;
-        this.itemStack = itemStack;
+    /**
+     * Get from an ItemStack
+     *
+     * @param itemStack ItemStack to match
+     * @return Nutrition for material (null if nutrition does not exist for this material)
+     */
+    @Nullable
+    public static Nutrition getByItemStack(ItemStack itemStack) {
+        // First check if an ItemStack matches a registered Nutrition
+        for (Nutrition nutrition : NUTRITION_MAP.values()) {
+            if (nutrition.itemStack.isSimilar(itemStack)) {
+                return nutrition;
+            }
+        }
+        // Fallback to default items when no registrations match
+        // This is in case a player/plugin renames/modifies an item without registering,
+        // then we can still give the player the base nutrients
+        for (Nutrition nutrition : NUTRITION_MAP.values()) {
+            if (!nutrition.custom && nutrition.itemStack.getType() == itemStack.getType()) {
+                return nutrition;
+            }
+        }
+        return null;
     }
 
-    // Will be used in the future for custom food items
-    Nutrition(NamespacedKey key, boolean custom, int carbs, int proteins, int vitamins, Item item) {
-        this.key = key;
-        this.custom = custom;
-        this.carbs = carbs;
-        this.proteins = proteins;
-        this.vitamins = vitamins;
-        this.item = item;
-        this.itemStack = item.getItem();
+    /**
+     * Get all registered Nutritions
+     *
+     * @return List of all registered nutritions
+     */
+    public static List<Nutrition> getAllNutritions() {
+        return new ArrayList<>(NUTRITION_MAP.values());
     }
 
     /**
@@ -231,40 +254,6 @@ public class Nutrition implements Keyed {
     @Deprecated
     public Item getItem() {
         return item;
-    }
-
-    /**
-     * Get from an ItemStack
-     *
-     * @param itemStack ItemStack to match
-     * @return Nutrition for material (null if nutrition does not exist for this material)
-     */
-    @Nullable
-    public static Nutrition getByItemStack(ItemStack itemStack) {
-        // First check if an ItemStack matches a registered Nutrition
-        for (Nutrition nutrition : NUTRITION_MAP.values()) {
-            if (nutrition.itemStack.isSimilar(itemStack)) {
-                return nutrition;
-            }
-        }
-        // Fallback to default items when no registrations match
-        // This is in case a player/plugin renames/modifies an item without registering,
-        // then we can still give the player the base nutrients
-        for (Nutrition nutrition : NUTRITION_MAP.values()) {
-            if (!nutrition.custom && nutrition.itemStack.getType() == itemStack.getType()) {
-                return nutrition;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get all registered Nutritions
-     *
-     * @return List of all registered nutritions
-     */
-    public static List<Nutrition> getAllNutritions() {
-        return new ArrayList<>(NUTRITION_MAP.values());
     }
 
 }

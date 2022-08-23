@@ -1,14 +1,10 @@
 package net.pixelatedstudios.SurvivalPlus.data;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import net.pixelatedstudios.SurvivalPlus.util.Validate;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.Team;
-import net.pixelatedstudios.SurvivalPlus.Survival;
+import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +18,46 @@ public class Board {
 
     // STATIC STUFF
     private static final Map<Player, Board> BOARD_MAP = new HashMap<>();
+    // OBJECT STUFF
+    private final Player player;
+    private final Scoreboard oldScoreboard;
+    private final Scoreboard scoreboard;
+    private final Objective board;
+    private final Team[] lines = new Team[15];
+    private final String[] entries = new String[]{"&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9", "&0", "&a", "&b", "&c", "&d", "&e"};
+    private boolean on;
+    public Board(Player player, boolean load) {
+        this.player = player;
+        this.on = true;
+        Survival plugin = Survival.getInstance();
+        ScoreboardManager scoreboardManager = plugin.getServer().getScoreboardManager();
+        oldScoreboard = player.getScoreboard();
+        // TODO: Replace Deprecations with new method
+        if (!load) {
+            //todo: investigate this scoreboardManager warning
+            assert scoreboardManager != null;
+            scoreboard = scoreboardManager.getNewScoreboard();
+            this.player.setScoreboard(scoreboard);
+            board = scoreboard.registerNewObjective("Board", "dummy", "Board");
+            board.setDisplaySlot(DisplaySlot.SIDEBAR);
+            board.setDisplayName(" ");
+
+            for (int i = 0; i < 15; i++) {
+                lines[i] = scoreboard.registerNewTeam("line" + (i + 1));
+            }
+
+            for (int i = 0; i < 15; i++) {
+                lines[i].addEntry(getColString(entries[i]));
+            }
+        } else {
+            scoreboard = player.getScoreboard();
+            board = scoreboard.getObjective("Board");
+
+            for (int i = 0; i < 15; i++) {
+                lines[i] = scoreboard.getTeam("line" + (i + 1));
+            }
+        }
+    }
 
     /**
      * Get the Board for a specific player
@@ -76,48 +112,6 @@ public class Board {
             board.clearBoard();
         }
         BOARD_MAP.clear();
-    }
-
-    // OBJECT STUFF
-    private final Player player;
-    private final Scoreboard oldScoreboard;
-    private final Scoreboard scoreboard;
-    private final Objective board;
-    private final Team[] lines = new Team[15];
-    private final String[] entries = new String[]{"&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9", "&0", "&a", "&b", "&c", "&d", "&e"};
-    private boolean on;
-
-    public Board(Player player, boolean load) {
-        this.player = player;
-        this.on = true;
-        Survival plugin = Survival.getInstance();
-        ScoreboardManager scoreboardManager = plugin.getServer().getScoreboardManager();
-        oldScoreboard = player.getScoreboard();
-        // TODO: Replace Deprecations with new method
-        if (!load) {
-            //todo: investigate this scoreboardManager warning
-            assert scoreboardManager != null;
-            scoreboard = scoreboardManager.getNewScoreboard();
-            this.player.setScoreboard(scoreboard);
-            board = scoreboard.registerNewObjective("Board", "dummy", "Board");
-            board.setDisplaySlot(DisplaySlot.SIDEBAR);
-            board.setDisplayName(" ");
-
-            for (int i = 0; i < 15; i++) {
-                lines[i] = scoreboard.registerNewTeam("line" + (i + 1));
-            }
-
-            for (int i = 0; i < 15; i++) {
-                lines[i].addEntry(getColString(entries[i]));
-            }
-        } else {
-            scoreboard = player.getScoreboard();
-            board = scoreboard.getObjective("Board");
-
-            for (int i = 0; i < 15; i++) {
-                lines[i] = scoreboard.getTeam("line" + (i + 1));
-            }
-        }
     }
 
     /**

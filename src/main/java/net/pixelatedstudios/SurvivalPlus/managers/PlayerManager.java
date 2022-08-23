@@ -1,16 +1,16 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Config;
+import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.config.PlayerDataConfig;
+import net.pixelatedstudios.SurvivalPlus.data.Nutrient;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scoreboard.Scoreboard;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Config;
-import net.pixelatedstudios.SurvivalPlus.config.PlayerDataConfig;
-import net.pixelatedstudios.SurvivalPlus.data.Nutrient;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 import java.util.*;
 
@@ -211,10 +211,9 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowThirst(Player player) {
-    	if (player == null)
-    	{
-    	return null;
-    	}
+        if (player == null) {
+            return null;
+        }
         StringBuilder thirstBar = new StringBuilder();
         PlayerData data = getPlayerData(player);
         int thirst = data.getThirst();
@@ -239,7 +238,7 @@ public class PlayerManager implements Listener {
     }
 
     public String ShowTemperature(Player player) {
-        if(player == null) return null;
+        if (player == null) return null;
         double temperture = getPlayerData(player).getTemperature();
         ChatColor awareness = ChatColor.GREEN;
         if (temperture <= 2) awareness = ChatColor.DARK_AQUA;
@@ -252,10 +251,9 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowHunger(Player player) {
-    	if (player == null)
-    	{
-    	return null;
-    	}
+        if (player == null) {
+            return null;
+        }
         int hunger = player.getFoodLevel();
         int saturation = Math.round(player.getSaturation());
         StringBuilder hungerBar = new StringBuilder();
@@ -282,10 +280,9 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> ShowNutrients(Player player) {
-    	if (player == null)
-    	{
-    	return null;
-    	}
+        if (player == null) {
+            return null;
+        }
         List<String> nutrients = new ArrayList<>();
         PlayerData data = getPlayerData(player);
 
@@ -318,10 +315,9 @@ public class PlayerManager implements Listener {
     }
 
     public List<String> showEnergy(Player player) {
-    	if (player == null) 
-    	{
-    		return null;
-    	}
+        if (player == null) {
+            return null;
+        }
         PlayerData playerData = getPlayerData(player);
         double energy = Math.floor(playerData.getEnergy());
         StringBuilder energyBar = new StringBuilder();

@@ -1,10 +1,10 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.entity.Player;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.data.Nutrient;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import org.bukkit.entity.Player;
 
 @SuppressWarnings("unused")
 public class Placeholders extends PlaceholderExpansion {
@@ -46,11 +46,10 @@ public class Placeholders extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player p, String identifier) {
         PlayerData playerData = playerManager.getPlayerData(p);
-        
-        if (playerData == null )
-    	{
-    	return null;
-    	}
+
+        if (playerData == null) {
+            return null;
+        }
 
         // Shows player's health, kinda useless but here it is
         if (identifier.equalsIgnoreCase("player_health")) {

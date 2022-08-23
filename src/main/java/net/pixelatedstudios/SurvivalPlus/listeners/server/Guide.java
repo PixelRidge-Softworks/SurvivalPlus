@@ -4,6 +4,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
@@ -12,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import net.pixelatedstudios.SurvivalPlus.Survival;
 
 public class Guide implements Listener {
 
@@ -20,7 +20,7 @@ public class Guide implements Listener {
     private Survival plugin;
     private Lang lang;
     private Config config;
-    
+
     public Guide(Survival plugin) {
         this.plugin = plugin;
         this.lang = plugin.getLang();

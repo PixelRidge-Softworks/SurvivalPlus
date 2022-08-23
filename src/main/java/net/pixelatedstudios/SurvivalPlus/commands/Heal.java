@@ -1,5 +1,10 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Config;
+import net.pixelatedstudios.SurvivalPlus.config.Lang;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
@@ -7,11 +12,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Config;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
-import net.pixelatedstudios.SurvivalPlus.util.Utils;
 
 public class Heal implements CommandExecutor {
 
@@ -66,13 +66,13 @@ public class Heal implements CommandExecutor {
             switch (player.getWorld().getDifficulty()) {
                 case PEACEFUL:
                 case EASY:
-                    playerData.setNutrients( 960, 240, 360);
+                    playerData.setNutrients(960, 240, 360);
                     break;
                 case NORMAL:
-                    playerData.setNutrients( 480, 120, 180);
+                    playerData.setNutrients(480, 120, 180);
                     break;
                 case HARD:
-                    playerData.setNutrients( 96, 24, 36);
+                    playerData.setNutrients(96, 24, 36);
                     break;
             }
         }

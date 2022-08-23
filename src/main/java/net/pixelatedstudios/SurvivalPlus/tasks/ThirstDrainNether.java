@@ -1,5 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.tasks;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
 import net.pixelatedstudios.SurvivalPlus.events.ThirstLevelChangeEvent;
 import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
 import org.bukkit.Bukkit;
@@ -7,8 +9,6 @@ import org.bukkit.GameMode;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
 
 class ThirstDrainNether extends BukkitRunnable {
 

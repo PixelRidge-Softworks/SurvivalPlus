@@ -1,13 +1,13 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Config;
+import net.pixelatedstudios.SurvivalPlus.item.Item;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.MerchantRecipe;
-import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Config;
-import net.pixelatedstudios.SurvivalPlus.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,8 +89,6 @@ public class MerchantManager {
         STONE_SICKLE(Material.STONE_HOE, Item.STONE_SICKLE),
         DIAMOND_SICKLE(Material.DIAMOND_HOE, Item.DIAMOND_SICKLE);
 
-        private final Material material;
-        private final Item item;
         private static final Map<Material, Recipe> recipeByMaterialMap;
 
         static {
@@ -100,9 +98,25 @@ public class MerchantManager {
             }
         }
 
+        private final Material material;
+        private final Item item;
+
         Recipe(Material material, Item item) {
             this.material = material;
             this.item = item;
+        }
+
+        /**
+         * Get a Recipe by material
+         *
+         * @param material Material to get recipe from
+         * @return Recipe based on material
+         */
+        public static Recipe getByMaterial(Material material) {
+            if (recipeByMaterialMap.containsKey(material)) {
+                return recipeByMaterialMap.get(material);
+            }
+            return null;
         }
 
         /**
@@ -120,19 +134,6 @@ public class MerchantManager {
                     oldRecipe.getPriceMultiplier());
             recipe.setIngredients(oldRecipe.getIngredients());
             return recipe;
-        }
-
-        /**
-         * Get a Recipe by material
-         *
-         * @param material Material to get recipe from
-         * @return Recipe based on material
-         */
-        public static Recipe getByMaterial(Material material) {
-            if (recipeByMaterialMap.containsKey(material)) {
-                return recipeByMaterialMap.get(material);
-            }
-            return null;
         }
 
     }

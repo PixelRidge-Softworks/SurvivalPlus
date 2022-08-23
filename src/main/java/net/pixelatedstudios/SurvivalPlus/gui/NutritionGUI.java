@@ -21,12 +21,11 @@ import java.util.List;
 
 public class NutritionGUI implements InventoryHolder, Listener {
 
-    private Inventory inv;
     private final Lang lang;
-    private int page = 0;
-
     private final ItemStack LAST_PAGE_BUTTON;
     private final ItemStack NEXT_PAGE_BUTTON;
+    private Inventory inv;
+    private int page = 0;
 
     public NutritionGUI(Survival plugin) {
         this.lang = plugin.getLang();

@@ -102,6 +102,27 @@ public class Item {
 
     // TODO Finish
     public static final Item PERSISTENT_TORCH = get("persistent_torch", Material.TORCH, 1);
+    private final String key;
+    private final Material materialType;
+    private final int modelData;
+    private final double repairCostMultiplier;
+
+    // OBJECT
+    private final double repairPercent;
+    Item(@NotNull String key, @NotNull Material mat, int customModelData) {
+        this.key = key;
+        this.modelData = customModelData;
+        this.materialType = mat;
+        this.repairCostMultiplier = -1;
+        this.repairPercent = 0;
+    }
+    Item(@NotNull String key, @NotNull Material mat, int customModelData, double repairCost, double repairPercent) {
+        this.key = key;
+        this.modelData = customModelData;
+        this.materialType = mat;
+        this.repairCostMultiplier = repairCost;
+        this.repairPercent = repairPercent;
+    }
 
     private static Item get(String key, Material material, int model) {
         String prefix = String.format("Registering Item (%s): ", key);
@@ -156,28 +177,14 @@ public class Item {
         return ALL_ITEMS.values();
     }
 
-    // OBJECT
-
-    private final String key;
-    private final Material materialType;
-    private final int modelData;
-    private final double repairCostMultiplier;
-    private final double repairPercent;
-
-    Item(@NotNull String key, @NotNull Material mat, int customModelData) {
-        this.key = key;
-        this.modelData = customModelData;
-        this.materialType = mat;
-        this.repairCostMultiplier = -1;
-        this.repairPercent = 0;
-    }
-
-    Item(@NotNull String key, @NotNull Material mat, int customModelData, double repairCost, double repairPercent) {
-        this.key = key;
-        this.modelData = customModelData;
-        this.materialType = mat;
-        this.repairCostMultiplier = repairCost;
-        this.repairPercent = repairPercent;
+    @Nullable
+    public static Item getFromStack(@NotNull ItemStack itemStack) {
+        for (Item value : ALL_ITEMS.values()) {
+            if (value.compare(itemStack)) {
+                return value;
+            }
+        }
+        return null;
     }
 
     /**
@@ -253,16 +260,6 @@ public class Item {
             }
         }
         return false;
-    }
-
-    @Nullable
-    public static Item getFromStack(@NotNull ItemStack itemStack) {
-        for (Item value : ALL_ITEMS.values()) {
-            if (value.compare(itemStack)) {
-                return value;
-            }
-        }
-        return null;
     }
 
     /**
