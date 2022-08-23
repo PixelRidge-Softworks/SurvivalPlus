@@ -25,9 +25,7 @@ import java.util.*;
 
 /**
  * Manager for custom <b>SurvivalPlus</b> items
- */
-// TODO: Investigate if this suppression is needed
-@SuppressWarnings("ConstantConditions")
+ */g
 public class ItemManager {
 
     private static final Lang lang = Survival.getInstance().getLang();
