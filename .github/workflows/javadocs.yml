@@ -6,25 +6,25 @@ name: Deploy Javadocs
 on:
   push:
     branches: [ "main" ]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 16
-      uses: actions/setup-java@v3
-      with:
-        java-version: '16'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    
-    - name: Deploy Javadocs 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        FOLDER: target/site/apidocs
-        BRANCH: pages
+      - uses: actions/checkout@v3
+      - name: Set up JDK 16
+        uses: actions/setup-java@v3
+        with:
+          java-version: '16'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Deploy Javadocs 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FOLDER: target/site/apidocs
+          BRANCH: pages

@@ -1,0 +1,67 @@
+package net.pixelatedstudios.SurvivalPlus.listeners.server;
+
+import net.pixelatedstudios.SurvivalPlus.Survival;
+import net.pixelatedstudios.SurvivalPlus.config.Config;
+import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
+import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+public class LocalChat implements Listener {
+
+    // TODO: Investigate warnings
+    private Config config;
+    private PlayerManager playerManager;
+
+    public LocalChat(Survival plugin) {
+        this.config = plugin.getSurvivalConfig();
+        this.playerManager = plugin.getPlayerManager();
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    // TODO: Replace deprecation
+    private void onChat(AsyncPlayerChatEvent event) {
+        if (event.isCancelled()) return;
+        Player player = event.getPlayer();
+        PlayerData playerData = playerManager.getPlayerData(player);
+        String msg = event.getMessage();
+
+        if (config.LEGENDARY_GOLDARMORBUFF) {
+            if (player.getInventory().getHelmet() != null) {
+                if (player.getInventory().getHelmet().getType() == Material.GOLDEN_HELMET) {
+                    event.setCancelled(false);
+                    event.setFormat(ChatColor.GOLD + "<%1$s> " + ChatColor.YELLOW + "%2$s");
+                    return;
+                }
+            }
+        }
+
+        // GLOBAL CHAT
+        if (!playerData.isLocalChat()) {
+            event.setFormat(ChatColor.GREEN + "<%1$s> " + ChatColor.RESET + "%2$s");
+            return;
+        }
+
+        // LOCAL CHAT
+        event.setCancelled(true);
+
+        // TODO: Replace deprecation
+        Bukkit.getConsoleSender().sendMessage("<" + player.getDisplayName() + "> " + msg);
+        double maxDist = config.LOCAL_CHAT_DISTANCE;
+        for (Player other : Bukkit.getServer().getOnlinePlayers()) {
+            if (other.getLocation().getWorld() == player.getLocation().getWorld()) {
+                if (other.getLocation().distance(player.getLocation()) <= maxDist) {
+                    // TODO: Replace deprecation
+                    other.sendMessage(ChatColor.RESET + "<" + player.getDisplayName() + "> " + msg);
+                }
+            }
+        }
+    }
+
+}
