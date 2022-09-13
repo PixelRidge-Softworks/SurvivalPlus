@@ -67,9 +67,9 @@
             <version>4.11.0</version>
         </dependency>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.19.2-R0.1-20220814.010731-2</version>
+          <groupId>org.spigotmc</groupId>
+          <artifactId>spigot-api</artifactId>
+          <version>1.19.2-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
