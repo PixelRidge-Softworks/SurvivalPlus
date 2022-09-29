@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,20 +17,20 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
+
 public class CauldronWaterBottle implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onItemClick(PlayerInteractEvent event) {
-        // TODO: Replace Deprecation
-        if (event.isCancelled()) return;
+        if (event.useInteractedBlock() == Event.Result.DENY) return;
         if (event.hasItem()) {
             Player player = event.getPlayer();
             if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE) {
                 ItemStack mainItem = player.getInventory().getItemInMainHand();
                 if (mainItem.getType() == Material.GLASS_BOTTLE) {
                     if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                        // TODO: Investigate warning
-                        if (event.getClickedBlock().getType() == Material.WATER_CAULDRON) {
+                        if (Objects.requireNonNull(event.getClickedBlock()).getType() == Material.WATER_CAULDRON) {
                             Levelled cauldron = (Levelled) (event.getClickedBlock().getBlockData());
                             if (cauldron.getLevel() > 0) {
                                 Block fire = event.getClickedBlock().getRelative(BlockFace.DOWN);

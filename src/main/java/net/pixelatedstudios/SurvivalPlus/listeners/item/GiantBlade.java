@@ -108,14 +108,7 @@ public class GiantBlade implements Listener {
 
                             ChargeForward(player);
 
-                            if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
-                                player.setFoodLevel(player.getFoodLevel() - 1);
-
-                            int chance_reduceDur = rand.nextInt(10) + 1;
-                            if (chance_reduceDur == 1) {
-                                ((Damageable) mainItemMeta).setDamage(((Damageable) mainItemMeta).getDamage() + 1);
-                                mainItem.setItemMeta(mainItemMeta);
-                            }
+                            Valkyrie.checkGameMode(player, mainItem, mainItemMeta, rand);
 
                             if (((Damageable) mainItemMeta).getDamage() >= mainItem.getType().getMaxDurability()) {
                                 player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
@@ -128,20 +121,14 @@ public class GiantBlade implements Listener {
                     }
                 }
             } else {
-                if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 1);
-                else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
+                Valkyrie.checkActionClick(event, playerData);
                 if (playerData.getStat(Stat.DUAL_WIELD_MSG) >= 2) {
                     player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.ender_giant_blade_unable_duel));
                 }
             }
         } else if (ItemManager.compare(offItem, Item.ENDER_GIANT_BLADE)) {
             if (playerData.getStat(Stat.DUAL_WIELD) != 0) {
-                if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 1);
-                else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
+                Valkyrie.checkActionClick(event, playerData);
                 if (playerData.getStat(Stat.DUAL_WIELD_MSG) >= 2) {
                     player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.ender_giant_blade_unable_duel));
                 }

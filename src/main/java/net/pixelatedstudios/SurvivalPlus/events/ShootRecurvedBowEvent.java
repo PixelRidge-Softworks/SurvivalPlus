@@ -6,6 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Called when a player shoots a recurved bow/crossbow
@@ -13,8 +14,7 @@ import org.bukkit.inventory.ItemStack;
 @SuppressWarnings("unused")
 public class ShootRecurvedBowEvent extends Event implements Cancellable {
 
-    // TODO: Investigate warning
-    private static HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final Player player;
     private final ItemStack itemStack;
     private final Item item;
@@ -58,9 +58,8 @@ public class ShootRecurvedBowEvent extends Event implements Cancellable {
         return this.item;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlers;
     }
 

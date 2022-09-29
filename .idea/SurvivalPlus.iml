@@ -6,6 +6,8 @@
         <autoDetectTypes>
           <platformType>PAPER</platformType>
           <platformType>ADVENTURE</platformType>
+          <platformType>MCP</platformType>
+          <platformType>SPIGOT</platformType>
         </autoDetectTypes>
       </configuration>
     </facet>

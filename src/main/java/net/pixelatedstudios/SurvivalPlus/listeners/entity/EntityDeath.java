@@ -33,14 +33,8 @@ public class EntityDeath implements Listener {
         if (killer != null) {
             int random = new Random().nextInt(100) + 1;
             if (random > this.SUSPICIOUS_MEAT_CHANCE) return;
-            // TODO: Replace switch with enhanced switch
             switch (entity.getType()) {
-                case ZOMBIE:
-                case DROWNED:
-                case HUSK:
-                case ZOMBIE_VILLAGER:
-                case ZOMBIE_HORSE:
-                    replaceDrops(event.getDrops());
+                case ZOMBIE, DROWNED, HUSK, ZOMBIE_VILLAGER, ZOMBIE_HORSE -> replaceDrops(event.getDrops());
             }
         }
     }

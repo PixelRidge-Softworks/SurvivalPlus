@@ -66,30 +66,16 @@ public class PiglinBarter implements Listener {
         }
 
         // If anything else we have some random drops
-        ItemStack altItem = null;
-        // TODO: Replace switch with enhanced switch
-        switch (itemDropMaterial) {
-            case LEATHER:
-                altItem = Item.SUSPICIOUS_MEAT.getItem();
-                break;
-            case NETHER_BRICK:
-                altItem = Item.COFFEE_BEAN.getItem(RANDOM.nextInt(4) + 1);
-                break;
-            case GRAVEL:
-                altItem = Item.FIRESTRIKER.getItem();
-                break;
-            case SOUL_SAND:
-                altItem = Item.CAMPFIRE.getItem();
-                break;
-            case POTION:
-                altItem = Item.MEDIC_KIT.getItem();
-                break;
-            case SPLASH_POTION:
-                altItem = Item.GRAPPLING_HOOK.getItem();
-                break;
-            case ENCHANTED_BOOK:
-                altItem = Item.RECURVE_CROSSBOW.getItem();
-        }
+        ItemStack altItem = switch (itemDropMaterial) {
+            case LEATHER -> Item.SUSPICIOUS_MEAT.getItem();
+            case NETHER_BRICK -> Item.COFFEE_BEAN.getItem(RANDOM.nextInt(4) + 1);
+            case GRAVEL -> Item.FIRESTRIKER.getItem();
+            case SOUL_SAND -> Item.CAMPFIRE.getItem();
+            case POTION -> Item.MEDIC_KIT.getItem();
+            case SPLASH_POTION -> Item.GRAPPLING_HOOK.getItem();
+            case ENCHANTED_BOOK -> Item.RECURVE_CROSSBOW.getItem();
+            default -> null;
+        };
         if (altItem != null && RANDOM.nextFloat() > 0.5f) {
             itemDrop.setItemStack(altItem);
         }

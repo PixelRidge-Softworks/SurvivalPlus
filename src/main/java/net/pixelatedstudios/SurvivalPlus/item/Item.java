@@ -91,13 +91,6 @@ public class Item {
     public static final Item HOT_MILK = get("hot_milk", Material.POTION, 5);
     public static final Item COLD_MILK = get("cold_milk", Material.POTION, 6);
 
-    /**
-     * @deprecated Use {@link #WATER_BOWL} instead
-     */
-    // TODO remove
-    @SuppressWarnings("DeprecatedIsStillUsed")
-    @Deprecated // Remove old waterbowl function
-    public static final Item WATER_BOWL_OLD = get("water_bowl_old", Material.BEETROOT_SOUP, 1);
     public static final Item WATER_BOWL = get("water_bowl", Material.POTION, 10881);
 
     // TODO Finish

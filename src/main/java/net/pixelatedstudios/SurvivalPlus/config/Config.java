@@ -132,7 +132,6 @@ public class Config {
     public boolean MECHANICS_FERMENTED_SKIN;
     public boolean MECHANICS_LIVING_SLIME;
     public boolean MECHANICS_SNOWBALL_REVAMP;
-    public boolean MECHANICS_SNOW_GEN_REVAMP;
     public boolean MECHANICS_FARMING_PRODUCTS_COOKIE;
     public boolean MECHANICS_FARMING_PRODUCTS_BREAD;
     public boolean MECHANICS_CHAIRS_ENABLED;
@@ -404,7 +403,6 @@ public class Config {
         this.MECHANICS_LIVING_SLIME = settings.getBoolean("Mechanics.LivingSlime");
 
         this.MECHANICS_SNOWBALL_REVAMP = settings.getBoolean("Mechanics.SnowballRevamp");
-        this.MECHANICS_SNOW_GEN_REVAMP = settings.getBoolean("Mechanics.SnowGenerationRevamp");
 
         this.MECHANICS_FARMING_PRODUCTS_COOKIE = settings.getBoolean("Mechanics.FarmingProducts.Cookie");
         this.MECHANICS_FARMING_PRODUCTS_BREAD = settings.getBoolean("Mechanics.FarmingProducts.Bread");

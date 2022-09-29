@@ -145,7 +145,11 @@ public class Survival extends JavaPlugin implements Listener {
 
         // LOAD MANAGERS
         blockManager = new BlockManager(this);
-        playerManager = new PlayerManager(this, playerDataMap);
+        try {
+            playerManager = new PlayerManager(this, playerDataMap);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         effectManager = new EffectManager(this);
         taskManager = new TaskManager(this);
         scoreBoardManager = new ScoreBoardManager(this);
@@ -297,18 +301,13 @@ public class Survival extends JavaPlugin implements Listener {
     }
 
     private void registerCommands() {
-        TextComponent noPerm = LegacyComponentSerializer.legacyAmpersand()
-                .deserialize(Utils.getColoredString(prefix + lang.no_perm));
+        TextComponent noPerm = Utils.getColoredString(prefix + lang.no_perm);
         getCommand("recipes").setExecutor(new Recipes());
         getCommand("togglechat").setExecutor(new ToggleChat(this));
         getCommand("togglechat").permissionMessage(noPerm);
         getCommand("status").setExecutor(new Status(this));
         getCommand("reload-survival").setExecutor(new Reload(this));
         getCommand("reload-survival").permissionMessage(noPerm);
-        if (config.MECHANICS_SNOW_GEN_REVAMP) {
-            getCommand("snowgen").setExecutor(new SnowGen(this));
-            getCommand("snowgen").permissionMessage(noPerm);
-        }
         getCommand("giveitem").setExecutor(new GiveItem(this));
         getCommand("giveitem").permissionMessage(noPerm);
         getCommand("nutrition").setExecutor(new Nutrition(this));

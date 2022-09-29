@@ -1,5 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.managers;
 
+import me.clip.placeholderapi.libs.kyori.adventure.text.Component;
+import me.clip.placeholderapi.libs.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
@@ -7,11 +9,17 @@ import net.pixelatedstudios.SurvivalPlus.config.PlayerDataConfig;
 import net.pixelatedstudios.SurvivalPlus.data.Nutrient;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.InvalidPathException;
 import java.util.*;
 
 /**
@@ -21,6 +29,7 @@ import java.util.*;
 public class PlayerManager implements Listener {
 
     private final String url;
+    private final byte[] resourceHash;
     private final Lang lang;
     private final Survival plugin;
     private final PlayerDataConfig playerDataConfig;
@@ -34,11 +43,19 @@ public class PlayerManager implements Listener {
     // Store all the active PlayerData
     private final Map<UUID, PlayerData> playerDataMap;
 
-    public PlayerManager(Survival plugin, Map<UUID, PlayerData> playerDataMap) {
+    public PlayerManager(Survival plugin, Map<UUID, PlayerData> playerDataMap) throws Exception {
         this.plugin = plugin;
         this.playerDataMap = playerDataMap;
         this.lang = plugin.getLang();
         this.url = plugin.getSurvivalConfig().RESOURCE_PACK_URL;
+        try {
+            URL url = new URL(this.url);
+            try(InputStream stream = url.openStream()) {
+                this.resourceHash = DigestUtils.md5(stream);
+            }
+        } catch (IOException e) {
+            throw new Exception("Invalid Resource pack URL provided.");
+        }
         this.playerDataConfig = plugin.getPlayerDataConfig();
         Config config = plugin.getSurvivalConfig();
         THIRST = config.MECHANICS_THIRST_START_AMOUNT;
@@ -86,7 +103,7 @@ public class PlayerManager implements Listener {
         return playerData;
     }
 
-    private void setHunger(Player player, int value) {
+    public void setHunger(Player player, int value) {
         value = Math.min(value, 40);
         int hunger = Math.min(value, 20);
         int saturation = value > 20 ? value - 20 : 0;
@@ -164,8 +181,7 @@ public class PlayerManager implements Listener {
         if (url != null) {
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 try {
-                    // TODO: Replace deprecation
-                    player.setResourcePack(url);
+                    player.setResourcePack(url, resourceHash, true);
                 } catch (Exception e) {
                     Bukkit.getConsoleSender().sendMessage("ResourcePackURL is null or URL is too long! Plugin disabled.");
                     Bukkit.getPluginManager().disablePlugin(plugin);
@@ -218,13 +234,8 @@ public class PlayerManager implements Listener {
         PlayerData data = getPlayerData(player);
         int thirst = data.getThirst();
 
-        // TODO: Investigate using a 'String.repeat()' instead of a for loop
-        for (int i = 0; i < thirst; i++) {
-            thirstBar.append("|");
-        }
-        for (int i = thirst; i < 20; i++) {
-            thirstBar.append(".");
-        }
+        thirstBar.append("|".repeat(Math.max(0, thirst)));
+        thirstBar.append(".".repeat(Math.max(0, 20 - thirst)));
 
         if (thirst >= 40)
             thirstBar.insert(0, ChatColor.GREEN);
@@ -258,16 +269,9 @@ public class PlayerManager implements Listener {
         int saturation = Math.round(player.getSaturation());
         StringBuilder hungerBar = new StringBuilder();
         StringBuilder saturationBar = new StringBuilder(ChatColor.YELLOW + "");
-        // TODO: Investigate using a 'String.repeat()' instead of a for loop
-        for (int i = 0; i < hunger; i++) {
-            hungerBar.append("|");
-        }
-        for (int i = hunger; i < 20; i++) {
-            hungerBar.append(".");
-        }
-        for (int i = 0; i < saturation; i++) {
-            saturationBar.append("|");
-        }
+        hungerBar.append("|".repeat(Math.max(0, hunger)));
+        hungerBar.append(".".repeat(Math.max(0, 20 - hunger)));
+        saturationBar.append("|".repeat(Math.max(0, saturation)));
 
         if (hunger >= 20)
             hungerBar.insert(0, ChatColor.GREEN);
@@ -324,10 +328,7 @@ public class PlayerManager implements Listener {
         for (int i = 0; i < energy; i++) {
             energyBar.append("|");
         }
-        // TODO: Investigate using a 'String.repeat()' instead of a for loop
-        for (int i = ((int) energy); i < 20; i++) {
-            energyBar.append(".");
-        }
+        energyBar.append(".".repeat(Math.max(0, 20 - (int) energy)));
         if (energy >= 16) {
             energyBar.insert(0, ChatColor.GREEN);
         } else if (energy <= 3) {
@@ -335,7 +336,7 @@ public class PlayerManager implements Listener {
         } else {
             energyBar.insert(0, ChatColor.GOLD);
         }
-        return Arrays.asList(Utils.getColoredString(lang.energy), energyBar.toString());
+        return Arrays.asList(LegacyComponentSerializer.legacySection().serialize((Component) Utils.getColoredString(lang.energy)), energyBar.toString());
     }
 
     /**
@@ -377,10 +378,11 @@ public class PlayerManager implements Listener {
                     boolean s_thirst = scoreboard.getObjective("BoardThirst").getScore(player.getName()).getScore() == 0;
                     boolean s_energy = scoreboard.getObjective("BoardEnergy").getScore(player.getName()).getScore() == 0;
                     boolean s_nutrients = scoreboard.getObjective("BoardNutrients").getScore(player.getName()).getScore() == 0;
+                    boolean s_temperature = scoreboard.getObjective("BoardTemperature").getScore(player.getName()).getScore() == 0;
 
                     if (thirst > 0 || proteins > 0 || carbs > 0 || salts > 0) {
                         PlayerData data = new PlayerData(uuid, thirst, proteins, carbs, salts, 20.0);
-                        data.setInfoDisplayed(s_hunger, s_thirst, s_energy, s_nutrients);
+                        data.setInfoDisplayed(s_hunger, s_thirst, s_energy, s_nutrients, s_temperature);
                         savePlayerData(data);
                         c++;
                     }

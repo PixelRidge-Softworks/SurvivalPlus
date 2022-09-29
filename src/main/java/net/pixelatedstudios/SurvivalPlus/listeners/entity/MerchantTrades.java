@@ -10,8 +10,7 @@ import org.bukkit.inventory.Merchant;
 
 public class MerchantTrades implements Listener {
 
-    // TODO: Investigate warning
-    private MerchantManager merchantManager;
+    private final MerchantManager merchantManager;
 
     public MerchantTrades(Survival plugin) {
         this.merchantManager = plugin.getMerchantManager();

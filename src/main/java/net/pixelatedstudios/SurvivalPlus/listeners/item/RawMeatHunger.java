@@ -17,18 +17,9 @@ public class RawMeatHunger implements Listener {
         if (event.isCancelled()) return;
         Random rand = new Random();
         Player player = event.getPlayer();
-        // TODO: replace switch with enhanced switch
         switch (event.getItem().getType()) {
-            case BEEF:
-            case PORKCHOP:
-            case MUTTON:
-            case RABBIT:
-            case SALMON:
-            case COD:
-            case CHICKEN:
-            case ROTTEN_FLESH:
-                int hungerChance = rand.nextInt(10) + 1;
-                // TODO: Investigate warning
+            case BEEF, PORKCHOP, MUTTON, RABBIT, SALMON, COD, CHICKEN, ROTTEN_FLESH -> {
+                int hungerChance = rand.nextInt(10);
                 if (hungerChance >= 1 && hungerChance <= 8) {
                     int dur = 600;
                     for (PotionEffect effect : player.getActivePotionEffects()) {
@@ -39,8 +30,9 @@ public class RawMeatHunger implements Listener {
                     }
                     player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, dur, 0, false));
                 }
-                break;
-            default:
+            }
+            default -> {
+            }
         }
     }
 

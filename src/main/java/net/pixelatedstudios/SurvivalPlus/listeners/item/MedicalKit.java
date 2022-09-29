@@ -23,15 +23,13 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-// TODO: Rename to MedicalKit from MedicKit
-public class MedicKit implements Listener {
+public class MedicalKit implements Listener {
 
-    // TODO: Investigate warnings
-    private Survival plugin;
-    private Lang lang;
-    private PlayerManager playerManager;
+    private final Survival plugin;
+    private final Lang lang;
+    private final PlayerManager playerManager;
 
-    public MedicKit(Survival plugin) {
+    public MedicalKit(Survival plugin) {
         this.plugin = plugin;
         this.lang = plugin.getLang();
         this.playerManager = plugin.getPlayerManager();
@@ -67,9 +65,7 @@ public class MedicKit implements Listener {
                                 playerData.setStat(Stat.HEALING, 1);
                                 healedData.setStat(Stat.HEALING, 1);
                                 healed.teleport(playerManager.lookAt(healed.getLocation(), player.getLocation()));
-                                // TODO: Replace Deprecation
                                 player.sendMessage(Utils.getColoredString(lang.healing) + ChatColor.RESET + healed.getDisplayName() + Utils.getColoredString(lang.keep) + ChatColor.DARK_GREEN + Utils.getColoredString(lang.medical_kit) + Utils.getColoredString(lang.on_hand));
-                                // TODO: Replace Deprecation
                                 healed.sendMessage(Utils.getColoredString(lang.being_healed) + ChatColor.RESET + player.getDisplayName() + Utils.getColoredString(lang.stay_still));
 
                                 playerData.setStat(Stat.HEAL_TIMES, 5);

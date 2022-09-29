@@ -1,5 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.data;
 
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.Component;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import net.pixelatedstudios.SurvivalPlus.util.Validate;
@@ -13,7 +15,6 @@ import java.util.Map;
  * Represents a team based scoreboard for a player
  * <p>This class also has a map that holds all player scoreboards</p>
  */
-@SuppressWarnings("unused")
 public class Board {
 
     // STATIC STUFF
@@ -32,15 +33,12 @@ public class Board {
         Survival plugin = Survival.getInstance();
         ScoreboardManager scoreboardManager = plugin.getServer().getScoreboardManager();
         oldScoreboard = player.getScoreboard();
-        // TODO: Replace Deprecations with new method
         if (!load) {
-            //todo: investigate this scoreboardManager warning
-            assert scoreboardManager != null;
             scoreboard = scoreboardManager.getNewScoreboard();
             this.player.setScoreboard(scoreboard);
-            board = scoreboard.registerNewObjective("Board", "dummy", "Board");
+            board = scoreboard.registerNewObjective("Board", "dummy", Component.text("Board"));
             board.setDisplaySlot(DisplaySlot.SIDEBAR);
-            board.setDisplayName(" ");
+            board.displayName(Component.text(" "));
 
             for (int i = 0; i < 15; i++) {
                 lines[i] = scoreboard.registerNewTeam("line" + (i + 1));
@@ -119,9 +117,8 @@ public class Board {
      *
      * @param title Title to set
      */
-    // TODO: Replace Deprecated with new method
     public void setTitle(String title) {
-        board.setDisplayName(getColString(title));
+        board.displayName(Component.text(title));
     }
 
     /**
@@ -131,11 +128,10 @@ public class Board {
      * @param line Line to set (1 - 15)
      * @param text Text to put in line
      */
-    // TODO: Replace Deprecated with new method
     public void setLine(int line, String text) {
         Validate.isBetween(line, 1, 15);
         Team t = lines[line - 1];
-        t.setPrefix(getColString(text));
+        t.prefix(Utils.getColoredString(text));
         board.getScore(getColString(entries[line - 1])).setScore(line);
     }
 
@@ -186,7 +182,7 @@ public class Board {
     }
 
     private String getColString(String string) {
-        return Utils.getColoredString(string);
+        return LegacyComponentSerializer.legacySection().serialize(Utils.getColoredString(string));
     }
 
 }

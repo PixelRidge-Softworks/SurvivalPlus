@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.item;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
@@ -22,8 +23,7 @@ import java.util.List;
 
 public class GrapplingHook implements Listener {
 
-    // TODO: Investigate warning
-    private Lang lang;
+    private final Lang lang;
 
     public GrapplingHook(Survival plugin) {
         this.lang = plugin.getLang();
@@ -109,17 +109,17 @@ public class GrapplingHook implements Listener {
             } else {
                 event.setCancelled(true);
                 if (ItemManager.compare(mainHand, Item.GRAPPLING_HOOK))
-                    p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.grappling_off_hand));
+                    p.sendMessage(Utils.getColoredString(lang.grappling_off_hand).color(TextColor.color(255, 0, 0)));
                 else
-                    p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.fishing_off_hand));
+                    p.sendMessage(Utils.getColoredString(lang.fishing_off_hand).color(TextColor.color(255, 0, 0)));
                 p.updateInventory();
             }
         } else {
             event.setCancelled(true);
             if (ItemManager.compare(offHand, Item.GRAPPLING_HOOK))
-                p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.grappling_main_hand));
+                p.sendMessage(Utils.getColoredString(lang.grappling_main_hand).color(TextColor.color(255, 0, 0)));
             else
-                p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.fishing_main_hand));
+                p.sendMessage(Utils.getColoredString(lang.fishing_main_hand).color(TextColor.color(255, 0, 0)));
             p.updateInventory();
         }
     }

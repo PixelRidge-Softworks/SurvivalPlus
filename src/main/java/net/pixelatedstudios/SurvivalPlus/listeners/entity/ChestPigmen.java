@@ -16,13 +16,13 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ChestPigmen implements Listener {
 
     private final List<Material> GOLD_ITEMS;
     private final int RADIUS;
-    // TODO: Investigate warning
-    private double SPEED;
+    private final double SPEED;
 
     public ChestPigmen(Survival plugin) {
         GOLD_ITEMS = new ArrayList<>();
@@ -70,10 +70,8 @@ public class ChestPigmen implements Listener {
 
     private void moveFaster(Attributable entity, double modifier) {
         if (entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED) != null) {
-            // TODO: Investigate warning
-            double speed = entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).getBaseValue();
-            // TODO: Investigate warning
-            entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(speed * modifier);
+            double speed = Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).getBaseValue();
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(speed * modifier);
         }
     }
 

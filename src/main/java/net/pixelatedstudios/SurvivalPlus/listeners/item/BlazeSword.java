@@ -20,6 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class BlazeSword implements Listener {
@@ -33,8 +34,7 @@ public class BlazeSword implements Listener {
                 if (player.isSneaking()) {
                     if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
                         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                            // TODO: Investigate warning
-                            Material mat = event.getClickedBlock().getType();
+                            Material mat = Objects.requireNonNull(event.getClickedBlock()).getType();
                             if (Tag.BEDS.isTagged(mat) || Tag.DOORS.isTagged(mat) || Tag.TRAPDOORS.isTagged(mat) || Utils.isWoodGate(mat)) {
                                 return;
                             }

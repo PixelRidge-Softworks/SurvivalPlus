@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Called when a player's energy level changes
@@ -55,9 +56,8 @@ public class EnergyLevelChangeEvent extends Event implements Cancellable {
         return this.level;
     }
 
-    // TODO: Investigate warning
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlers;
     }
 

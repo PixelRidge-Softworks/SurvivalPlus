@@ -8,7 +8,6 @@ import net.pixelatedstudios.SurvivalPlus.events.ThirstLevelChangeEvent;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import net.pixelatedstudios.SurvivalPlus.managers.ItemManager;
 import net.pixelatedstudios.SurvivalPlus.managers.PlayerManager;
-import net.pixelatedstudios.SurvivalPlus.managers.StatusManager;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -98,9 +97,8 @@ public class Consume implements Listener {
                     change = config.MECHANICS_THIRST_REP_WATER;
                 }
                 break;
-            // TODO: Remove deprecated code
-            case BEETROOT_SOUP: //OLD Water Bowl (removed in 3.11.0 - keep for a few versions)
-                if (ItemManager.compare(event.getPlayer().getInventory().getItemInMainHand(), Item.WATER_BOWL_OLD)) {
+            case BEETROOT_SOUP:
+                if (ItemManager.compare(event.getPlayer().getInventory().getItemInMainHand(), Item.WATER_BOWL)) {
                     event.setCancelled(true);
                     change = handleWaterBowl(player);
                 } else {
@@ -192,8 +190,7 @@ public class Consume implements Listener {
             playerManager.getPlayerData(player).setThirst(thirst);
 
             int hunger = config.MECHANICS_HUNGER_RESPAWN_AMOUNT;
-            // TODO: Replace deprecation
-            Bukkit.getScheduler().runTaskLater(plugin, () -> StatusManager.setHunger(player, hunger), 1);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> playerManager.setHunger(player, hunger), 1);
         }
     }
 
@@ -208,16 +205,10 @@ public class Consume implements Listener {
     private boolean checkWaterBottle(ItemStack bottle) {
         ItemMeta meta = bottle.getItemMeta();
         assert meta != null;
-        // TODO: Replace switch with enhanced switch
-        switch (((PotionMeta) meta).getBasePotionData().getType()) {
-            case WATER:
-            case MUNDANE:
-            case THICK:
-            case AWKWARD:
-                return true;
-            default:
-                return false;
-        }
+        return switch (((PotionMeta) meta).getBasePotionData().getType()) {
+            case WATER, MUNDANE, THICK, AWKWARD -> true;
+            default -> false;
+        };
     }
 
 }

@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.item;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
@@ -26,9 +27,8 @@ import java.util.Random;
 
 public class Valkyrie implements Listener {
 
-    // TODO: Investigate warning
-    private Survival plugin;
-    private Lang lang;
+    private final Survival plugin;
+    private final Lang lang;
 
     public Valkyrie(Survival plugin) {
         this.plugin = plugin;
@@ -48,40 +48,50 @@ public class Valkyrie implements Listener {
                 if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_AIR) {
                     if (playerData.getStat(Stat.SPIN) == 0) {
                         if (player.getFoodLevel() > 6) {
-                            Random rand = new Random();
-
-                            spin(player);
-
-                            if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
-                                player.setFoodLevel(player.getFoodLevel() - 1);
-
-                            int chance_reduceDur = rand.nextInt(10) + 1;
-                            if (chance_reduceDur == 1) {
-                                ((Damageable) mainItemMeta).setDamage(((Damageable) mainItemMeta).getDamage() + 1);
-                                mainItem.setItemMeta(mainItemMeta);
-                            }
+                            Random ran = new Random();
+                            generateRandomFoodLevel(player, mainItem, mainItemMeta, ran);
 
                             if (((Damageable) mainItemMeta).getDamage() >= mainItem.getType().getMaxDurability()) {
-                                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+                                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, ran.nextFloat() * 0.4F + 0.8F);
                                 player.getInventory().setItemInMainHand(null);
                             }
                             player.updateInventory();
                         } else {
-                            player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.lack_of_energy));
+                            player.sendMessage(Utils.getColoredString(lang.lack_of_energy).color(TextColor.color(255, 0, 0)));
                         }
                     }
                 }
             } else {
-                if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 1);
-                else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
-                    playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
+                checkActionClick(event, playerData);
                 if (playerData.getStat(Stat.DUAL_WIELD_MSG) == 2) {
-                    player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.valkyrie_axe_unable_dual));
+                    player.sendMessage(Utils.getColoredString(lang.valkyrie_axe_unable_dual).color(TextColor.color(255, 0, 0)));
                 }
             }
         }
         playerData.setStat(Stat.DUAL_WIELD_MSG, 0);
+    }
+
+    static void checkActionClick(PlayerInteractEvent event, PlayerData playerData) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
+            playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 1);
+        else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
+            playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
+    }
+
+    private void generateRandomFoodLevel(Player player, ItemStack mainItem, ItemMeta mainItemMeta, Random ran) {
+        spin(player);
+        checkGameMode(player, mainItem, mainItemMeta, ran);
+    }
+
+    static void checkGameMode(Player player, ItemStack mainItem, ItemMeta mainItemMeta, Random rand) {
+        if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
+            player.setFoodLevel(player.getFoodLevel() - 1);
+
+        int chance_reduceDur = rand.nextInt(10) + 1;
+        if (chance_reduceDur == 1) {
+            ((Damageable) mainItemMeta).setDamage(((Damageable) mainItemMeta).getDamage() + 1);
+            mainItem.setItemMeta(mainItemMeta);
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -99,27 +109,17 @@ public class Valkyrie implements Listener {
                 if (ItemManager.compare(mainItem, Item.VALKYRIES_AXE)) {
                     if (playerData.getStat(Stat.SPIN) == 0) {
                         if (player.getFoodLevel() > 6) {
-                            Random rand = new Random();
-
-                            spin(player);
-
-                            if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
-                                player.setFoodLevel(player.getFoodLevel() - 1);
-
-                            int chance_reduceDur = rand.nextInt(10) + 1;
-                            if (chance_reduceDur == 1) {
-                                ((Damageable) mainItemMeta).setDamage(((Damageable) mainItemMeta).getDamage() + 1);
-                                mainItem.setItemMeta(mainItemMeta);
-                            }
+                            Random ran = new Random();
+                            generateRandomFoodLevel(player, mainItem, mainItemMeta, ran);
 
                             if (((Damageable) mainItem.getItemMeta()).getDamage() >= mainItem.getType().getMaxDurability()) {
                                 assert player.getLocation().getWorld() != null;
-                                player.getLocation().getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+                                player.getLocation().getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0F, ran.nextFloat() * 0.4F + 0.8F);
                                 player.getInventory().setItemInMainHand(null);
                             }
                             player.updateInventory();
                         } else {
-                            player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.lack_of_energy));
+                            player.sendMessage(Utils.getColoredString(lang.lack_of_energy).color(TextColor.color(255, 0, 0)));
                         }
                     }
                 }
@@ -143,10 +143,8 @@ public class Valkyrie implements Listener {
 
         damageNearbyEnemies(player, 8);
 
-        // TODO: replace statement lambda with expression lambda
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-            playerData.setStat(Stat.SPIN, 0);
-        }, 20L);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () ->
+            playerData.setStat(Stat.SPIN, 0), 20L);
     }
 
     private void particleCircle(Player player, int particles, float radius, Particle particle) {
@@ -162,7 +160,6 @@ public class Valkyrie implements Listener {
         }
     }
 
-    // TODO: Investigate warning
     private void damageNearbyEnemies(Player player, int dmg) {
         assert player.getLocation().getWorld() != null;
         Collection<Entity> enemies = player.getLocation().getWorld().getNearbyEntities(player.getLocation().add(0, 0.5, 0), 3.5f, 1.5f, 3.5f);

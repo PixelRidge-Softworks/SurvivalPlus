@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
@@ -22,17 +23,14 @@ import java.util.Random;
 
 public class BlockPlace implements Listener {
 
-    // TODO: Investigate warnings
-    private Config config;
-    private Lang lang;
+    private final Config config;
+    private final Lang lang;
 
     public BlockPlace(Survival plugin) {
         this.config = plugin.getSurvivalConfig();
         this.lang = plugin.getLang();
     }
 
-    // TODO: Check if this suppression is needed
-    @SuppressWarnings("ConstantConditions")
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onBlockPlace(BlockPlaceEvent event) {
         if (event.isCancelled()) return;
@@ -71,7 +69,7 @@ public class BlockPlace implements Listener {
                     } else {
                         event.setCancelled(true);
                         player.updateInventory();
-                        player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_hammer));
+                        player.sendMessage(Utils.getColoredString(lang.task_must_use_hammer).color(TextColor.color(255, 0, 0)));
                     }
                 }
             }

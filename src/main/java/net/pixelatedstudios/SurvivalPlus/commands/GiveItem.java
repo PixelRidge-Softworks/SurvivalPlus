@@ -1,6 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
 import com.google.common.collect.ImmutableList;
+import net.kyori.adventure.text.TextComponent;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
@@ -31,7 +32,7 @@ public class GiveItem implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        String prefix = Utils.getColoredString(lang.prefix);
+        TextComponent prefix = Utils.getColoredString(lang.prefix);
         if (args.length < 2) return true;
         Player player = Bukkit.getPlayer(args[0]);
         if (player != null) {

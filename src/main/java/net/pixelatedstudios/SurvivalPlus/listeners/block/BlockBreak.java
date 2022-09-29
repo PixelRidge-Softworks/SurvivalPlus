@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
@@ -24,9 +25,8 @@ import java.util.Random;
 
 public class BlockBreak implements Listener {
 
-    // TODO: Investigate warnings
-    private Config settings;
-    private Lang lang;
+    private final Config settings;
+    private final Lang lang;
 
     public BlockBreak(Survival plugin) {
         this.lang = plugin.getLang();
@@ -50,7 +50,7 @@ public class BlockBreak implements Listener {
                         if (Utils.requiresShovel(material)) {
                             event.setCancelled(true);
                             player.updateInventory();
-                            player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_shovel));
+                            player.sendMessage(Utils.getColoredString(lang.task_must_use_shovel).color(TextColor.color(255, 0, 0)));
                         }
                         //Flint
                         if (material == Material.GRAVEL) {
@@ -81,7 +81,7 @@ public class BlockBreak implements Listener {
                     if (Utils.requiresAxe(material)) {
                         event.setCancelled(true);
                         player.updateInventory();
-                        player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_axe));
+                        player.sendMessage(Utils.getColoredString(lang.task_must_use_axe).color(TextColor.color(255, 0, 0)));
                     }
 
                     //Fix half door glitch
@@ -96,7 +96,7 @@ public class BlockBreak implements Listener {
                     if (Utils.requiresPickaxe(material)) {
                         event.setCancelled(true);
                         player.updateInventory();
-                        player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_pick));
+                        player.sendMessage(Utils.getColoredString(lang.task_must_use_pick).color(TextColor.color(255, 0, 0)));
                     }
                 }
 
@@ -104,7 +104,7 @@ public class BlockBreak implements Listener {
                     if (Utils.isFarmable(material)) {
                         if (!Item.Tags.SICKLES.isTagged(tool)) {
                             event.setCancelled(true);
-                            player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_sickle));
+                            player.sendMessage(Utils.getColoredString(lang.task_must_use_sickle).color(TextColor.color(255, 0, 0)));
                         } else {
                             event.setDropItems(false);
                             Location loc = event.getBlock().getLocation();
@@ -156,7 +156,7 @@ public class BlockBreak implements Listener {
                         if (Utils.requiresShears(material)) {
                             event.setCancelled(true);
                             player.updateInventory();
-                            player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_shear));
+                            player.sendMessage(Utils.getColoredString(lang.task_must_use_shear).color(TextColor.color(255, 0, 0)));
                         }
                     }
 
@@ -198,12 +198,12 @@ public class BlockBreak implements Listener {
             if (e.getItem() != null && e.getItem().getType() == Material.BONE_MEAL) {
                 if (bush.getAge() == 3) {
                     e.setCancelled(true);
-                    return;
-                } else return;
+                }
+                return;
             }
             if (!Item.Tags.SICKLES.isTagged(tool)) {
                 e.setCancelled(true);
-                player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_sickle));
+                player.sendMessage(Utils.getColoredString(lang.task_must_use_sickle).color(TextColor.color(255, 0, 0)));
             } else {
                 if (bush.getAge() >= 2) {
                     int berries = 0;

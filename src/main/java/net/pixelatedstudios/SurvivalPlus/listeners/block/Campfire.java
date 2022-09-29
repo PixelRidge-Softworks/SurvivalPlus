@@ -22,8 +22,7 @@ import java.util.Random;
 
 public class Campfire implements Listener {
 
-    // TODO: Investigate warning
-    private Survival plugin;
+    private final Survival plugin;
 
     public Campfire(Survival plugin) {
         this.plugin = plugin;

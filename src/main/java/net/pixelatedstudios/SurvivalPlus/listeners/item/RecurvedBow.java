@@ -19,8 +19,7 @@ import java.util.Random;
 
 public class RecurvedBow implements Listener {
 
-    // TODO: Investigate warning
-    private Survival plugin;
+    private final Survival plugin;
 
     public RecurvedBow(Survival plugin) {
         this.plugin = plugin;

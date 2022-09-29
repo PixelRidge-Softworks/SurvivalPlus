@@ -61,15 +61,8 @@ public class PlayerDataCmd implements TabExecutor {
             return false;
         }
 
-        // TODO: Replace Switch statement with enhanced "switch" statement
-        switch (args[1]) {
-            case "add":
-                value = value + playerData.getData(dataType);
-                break;
-            case "remove":
-                value = playerData.getData(dataType) - value;
-                break;
-        }
+        if (args[1].equalsIgnoreCase("add")) value = playerData.getData(dataType) + value;
+        else if (args[1].equalsIgnoreCase("remove")) value = playerData.getData(dataType) - value;
         playerData.setData(dataType, value);
 
         return true;

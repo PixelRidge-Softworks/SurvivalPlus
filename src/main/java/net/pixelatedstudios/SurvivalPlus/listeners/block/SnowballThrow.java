@@ -2,6 +2,7 @@ package net.pixelatedstudios.SurvivalPlus.listeners.block;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Snow;
@@ -35,29 +36,26 @@ public class SnowballThrow implements Listener {
             }
 
             assert actual != null;
-            switch (actual.getType()) {
-                case SNOW:
-                    Snow snow = ((Snow) actual.getBlockData());
-                    if (snow.getLayers() == 7)
-                        actual.setType(Material.SNOW_BLOCK);
-                    else {
-                        snow.setLayers(snow.getLayers() + 1);
-                        actual.setBlockData(snow);
-                    }
-                    break;
-                case TALL_GRASS:
-                case DANDELION:
-                case ROSE_BUSH:
-                case DEAD_BUSH:
-                    actual.setType(Material.SNOW);
-                    break;
-                default:
-                    if (actual.getType().isSolid()) {
-                        Block aboveHit = actual.getRelative(BlockFace.UP);
-                        if (aboveHit.getType() == Material.AIR) {
-                            aboveHit.setType(Material.SNOW);
-                        }
-                    }
+            if (actual.getType() == Material.SNOW) {
+                Snow snow = ((Snow) actual.getBlockData());
+                if (snow.getLayers() == 7)
+                    actual.setType(Material.SNOW_BLOCK);
+                else {
+                    snow.setLayers(snow.getLayers() + 1);
+                    actual.setBlockData(snow);
+                }
+                return;
+            }
+            if (actual.getType() == Material.TALL_GRASS && actual.getType() == Material.DANDELION && actual.getType() == Material.DEAD_BUSH && actual.getType() == Material.ROSE_BUSH) {
+                actual.setType(Material.SNOW);
+                return;
+            }
+
+            if (actual.getType().isSolid()) {
+                Block aboveHit = actual.getRelative(BlockFace.UP);
+                if (aboveHit.getType() == Material.AIR) {
+                    aboveHit.setType(Material.SNOW);
+                }
             }
         }
     }
@@ -68,44 +66,35 @@ public class SnowballThrow implements Listener {
         Player player = e.getPlayer();
         if (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE) {
             ItemStack mainItem = player.getInventory().getItemInMainHand();
-            // TODO: Switch statements to be switched to enhanced "switch" statements
-            switch (mainItem.getType()) {
-                case WOODEN_SHOVEL:
-                case GOLDEN_SHOVEL:
-                case STONE_SHOVEL:
-                case DIAMOND_SHOVEL:
-                case IRON_SHOVEL:
-                    Block block = e.getBlock();
-                    ItemMeta meta = mainItem.getItemMeta();
-                    assert meta != null;
-                    switch (block.getType()) {
-                        case SNOW:
-                            e.setCancelled(true);
+            if (Tag.MINEABLE_SHOVEL.isTagged(mainItem.getType())) {
+                Block block = e.getBlock();
+                ItemMeta meta = mainItem.getItemMeta();
+                assert meta != null;
+                if (block.getType() == Material.SNOW) {
+                    e.setCancelled(true);
 
+                    ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
+                    mainItem.setItemMeta(meta);
+                    if (((Damageable) meta).getDamage() >= mainItem.getType().getMaxDurability() + 1)
+                        player.getInventory().setItemInMainHand(null);
+                    player.updateInventory();
+                    block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.SNOWBALL,
+                            (((Snow) block.getBlockData()).getLayers())));
+                    block.setType(Material.AIR);
+                    return;
+                }
 
-                            ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
-                            mainItem.setItemMeta(meta);
-                            if (((Damageable) meta).getDamage() >= mainItem.getType().getMaxDurability() + 1)
-                                player.getInventory().setItemInMainHand(null);
-                            player.updateInventory();
-                            block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.SNOWBALL,
-                                    (((Snow) block.getBlockData()).getLayers())));
-                            block.setType(Material.AIR);
-                            break;
-                        case SNOW_BLOCK:
-                            e.setCancelled(true);
-                            ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
-                            mainItem.setItemMeta(meta);
-                            if (((Damageable) meta).getDamage() >= mainItem.getType().getMaxDurability() + 1)
-                                player.getInventory().setItemInMainHand(null);
-                            player.updateInventory();
-                            block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.SNOWBALL, 8));
-                            block.setType(Material.AIR);
-                            break;
-                        default:
-                    }
-                    break;
-                default:
+                if (block.getType() == Material.SNOW_BLOCK) {
+                    e.setCancelled(true);
+                    ((Damageable) meta).setDamage(((Damageable) meta).getDamage() + 1);
+                    mainItem.setItemMeta(meta);
+                    if (((Damageable) meta).getDamage() >= mainItem.getType().getMaxDurability() + 1)
+                        player.getInventory().setItemInMainHand(null);
+                    player.updateInventory();
+                    block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.SNOWBALL, 8));
+                    block.setType(Material.AIR);
+                    return;
+                }
             }
         }
     }

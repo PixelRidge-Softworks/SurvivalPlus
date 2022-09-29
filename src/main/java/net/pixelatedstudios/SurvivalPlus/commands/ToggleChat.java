@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.commands;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.data.PlayerData;
@@ -68,7 +69,7 @@ public class ToggleChat implements CommandExecutor, TabCompleter {
                     playerData.setLocalChat(true);
                 }
             } else {
-                sender.sendMessage(ChatColor.RED + Utils.getColoredString(lang.invalid_arg));
+                sender.sendMessage(Utils.getColoredString(lang.invalid_arg).color(TextColor.color(255, 0, 0)));
                 return false;
             }
 

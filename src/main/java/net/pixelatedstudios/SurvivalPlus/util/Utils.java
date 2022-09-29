@@ -1,6 +1,8 @@
 package net.pixelatedstudios.SurvivalPlus.util;
 
 import com.google.common.collect.ImmutableSet;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
@@ -15,7 +17,6 @@ import org.bukkit.metadata.Metadatable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -769,20 +770,8 @@ public class Utils {
      * @param string The string including color codes/HEX color codes
      * @return Returns a formatted string
      */
-    public static String getColoredString(String string) {
-        if (isRunningMinecraft(1, 16)) {
-            Matcher matcher = HEX_PATTERN.matcher(string);
-            while (matcher.find()) {
-                // TODO: Replace Deprecation
-                final net.md_5.bungee.api.ChatColor hexColor = net.md_5.bungee.api.ChatColor.of(matcher.group().substring(1, matcher.group().length() - 1));
-                final String before = string.substring(0, matcher.start());
-                final String after = string.substring(matcher.end());
-                string = before + hexColor + after;
-                matcher = HEX_PATTERN.matcher(string);
-            }
-        }
-        // TODO: Replace Deprecation
-        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', string);
+    public static TextComponent getColoredString(String string) {
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(string);
     }
 
     /**

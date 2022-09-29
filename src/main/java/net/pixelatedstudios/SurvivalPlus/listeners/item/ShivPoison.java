@@ -25,8 +25,7 @@ import java.util.Random;
 
 public class ShivPoison implements Listener {
 
-    // TODO: Investigate warning
-    private Config config;
+    private final Config config;
 
     public ShivPoison(Survival plugin) {
         this.config = plugin.getSurvivalConfig();
@@ -56,13 +55,10 @@ public class ShivPoison implements Listener {
 
             if (ItemManager.compare(offItem, Item.SHIV)) {
                 int chance_poison = rand.nextInt(4) + 1;
-                // TODO: Replace switch with enhanced switch
                 switch (chance_poison) {
-                    case 1:
-                    case 2:
-                        enemy.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 80, 0, false));
-                        break;
-                    default:
+                    case 1, 2 -> enemy.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 80, 0, false));
+                    default -> {
+                    }
                 }
                 ItemMeta offItemMeta = offItem.getItemMeta();
                 assert offItemMeta != null;
@@ -84,11 +80,8 @@ public class ShivPoison implements Listener {
             if (event.getClickedBlock() == null || tool == null) return;
 
             if (config.SURVIVAL_ENABLED && ItemManager.compare(tool, Item.SHIV)) {
-                // TODO: Replace switch with enhanced switch
                 switch (event.getClickedBlock().getType()) {
-                    case DIRT:
-                    case GRASS_BLOCK:
-                        event.setCancelled(true);
+                    case DIRT, GRASS_BLOCK -> event.setCancelled(true);
                 }
             }
         }

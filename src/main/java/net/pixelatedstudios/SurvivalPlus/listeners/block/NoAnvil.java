@@ -1,11 +1,11 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import net.pixelatedstudios.SurvivalPlus.managers.ItemManager;
 import net.pixelatedstudios.SurvivalPlus.util.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -14,9 +14,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
+
 public class NoAnvil implements Listener {
 
-    private Lang lang;
+    private final Lang lang;
 
     public NoAnvil(Survival plugin) {
         this.lang = plugin.getLang();
@@ -47,8 +49,7 @@ public class NoAnvil implements Listener {
                                 || ItemManager.compare(item, Item.HAMMER)) {
                             e.setCancelled(true);
                             e.getWhoClicked().closeInventory();
-                            // TODO: Remove getDisplayName() and replace with new Paper Adventure Library one
-                            e.getWhoClicked().sendMessage(ChatColor.RED + Utils.getColoredString(lang.no_rename) + item.getItemMeta().getDisplayName() + ChatColor.RED + Utils.getColoredString(lang.period));
+                            e.getWhoClicked().sendMessage(Utils.getColoredString(lang.no_rename).color(TextColor.color(255, 0, 0)).append(Objects.requireNonNull(item.getItemMeta().displayName()).color(TextColor.color(255, 0, 0)).append(Utils.getColoredString(lang.period).color(TextColor.color(255, 0, 0)))));
                         }
                     }
                 }

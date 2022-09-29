@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Recipes implements CommandExecutor {
-
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String prefix = "&7[&3SurvivalPlus&7] ";
         if (!(sender instanceof Player)) {

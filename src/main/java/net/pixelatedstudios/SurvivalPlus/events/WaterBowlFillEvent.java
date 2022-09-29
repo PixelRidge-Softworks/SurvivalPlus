@@ -4,6 +4,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Called when a player fills a water bowl
@@ -33,9 +34,8 @@ public class WaterBowlFillEvent extends Event implements Cancellable {
         return this.item;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlers;
     }
 

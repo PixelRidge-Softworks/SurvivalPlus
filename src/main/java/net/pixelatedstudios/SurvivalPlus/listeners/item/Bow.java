@@ -16,8 +16,7 @@ import org.bukkit.inventory.meta.CrossbowMeta;
 
 public class Bow implements Listener {
 
-    // TODO: Investigate warning
-    private Lang lang;
+    private final Lang lang;
 
     public Bow(Survival plugin) {
         this.lang = plugin.getLang();

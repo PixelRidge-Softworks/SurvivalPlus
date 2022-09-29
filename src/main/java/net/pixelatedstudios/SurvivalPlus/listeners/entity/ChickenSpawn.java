@@ -85,11 +85,7 @@ public class ChickenSpawn implements Listener {
             // Old egg method (changed on sept 4/2020)
             // Will keep for a while incase players have old eggs
             return container.get(key, PersistentDataType.BYTE) == (byte) 1;
-            // TODO: Investigate if this statement can be simplified
-        } else if (Item.BREEDING_EGG.compare(itemStack)) {
-            return true;
-        }
-        return false;
+        } else return Item.BREEDING_EGG.compare(itemStack);
     }
 
 }

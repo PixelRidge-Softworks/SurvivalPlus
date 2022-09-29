@@ -18,7 +18,6 @@ import java.util.*;
  * Holder of data for player
  * <p>You can get an instance of PlayerData from <b>{@link PlayerManager}</b></p>
  */
-@SuppressWarnings({"unused", "FieldCanBeLocal", "SameParameterValue"})
 public class PlayerData implements ConfigurationSerializable {
 
     private final Config config = Survival.getInstance().getSurvivalConfig();
@@ -26,7 +25,6 @@ public class PlayerData implements ConfigurationSerializable {
     private final int max_proteins = config.MECHANICS_FOOD_MAX_PROTEINS;
     private final int max_salts = config.MECHANICS_FOOD_MAX_SALTS;
     private final UUID uuid;
-    private final int dualWieldMsg = 0;
     private int thirst;
     private Map<String, Location> compassMap = new HashMap<>();
     // Nutrients
@@ -46,15 +44,13 @@ public class PlayerData implements ConfigurationSerializable {
     private int recurveFiring = 0;
     private int recurveCooldown = 0;
 
-    // TODO: Investigate if this is needed
-    private double temperature = 0L;
+    private double temperature;
 
     // Scoreboard info
     private boolean score_hunger = true;
     private boolean score_thirst = true;
     private boolean score_energy = true;
     private boolean score_nutrients = true;
-    // TODO: Investigate warnings
     private boolean score_temperature = true;
 
     public PlayerData(OfflinePlayer player, int thirst, int proteins, int carbs, int salts, double energy) {
@@ -98,7 +94,8 @@ public class PlayerData implements ConfigurationSerializable {
         boolean score_thirst = getBool(args, "score.thirst", true);
         boolean score_energy = getBool(args, "score.energy", true);
         boolean score_nutrients = getBool(args, "score.nutrients", false);
-        data.setInfoDisplayed(score_hunger, score_thirst, score_energy, score_nutrients);
+        boolean score_temperature = getBool(args, "score.temperature", true);
+        data.setInfoDisplayed(score_hunger, score_thirst, score_energy, score_nutrients, score_temperature);
 
         if (args.containsKey("compass")) {
             //noinspection unchecked
@@ -186,18 +183,12 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to get
      * @return Level of the nutrient
      */
-    // TODO: replace switch statement with enhanced switch statement
     public int getNutrient(Nutrient nutrient) {
-        switch (nutrient) {
-            case PROTEIN:
-                return proteins;
-            case CARBS:
-                return carbs;
-            case SALTS:
-                return salts;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + nutrient);
-        }
+        return switch (nutrient) {
+            case PROTEIN -> proteins;
+            case CARBS -> carbs;
+            case SALTS -> salts;
+        };
     }
 
     /**
@@ -206,20 +197,12 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to set
      * @param value    Level to set
      */
-    // TODO: replace switch statement with enhanced switch statement
     public void setNutrient(Nutrient nutrient, int value) {
         switch (nutrient) {
-            case PROTEIN:
-                this.proteins = Math.clamp(value, 0, this.max_proteins);
-                break;
-            case CARBS:
-                this.carbs = Math.clamp(value, 0, this.max_carbs);
-                break;
-            case SALTS:
-                this.salts = Math.clamp(value, 0, this.max_salts);
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + nutrient);
+            case PROTEIN -> this.proteins = Math.clamp(value, 0, this.max_proteins);
+            case CARBS -> this.carbs = Math.clamp(value, 0, this.max_carbs);
+            case SALTS -> this.salts = Math.clamp(value, 0, this.max_salts);
+            default -> throw new IllegalArgumentException("Unexpected value: " + nutrient);
         }
     }
 
@@ -242,20 +225,12 @@ public class PlayerData implements ConfigurationSerializable {
      * @param nutrient Nutrient to increase
      * @param value    Level of increase
      */
-    // TODO: replace switch statement with enhanced switch statement
     public void increaseNutrient(Nutrient nutrient, int value) {
         switch (nutrient) {
-            case PROTEIN:
-                this.proteins = Math.clamp(this.proteins + value, 0, this.max_proteins);
-                break;
-            case CARBS:
-                this.carbs = Math.clamp(this.carbs + value, 0, this.max_carbs);
-                break;
-            case SALTS:
-                this.salts = Math.clamp(this.salts + value, 0, this.max_salts);
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + nutrient);
+            case PROTEIN -> this.proteins = Math.clamp(this.proteins + value, 0, this.max_proteins);
+            case CARBS -> this.carbs = Math.clamp(this.carbs + value, 0, this.max_carbs);
+            case SALTS -> this.salts = Math.clamp(this.salts + value, 0, this.max_salts);
+            default -> throw new IllegalArgumentException("Unexpected value: " + nutrient);
         }
     }
 
@@ -293,32 +268,16 @@ public class PlayerData implements ConfigurationSerializable {
      * @param stat  Stat to set
      * @param value Value of stat to set
      */
-    // TODO: replace switch statement with enhanced switch statement
     public void setStat(Stat stat, int value) {
         switch (stat) {
-            case CHARGE:
-                this.charge = value;
-                break;
-            case CHARGING:
-                this.charging = value;
-                break;
-            case SPIN:
-                this.spin = value;
-                break;
-            case DUAL_WIELD:
-                this.dualWield = value;
-                break;
-            case HEALING:
-                this.healing = value;
-                break;
-            case HEAL_TIMES:
-                this.healTimes = value;
-                break;
-            case RECURVE_FIRING:
-                this.recurveFiring = value;
-                break;
-            case RECURVE_COOLDOWN:
-                this.recurveCooldown = value;
+            case CHARGE -> this.charge = value;
+            case CHARGING -> this.charging = value;
+            case SPIN -> this.spin = value;
+            case DUAL_WIELD -> this.dualWield = value;
+            case HEALING -> this.healing = value;
+            case HEAL_TIMES -> this.healTimes = value;
+            case RECURVE_FIRING -> this.recurveFiring = value;
+            case RECURVE_COOLDOWN -> this.recurveCooldown = value;
         }
     }
 
@@ -328,28 +287,18 @@ public class PlayerData implements ConfigurationSerializable {
      * @param stat Stat to retrieve
      * @return Value of stat
      */
-    // TODO: replace switch statement with enhanced switch statement
     public int getStat(Stat stat) {
-        switch (stat) {
-            case CHARGE:
-                return this.charge;
-            case CHARGING:
-                return this.charging;
-            case SPIN:
-                return this.spin;
-            case DUAL_WIELD:
-                return this.dualWield;
-            case HEALING:
-                return this.healing;
-            case HEAL_TIMES:
-                return this.healTimes;
-            case RECURVE_FIRING:
-                return this.recurveFiring;
-            case RECURVE_COOLDOWN:
-                return this.recurveCooldown;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + stat);
-        }
+        return switch (stat) {
+            case CHARGE -> this.charge;
+            case CHARGING -> this.charging;
+            case SPIN -> this.spin;
+            case DUAL_WIELD -> this.dualWield;
+            case HEALING -> this.healing;
+            case HEAL_TIMES -> this.healTimes;
+            case RECURVE_FIRING -> this.recurveFiring;
+            case RECURVE_COOLDOWN -> this.recurveCooldown;
+            default -> throw new IllegalArgumentException("Unexpected value: " + stat);
+        };
     }
 
     /**
@@ -376,22 +325,16 @@ public class PlayerData implements ConfigurationSerializable {
      * @param info Healthboard info
      * @return True if this info is displayed on the player's scoreboard
      */
-    // TODO: replace switch statement with enhanced switch statement
     public boolean isInfoDisplayed(Info info) {
-        switch (info) {
-            case HUNGER:
-                return score_hunger;
-            case THIRST:
-                return score_thirst;
-            case ENERGY:
-                return score_energy;
-            case NUTRIENTS:
-                return score_nutrients;
-            case TEMPERATURE:
-                return score_temperature;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + info);
-        }
+
+        return switch (info) {
+            case HUNGER -> score_hunger;
+            case THIRST -> score_thirst;
+            case ENERGY -> score_energy;
+            case NUTRIENTS -> score_nutrients;
+            case TEMPERATURE -> score_temperature;
+            default -> throw new IllegalArgumentException("Unexpected value: " + info);
+        };
     }
 
     /**
@@ -400,23 +343,14 @@ public class PlayerData implements ConfigurationSerializable {
      * @param info    Healthboard info to display
      * @param visible Whether the info should be displayed or not
      */
-    // TODO: replace switch statement with enhanced switch statement
     public void setInfoDisplayed(Info info, boolean visible) {
         switch (info) {
-            case HUNGER:
-                this.score_hunger = visible;
-                break;
-            case THIRST:
-                this.score_thirst = visible;
-                break;
-            case ENERGY:
-                this.score_energy = visible;
-                break;
-            case NUTRIENTS:
-                this.score_nutrients = visible;
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + info);
+            case HUNGER -> this.score_hunger = visible;
+            case THIRST -> this.score_thirst = visible;
+            case ENERGY -> this.score_energy = visible;
+            case NUTRIENTS -> this.score_nutrients = visible;
+            case TEMPERATURE -> this.score_temperature = visible;
+            default -> throw new IllegalArgumentException("Unexpected value: " + info);
         }
     }
 
@@ -424,16 +358,18 @@ public class PlayerData implements ConfigurationSerializable {
      * Set the visibility of all healthboard info
      * <p>This is mainly used internally for data transfers</p>
      *
-     * @param hunger    Whether hunger should be displayed on the player's healthboard
-     * @param thirst    Whether thirst should be displayed on the player's healthboard
-     * @param energy    Whether energy should be displayed on the player's healthboard
-     * @param nutrients Whether nutrients should be displayed on the player's healthboard
+     * @param hunger      Whether hunger should be displayed on the player's healthboard
+     * @param thirst      Whether thirst should be displayed on the player's healthboard
+     * @param energy      Whether energy should be displayed on the player's healthboard
+     * @param nutrients   Whether nutrients should be displayed on the player's healthboard
+     * @param temperature Whether temperature should be displayed on the player's healthboard
      */
-    public void setInfoDisplayed(boolean hunger, boolean thirst, boolean energy, boolean nutrients) {
+    public void setInfoDisplayed(boolean hunger, boolean thirst, boolean energy, boolean nutrients, boolean temperature) {
         this.score_hunger = hunger;
         this.score_thirst = thirst;
         this.score_energy = energy;
         this.score_nutrients = nutrients;
+        this.score_temperature = temperature;
     }
 
     /**
@@ -486,6 +422,7 @@ public class PlayerData implements ConfigurationSerializable {
         result.put("score.thirst", score_thirst);
         result.put("score.energy", score_energy);
         result.put("score.nutrients", score_nutrients);
+        result.put("score.temperature", score_temperature);
         result.put("compass", compassMap);
         return result;
     }
@@ -530,29 +467,15 @@ public class PlayerData implements ConfigurationSerializable {
      * @param type  DataType to set
      * @param value Value to set
      */
-    // TODO: replace switch statement with enhanced switch statement
     public void setData(DataType type, Number value) {
         switch (type) {
-            case THIRST:
-                setThirst(value.intValue());
-                break;
-            case ENERGY:
-                setEnergy(value.doubleValue());
-                break;
-            case PROTEINS:
-                setNutrient(Nutrient.PROTEIN, value.intValue());
-                break;
-            case CARBS:
-                setNutrient(Nutrient.CARBS, value.intValue());
-                break;
-            case SALTS:
-                setNutrient(Nutrient.SALTS, value.intValue());
-                break;
-            case HUNGER:
-                setHunger(value.doubleValue());
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown type: " + type);
+            case THIRST -> setThirst(value.intValue());
+            case ENERGY -> setEnergy(value.doubleValue());
+            case PROTEINS -> setNutrient(Nutrient.PROTEIN, value.intValue());
+            case CARBS -> setNutrient(Nutrient.CARBS, value.intValue());
+            case SALTS -> setNutrient(Nutrient.SALTS, value.intValue());
+            case HUNGER -> setHunger(value.doubleValue());
+            default -> throw new IllegalArgumentException("Unknown type: " + type);
         }
     }
 
@@ -562,24 +485,15 @@ public class PlayerData implements ConfigurationSerializable {
      * @param type DataType to get
      * @return Value from this player data
      */
-    // TODO: replace switch statement with enhanced switch statement
     public double getData(DataType type) {
-        switch (type) {
-            case THIRST:
-                return getThirst();
-            case ENERGY:
-                return getEnergy();
-            case PROTEINS:
-                return getNutrient(Nutrient.PROTEIN);
-            case CARBS:
-                return getNutrient(Nutrient.CARBS);
-            case SALTS:
-                return getNutrient(Nutrient.SALTS);
-            case HUNGER:
-                return getHunger();
-            default:
-                throw new IllegalArgumentException("Unknown type: " + type);
-        }
+        return switch (type) {
+            case THIRST -> getThirst();
+            case ENERGY -> getEnergy();
+            case PROTEINS -> getNutrient(Nutrient.PROTEIN);
+            case CARBS -> getNutrient(Nutrient.CARBS);
+            case SALTS -> getNutrient(Nutrient.SALTS);
+            case HUNGER -> getHunger();
+        };
     }
 
     public enum DataType {

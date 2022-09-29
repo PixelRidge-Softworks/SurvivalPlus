@@ -20,8 +20,7 @@ import java.util.List;
 
 public class LivingSlime implements Listener {
 
-    // TODO: Investigate warning
-    private Survival plugin;
+    private final Survival plugin;
 
     public LivingSlime(Survival plugin) {
         this.plugin = plugin;

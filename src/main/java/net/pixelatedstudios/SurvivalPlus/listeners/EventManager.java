@@ -95,8 +95,6 @@ public class EventManager {
             pm.registerEvents(new RecurvedBow(plugin), this.plugin);
         if (config.MECHANICS_SNOWBALL_REVAMP)
             pm.registerEvents(new SnowballThrow(), this.plugin);
-        if (config.MECHANICS_SNOW_GEN_REVAMP)
-            pm.registerEvents(new SnowGeneration(plugin), this.plugin);
         if (config.ENTITY_MECHANICS_CHICKEN_BREEDING_ENABLED)
             pm.registerEvents(new ChickenSpawn(this.plugin), this.plugin);
         if (config.WELCOME_GUIDE_ENABLED)

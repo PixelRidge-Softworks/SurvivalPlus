@@ -23,19 +23,10 @@ public class Clownfish implements Listener {
             Location originLoc = player.getLocation();
             originLoc.getWorld().spawnParticle(Particle.PORTAL, originLoc, 200, 0.5, 0.5, 0.5);
             player.getLocation().getWorld().playSound(player.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
-
-            // TODO: Investigate warning
-            if (player.getCompassTarget() != null) {
-                Location teleportLoc = player.getCompassTarget();
-                player.teleport(teleportLoc);
-                teleportLoc.getWorld().spawnParticle(Particle.PORTAL, teleportLoc, 200, 0.5, 0.5, 0.5);
-                player.getLocation().getWorld().playSound(teleportLoc, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
-            } else {
-                Location teleportLoc = player.getWorld().getSpawnLocation();
-                player.teleport(teleportLoc);
-                teleportLoc.getWorld().spawnParticle(Particle.PORTAL, teleportLoc, 200, 0.5, 0.5, 0.5);
-                player.getLocation().getWorld().playSound(teleportLoc, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
-            }
+            Location teleportLoc = player.getCompassTarget();
+            player.teleport(teleportLoc);
+            teleportLoc.getWorld().spawnParticle(Particle.PORTAL, teleportLoc, 200, 0.5, 0.5, 0.5);
+            player.getLocation().getWorld().playSound(teleportLoc, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
         }
     }
 

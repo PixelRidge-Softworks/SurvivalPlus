@@ -1,7 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.item.items;
 
+import net.kyori.adventure.text.Component;
 import net.pixelatedstudios.SurvivalPlus.Survival;
-import net.pixelatedstudios.SurvivalPlus.config.Lang;
 import net.pixelatedstudios.SurvivalPlus.item.Item;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -29,10 +29,7 @@ public class FireStriker implements Runnable, InventoryHolder {
 
     public FireStriker(Player player, ItemStack item) {
         Survival plugin = Survival.getInstance();
-        // TODO: Investigate if this is needed
-        Lang lang = plugin.getLang();
-        // TODO: Replace deprecations
-        this.inv = Bukkit.createInventory(this, InventoryType.FURNACE, "FireStriker");
+        this.inv = Bukkit.createInventory(this, InventoryType.FURNACE, Component.text("FireStriker"));
         this.player = player;
         this.item = item;
         this.MAX_COOK_TIME = plugin.getSurvivalConfig().ITEM_FIRESTRIKER_COOK_TIME;

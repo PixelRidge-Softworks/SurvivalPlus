@@ -20,9 +20,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class ObsidianMaceWeakness implements Listener {
 
-    // TODO: Investigate warning
-    private EffectManager effectManager;
-    private Config config;
+    private final EffectManager effectManager;
+    private final Config config;
 
     public ObsidianMaceWeakness(Survival plugin) {
         this.effectManager = plugin.getEffectManager();

@@ -1,5 +1,6 @@
 package net.pixelatedstudios.SurvivalPlus.listeners.block;
 
+import net.kyori.adventure.text.Component;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import org.bukkit.Bukkit;
@@ -26,6 +27,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // TODO: Add remainder of stair and sign block types
 public class Chairs implements Listener {
@@ -107,20 +109,7 @@ public class Chairs implements Listener {
                 // Rotate the player's view to the descending side of the block.
                 Location plocation = player.getLocation();
 
-                switch (stairs.getFacing()) {
-                    case SOUTH:
-                        plocation.setYaw(180);
-                        break;
-                    case WEST:
-                        plocation.setYaw(270);
-                        break;
-                    case NORTH:
-                        plocation.setYaw(0);
-                        break;
-                    case EAST:
-                        plocation.setYaw(90);
-                    default:
-                }
+                setYawPerStairsFace(stairs, plocation);
 
                 player.teleport(plocation);
 
@@ -149,6 +138,23 @@ public class Chairs implements Listener {
         }
     }
 
+    private void setYawPerStairsFace(Stairs stairs, Location plocation) {
+        switch (stairs.getFacing()) {
+            case SOUTH:
+                plocation.setYaw(180);
+                break;
+            case WEST:
+                plocation.setYaw(270);
+                break;
+            case NORTH:
+                plocation.setYaw(0);
+                break;
+            case EAST:
+                plocation.setYaw(90);
+            default:
+        }
+    }
+
     // TODO: Remove deprecations from this class and replace with the new Paper Adventure Library
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onBlockBreak(BlockBreakEvent event) {
@@ -157,7 +163,7 @@ public class Chairs implements Listener {
             ArmorStand drop = dropSeat(event.getBlock(), ((Stairs) event.getBlock().getBlockData()));
 
             for (Entity e : drop.getNearbyEntities(0.5, 0.5, 0.5)) {
-                if (e instanceof ArmorStand && e.getCustomName() != null && e.getCustomName().equals("Chair"))
+                if (e instanceof ArmorStand && e.customName() != null && Objects.requireNonNull(e.customName()).contains(Component.text("Chair")))
                     e.remove();
             }
 
@@ -170,7 +176,7 @@ public class Chairs implements Listener {
         Entity vehicle = event.getPlayer().getVehicle();
 
         // Let players stand up when leaving the server.
-        if (vehicle instanceof ArmorStand && vehicle.getCustomName() != null && vehicle.getCustomName().equals("Chair"))
+        if (vehicle instanceof ArmorStand && vehicle.customName() != null && Objects.requireNonNull(vehicle.customName()).contains(Component.text("Chair")))
             vehicle.remove();
     }
 
@@ -178,13 +184,13 @@ public class Chairs implements Listener {
     private void onHit(EntityDamageEvent event) {
         if (event.isCancelled()) return;
         Entity hitTarget = event.getEntity();
-        if (hitTarget instanceof ArmorStand && hitTarget.getCustomName() != null && hitTarget.getCustomName().equals("Chair"))
+        if (hitTarget instanceof ArmorStand && hitTarget.customName() != null && Objects.requireNonNull(hitTarget.customName()).contains(Component.text("Chair")))
             // Chair entity is immune to damage.
             event.setCancelled(true);
         else if (hitTarget instanceof Player && hitTarget.getVehicle() != null) {
             // Let players stand up if receiving damage.
             Entity vehicle = hitTarget.getVehicle();
-            if (vehicle instanceof ArmorStand && vehicle.getCustomName() != null && vehicle.getCustomName().equals("Chair"))
+            if (vehicle instanceof ArmorStand && vehicle.customName() != null && Objects.requireNonNull(vehicle.customName()).contains(Component.text("Chair")))
                 vehicle.remove();
         }
     }
@@ -192,24 +198,11 @@ public class Chairs implements Listener {
     private ArmorStand dropSeat(Block chair, Stairs stairs) {
         Location location = chair.getLocation().add(0.5, (-0.7 - 0.5), 0.5);
 
-        switch (stairs.getFacing()) {
-            case SOUTH:
-                location.setYaw(180);
-                break;
-            case WEST:
-                location.setYaw(270);
-                break;
-            case NORTH:
-                location.setYaw(0);
-                break;
-            case EAST:
-                location.setYaw(90);
-            default:
-        }
+        setYawPerStairsFace(stairs, location);
 
         assert location.getWorld() != null;
         ArmorStand drop = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-        drop.setCustomName("Chair");
+        drop.customName(Component.text("Chair"));
         drop.setVelocity(new Vector(0, 0, 0));
         drop.setGravity(false);
         drop.setVisible(false);
@@ -222,7 +215,7 @@ public class Chairs implements Listener {
 
         // Check for already existing chair items.
         for (Entity e : drop.getNearbyEntities(0.5, 0.5, 0.5)) {
-            if (e instanceof ArmorStand && e.getCustomName() != null && e.getCustomName().equals("Chair")) {
+            if (e instanceof ArmorStand && e.customName() != null && Objects.requireNonNull(e.customName()).contains(Component.text("Chair"))) {
                 if (e.getPassengers().isEmpty())
                     e.remove();
                 else
@@ -252,27 +245,12 @@ public class Chairs implements Listener {
         return width;
     }
 
-    // TODO: Replace Switch Statement with a enhanced 'switch'.
     private boolean checkSign(Block block, BlockFace face) {
         // Go through the blocks next to the clicked block and check if are signs on the end.
         for (int i = 1; true; i++) {
             Block relative = block.getRelative(face, i);
             if (!(plugin.getChairBlocks().contains(relative.getType())) || (block.getBlockData() instanceof Stairs && ((Stairs) relative.getBlockData()).getFacing() != ((Stairs) block.getBlockData()).getFacing())) {
-                if (Tag.SIGNS.isTagged(relative.getType())) return true;
-                switch (relative.getType()) {
-                    case ITEM_FRAME:
-                    case PAINTING:
-                    case ACACIA_TRAPDOOR:
-                    case BIRCH_TRAPDOOR:
-                    case JUNGLE_TRAPDOOR:
-                    case OAK_TRAPDOOR:
-                    case SPRUCE_TRAPDOOR:
-                    case DARK_OAK_TRAPDOOR:
-                    case IRON_TRAPDOOR:
-                        return true;
-                    default:
-                        return false;
-                }
+                return Tag.SIGNS.isTagged(relative.getType()) || relative.getType() == Material.PAINTING || relative.getType() == Material.ITEM_FRAME || Tag.TRAPDOORS.isTagged(relative.getType());
             }
         }
     }

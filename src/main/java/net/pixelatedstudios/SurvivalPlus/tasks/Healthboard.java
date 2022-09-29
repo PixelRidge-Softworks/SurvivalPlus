@@ -1,5 +1,7 @@
 package net.pixelatedstudios.SurvivalPlus.tasks;
 
+import me.clip.placeholderapi.libs.kyori.adventure.text.Component;
+import me.clip.placeholderapi.libs.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.pixelatedstudios.SurvivalPlus.Survival;
 import net.pixelatedstudios.SurvivalPlus.config.Config;
 import net.pixelatedstudios.SurvivalPlus.data.Board;
@@ -38,7 +40,7 @@ public class Healthboard extends BukkitRunnable {
         this.nutrients = playerData.isInfoDisplayed(Info.NUTRIENTS);
         this.temperature = playerData.isInfoDisplayed(Info.TEMPERATURE);
 
-        this.board.setTitle(Utils.getColoredString(plugin.getLang().healthboard_title));
+        this.board.setTitle(LegacyComponentSerializer.legacySection().serialize((Component) Utils.getColoredString(plugin.getLang().healthboard_title)));
 
         this.runTaskTimer(plugin, -1, 10);
     }
