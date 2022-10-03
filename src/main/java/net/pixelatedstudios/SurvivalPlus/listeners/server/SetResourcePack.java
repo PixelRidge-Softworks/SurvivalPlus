@@ -15,12 +15,11 @@ import org.bukkit.event.player.PlayerResourcePackStatusEvent.Status;
 
 public class SetResourcePack implements Listener {
 
-    // TODO: Investigate warnings
-    private Survival plugin;
-    private Config config;
-    private Lang lang;
-    private PlayerManager playerManager;
-    private String prefix;
+    private final Survival plugin;
+    private final Config config;
+    private final Lang lang;
+    private final PlayerManager playerManager;
+    private final String prefix;
 
     public SetResourcePack(Survival plugin) {
         this.plugin = plugin;
