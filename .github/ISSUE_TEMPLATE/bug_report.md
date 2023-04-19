@@ -1,38 +1,74 @@
----
-name: Bug report
-about: Create a report to help us fix things!
-title: ''
-labels: bug
-assignees: ''
+name: Bug Report
+description: Report a bug with Survival Plus
+labels: ["bug"]
 
----
-
-__**Describe the bug**__
-A clear and concise description of what the bug is.
-
-__**To Reproduce**__
-Steps to reproduce the behavior:
-1. Go to Nether
-2. Put on Armor
-3. Jump into Lava
-4. See error
-
-__**Expected behavior**__
-A clear and concise description of what you expected to happen.
-
-__**Screenshots**__
-If applicable, add screenshots to help explain your problem.
-
-__**Running Environment (please complete the following information):**__
- - Server Software: [e.g. Paper]
- - Host [e.g. Frozen Hosting]
- - Version [e.g. 4.0.8]
-
-__**Server Info (please complete the following information):**__
- - MC Version: [e.g. 1.19.2]
- - Custom Terrain Generator: [If using one, what custom terrain generator are you using?]
- - Average TPS: [run command `/tps`]
- - Amount of Plugins being used: [e.g. 22]
-
-__**Additional context**__
-Add any other context about the problem here.
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Confirm all are checked and valid.
+      options:
+        - label: I am NOT reporting a Security Vulnerability
+          required: true
+        - label: I have searched the Issue Tracker to make sure this is not a duplicate issue
+          required: true
+        - label: This issue does not container any sensitive information
+          required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: What Minecraft Versions does this occur on?
+      multiple: true
+      options:
+        - 1.19.x
+        - 1.18.x
+        - 1.17.x
+        - 1.16.x
+        - 1.15.x
+        - 1.14.x
+        - 1.13.x
+        - 1.12.x
+        - 1.11.x
+        - 1.10.x
+        - 1.9.x
+        - 1.8.x
+      validations:
+        required: true
+  - type: textarea
+    id: bug
+    attributes:
+      label: Current Behavior
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What is the expected behavior of the action?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction Steps
+      description: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: device
+    attributes:
+      label: Client Information?
+      description: |
+        Provide the following applicable information
+        - Survival Plus Version:
+        - Minecraft Version (exact): 
+        - Server Software (paper, purpur, etc): 
+    validations:
+      required: true
+  - type: textarea
+    id: image
+    attributes:
+      label: Images?
+      description: If applicable, add screenshots, short videos/GIFs to help explain your problem
