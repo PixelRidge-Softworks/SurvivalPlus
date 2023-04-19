@@ -7,13 +7,13 @@ body:
     id: terms
     attributes:
       label: Checklist
-      description: Confirm all are checked and valid.
+      description: Confirm all of these are checked and valid.
       options:
-        - label: I am NOT reporting a Security Vulnerability
+        - label: I am NOT reporting a security vulnerability
           required: true
         - label: I have searched the Issue Tracker to make sure this is not a duplicate issue
           required: true
-        - label: This issue does not container any sensitive information
+        - label: This issue does not contain any sensitive information
           required: true
   - type: dropdown
     id: version
