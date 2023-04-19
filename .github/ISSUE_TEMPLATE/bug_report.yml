@@ -1,0 +1,69 @@
+name: Bug Report
+description: Report a bug with Survival Plus
+labels: ["bug"]
+
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Confirm all of these are checked and valid.
+      options:
+        - label: I am NOT reporting a security vulnerability
+          required: true
+        - label: I have searched the Issue Tracker to make sure this is not a duplicate issue
+          required: true
+        - label: This issue does not contain any sensitive information
+          required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: What Minecraft Versions does this issue occur on?
+      multiple: true
+      options:
+        - 1.19
+        - 1.18
+        - 1.17
+        - 1.16
+        - 1.15
+        - 1.14
+        - Lower
+    validations:
+      required: true
+  - type: textarea
+    id: bug
+    attributes:
+      label: Current Behavior
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What is the expected behavior of the action?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction Steps
+      description: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: device
+    attributes:
+      label: Client Information?
+      description: |
+        Provide the following applicable information
+        - Survival Plus Version:
+        - Minecraft Version (exact): 
+        - Server Software (paper, purpur, etc): 
+    validations:
+      required: true
+  - type: textarea
+    id: image
+    attributes:
+      label: Images?
+      description: If applicable, add screenshots, short videos/GIFs to help explain your problem
