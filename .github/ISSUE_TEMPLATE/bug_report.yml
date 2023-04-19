@@ -16,25 +16,18 @@ body:
         - label: This issue does not contain any sensitive information
           required: true
   - type: dropdown
-    id: version
+    id: platform
     attributes:
-      label: What Minecraft Versions does this occur on?
+      label: What platform does this issue occur on?
       multiple: true
       options:
-        - 1.19.x
-        - 1.18.x
-        - 1.17.x
-        - 1.16.x
-        - 1.15.x
-        - 1.14.x
-        - 1.13.x
-        - 1.12.x
-        - 1.11.x
-        - 1.10.x
-        - 1.9.x
-        - 1.8.x
-      validations:
-        required: true
+        - Java
+        - Bedrock
+        - Website
+        - Discord
+        - Other
+    validations:
+      required: true
   - type: textarea
     id: bug
     attributes:
