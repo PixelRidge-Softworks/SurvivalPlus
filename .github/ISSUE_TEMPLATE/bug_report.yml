@@ -18,14 +18,16 @@ body:
   - type: dropdown
     id: platform
     attributes:
-      label: What platform does this issue occur on?
+      label: What Minecraft Versions does this issue occur on?
       multiple: true
       options:
-        - Java
-        - Bedrock
-        - Website
-        - Discord
-        - Other
+        - 1.19
+        - 1.18
+        - 1.17
+        - 1.16
+        - 1.15
+        - 1.14
+        - Lower
     validations:
       required: true
   - type: textarea
